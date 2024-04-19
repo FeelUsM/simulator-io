@@ -12,7 +12,7 @@ var Pages = (new function() {
 	{
 		console.log("go ", url);
 
-		ga('send', 'pageview', url); // google analytics
+		//ga('send', 'pageview', url); // google analytics
 
 		if(currentController)
 		{
@@ -20,9 +20,15 @@ var Pages = (new function() {
 			currentController = null;
 		}
 		
+		url = this.redirectUrl(url)
 		initial = initial || false;
 		var args = [];
 		var ctrl = this.setCurrentPageByUrl(url, args);
+		// ищет в compiledMap подходящую строку
+		// args = то что соответсвует '$' из PageMap
+		// ctrl = compiledMap[i]
+		// currentPage = PageMap[i]
+		console.log("go ctrl",ctrl," - ",args)
 
 		if(ctrl != null)
 		{
@@ -45,11 +51,14 @@ var Pages = (new function() {
 			{
 				// nothing found, create new instance
 				var func = FrontendControllers[ctrlName] || window[ctrlName] || null;
+				//console.log("start load controller:",ctrlName,func)
 				if(func)
 				{
 					var ctrlInstance = new func();
 					instance = loadedControllers[ctrlName] = ctrlInstance;
+					console.log("load controller:",instance)
 				}
+				//else	console.log("controller not found",ctrlName)
 			}
 
 			// set page title
@@ -61,7 +70,7 @@ var Pages = (new function() {
 				// toggle body scroll
 				$('body').toggleClass('noScroll', instance.getProperty('scroll') !== true);
 
-				// toggle main nav
+				// toggle main nav (header,footer)
 				showMainNav(instance.getProperty('showMainNav') === true);
 
 				// load view and switch
@@ -126,12 +135,12 @@ var Pages = (new function() {
 			}
 			else
 			{
-				console.log("ERROR\tCannot find controller");
+				console.error("ERROR\tCannot find controller");
 			}
 		}
 		else
 		{
-			console.log("ERROR\tCannot find controller to URL: ", url);
+			console.error("ERROR\tCannot find controller to URL: ", url);
 		}
 	}
 
@@ -149,12 +158,14 @@ var Pages = (new function() {
 				title: record.title
 			});
 		}
+		console.log("compiledMap",compiledMap)
 
-		// collect views
+		// collect views from html
 		$('ul.pages>li.page').each(function(){
 			var viewName = $(this).data('view');
 			that.addView(viewName);
 		});
+		console.log("loadedViews",loadedViews)
 
 		// init <a> listender
 		this.initLinkListener();
@@ -166,7 +177,7 @@ var Pages = (new function() {
 		this.initBasicTransitions();
 
 		// go to page
-		this.go(window.location.pathname, null, true);
+		this.go(window.location.pathname+window.location.search, null, true);
 	}
 
 	this.initLinkListener = function() // listens to all a.virtual elements for clicks
@@ -207,7 +218,7 @@ var Pages = (new function() {
 
 		Event.on('userStatusChange', function() {
 			//handlerPublicPrivateTransition();
-		});
+		}, thisLine());
 
 		Event.on('backendReady', function() {
 			processOutstandingSwitch();
@@ -218,16 +229,30 @@ var Pages = (new function() {
 			}
 
 			Event.send('loadState', {switchWaitForLogin: false});
-		});
+		}, thisLine());
 	}
 
 	// ----------------------------------------------------------------------------------------------------
-	this.setCurrentPageByUrl = function(url, refVars)
-	{
+	this.redirectUrl = function(url) {
 		// preprocess url
+		if(url.includes("simulator.html")){
+			url = url.split("simulator.html")[1]
+		}
+		if(url.includes(".html")) 
+			console.warn("html in url",url)
 		if(url.length == 0) url = '/';
 		if(url.length > 1 && url[url.length - 1] == '/') url = url.substring(0, url.length - 1);
-	
+		if(url[0]=='/') { 
+			url = '?'+url.slice(1)
+		}
+		if(url[0]!='?')
+			console.warn("non standart url",url)
+		else
+			console.log("standart url",url)
+		return url	
+	}
+	this.setCurrentPageByUrl = function(url, refVars)
+	{
 		// get controller
 		for(var i = 0; i < compiledMap.length; i++)
 		{
@@ -283,6 +308,8 @@ var Pages = (new function() {
 		}
 		else // request
 		{
+			console.error("view is apsent on html",viewName) // server-less implementation
+
 			var newView = this.addView(viewName);
 			newView.cb = [ doIt ];
 			Backend.requestView(viewName);
@@ -340,7 +367,7 @@ var Pages = (new function() {
 		$('body').scrollTop(0);
   		$('body').scrollLeft(0);
 
-		if(history.pushState && url[0] == '/') // only set if supported and not for special pages (like 404 pages without leading slash)
+		if(history.pushState && !url.includes("://") && !url.includes(".html")) // only set if supported and not for special pages (like 404 pages without leading slash)
 		{
 			history.pushState({
 				virtualPost: virtualPost
@@ -359,7 +386,7 @@ var Pages = (new function() {
 				virtualPost = event.state.virtualPost;
 			}
 
-			Pages.go(location.pathname, virtualPost, true); // todo virtual post
+			Pages.go(location.pathname+window.location.search, virtualPost, true); // todo virtual post
 		});
 	}
 
@@ -385,10 +412,10 @@ var Pages = (new function() {
 	}
 	
 	// ----------------------------------------------------------------------------------------------------
-	this.urlMatch = function(compiled, url)
+	this.urlMatch = function(compiled, url) // если подошло, возвращает оставшуюся часть compiled
 	{	
 		var match = compiled.url.exec(url);
-
+		//console.log(compiled, url, match)
 		if(match)
 		{
 			var vars = [];

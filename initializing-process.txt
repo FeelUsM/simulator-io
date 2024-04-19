@@ -1,0 +1,685 @@
+$(document).bind('keydown keyup', function(e) {...} // js/hotkey.js
+$(window).bind('storage', function (e) {var original = e.originalEvent;/*???*/}) // js/clipboard.js
+document.title = sloganLong
+
+$(window).bind('mousewheel DOMMouseScroll', this.onZoomWheel); // js/input.js
+$(document).mousemove(this.onMouseMove);
+$(document).mousedown(this.onMouseDown);
+$(document).mouseup(this.onMouseUp);
+$(document).bind('contextmenu', this.onContextMenu);
+$('body').on('click', 'a.virtual', function(e) /* pages.js # 179 */) // Pages.go(href)
+window.onresize = this.onWindowResize;
+window.addEventListener('popstate', function(event) /* pages.js # 359 */ ) // Pages.go(location.pathname, virtualPost, true)
+
+$('#mailPlaceholderAddressBug').attr('href', "mailto:bug@simulator.io");
+$('<div>abcdefgß!`123äöü_#%&/{} M</div>').addClass('fontLoadTrigger').appendTo($('body'))
+$('#board')[0].empty()
+// !!!!!!!!!! не отображается в просмотрщике элементов firefox
+.append($('<div class="boardCanvasBg" style="background-image: url..."></div>')) 		layerCanvasBg = this.nativeLayer.add('canvasBg');
+.append($('<canvas class="boardCanvas"></canvas>'))		layerCanvas = [	this.nativeLayer.add('canvas')
+.append($('<canvas class="boardCanvas"></canvas>'))
+.append($('<div style="position: absolute; width: 1px; height: 1px; display: none; cursor: crosshair;"></div>'))  overlayWires = [			this.nativeLayer.add('wire')
+.append($('<div style="position: absolute; width: 1px; height: 1px; display: none; cursor: crosshair;"></div>'))
+.append($('<div class="selection" style="position: absolute; z-index: 20; border: 2px dashed rgb(255, 255, 255); cursor: move;"></div>'))   overlaySelection = this.nativeLayer.add('selection')
+.append($('<div class="changeOverlayContainer"></div>'))		overlayChanges = this.nativeLayer.add('changesContainer');
+.append($('<div class="textNodeContainer"></div>'))				overlayTextContainer = this.nativeLayer.add('textContainer');
+.append($('<div class="minimap"></div>')
+	.prepend($('<canvas width=64 height=64>')[0])
+	.append($('<div class="curtain" style="top:0,left:0"></div>'))
+	.append($('<div class="curtain" style="top:0,left:0"></div>'))
+	.append($('<div class="curtain" style="top:0,left:0"></div>'))
+	.append($('<div class="curtain" style="top:0,left:0"></div>'))
+)						overlayMinimap = this.nativeLayer.add('minimap');
+.append($('<div class="measureBox"></div>'))
+
+$('ul.pages>li.page') // - сканируем data-view // pages.js # 62, 277
+$('body header.mainNav').toggle(show); // ui/mainNav.js # 33
+$('body footer.mainFooter').toggle(show);
+
+
+//jQuery.fn.shake = function(intShakes, intDistance, intDuration) {...} // js/helper.js
+function BoardStorage(system, board, opt){...} 	// js/shared/boardstorage.js
+function Element()                {};          	Element.prototype = ... // js/shared/element.js
+function Gate()                   {};       	Gate.prototype = ... // js/shared/element/gate.js             
+function AndGate(arg)             { ... }       AndGate.prototype = ... // js/shared/element/andgate.js
+function OrGate(arg)              { ... }		OrGate.prototype = ... // js/shared/element/orgate.js
+function XorGate(arg)             { ... }		XorGate.prototype = ... // js/shared/element/xorgate.js
+function ElementSwitch(arg)       { ... }		ElementSwitch.prototype = ... // js/shared/element/switch.js
+function ElementButton(arg)       { ... }		ElementButton.prototype = ... // js/shared/element/button.js
+function ElementLed(arg)          { ... }		ElementLed.prototype = ... // js/shared/element/led.js
+function NotGate(arg)             { ... }		NotGate.prototype = ... // js/shared/element/notgate.js
+function BufferGate(arg)          { ... }		BufferGate.prototype = ... // js/shared/element/buffergate.js
+function ElementHalfAdder(arg)    { ... }		ElementHalfAdder.prototype = ... // js/shared/element/halfadder.js
+function ElementFullAdder(arg)    { ... }		ElementFullAdder.prototype = ... // js/shared/element/fulladder.js
+function ElementFlipFlopD(arg)    { ... }		ElementFlipFlopD.prototype = ... // js/shared/element/flipflopd.js
+function ElementFlipFlopRS(arg)   { ... }		ElementFlipFlopRS.prototype = ... // js/shared/element/flipfloprs.js
+function ElementFlipFlopJK(arg)   { ... }		ElementFlipFlopJK.prototype = ... // js/shared/element/flipflopjk.js
+function ElementShiftRegister(arg){ ... }		ElementShiftRegister.prototype = ... // js/shared/element/shiftregister.js
+function ElementDecoder(arg)      { ... }		ElementDecoder.prototype = ... // js/shared/element/decoder.js
+function ElementMux(arg)          { ... }		ElementMux.prototype = ... // js/shared/element/mux.js
+function ElementDemux(arg)        { ... }		ElementDemux.prototype = ... // js/shared/element/demux.js
+function ElementClock(arg)        { ... }		ElementClock.prototype = ... // js/shared/element/clock.js
+function ElementSegmentDisplay(arg){...} 		ElementSegmentDisplay.prototype = ... // js/shared/element/segmentdisplay.js
+function ControllerBase()						ControllerBase.prototype.=...; { // js/controllerbase.js 
+	scroll: true,
+	showMainNav: true,
+	getProperty = function(key)
+	setupDone = false
+	getView = function() 
+	setup = function() 
+	switch = function()
+	leave = function()
+	onBackendReady = function()
+}
+function HomeController()     {   HomeController.prototype      = ...; // js/controller/homecontroller.js
+	getView = function()
+	setup = function()
+	switch = function(args)
+	onBackendReady = function()
+}
+function UserController()     {...}UserController.prototype      = ...; // js/controller/usercontroller.js
+function EditorController()   {...}EditorController.prototype    = ...; // js/controller/editorcontroller.js
+function PassResetController(){...}PassResetController.prototype = ...; // js/controller/passresetcontroller.js
+function ActivationController()   {}ActivationController.prototype  =...; // js/controller/activationcontroller.js
+function Error404Controller() {} Error404Controller.prototype  = ...; // js/controller/error404controller.js
+function StaticController()   {}   StaticController.prototype    = ...; // js/controller/staticcontroller.js
+function clipScalar(v, bound) // js/helper.js
+function hexToRGB(str) // js/helper.js
+function md5(str) // js/helper.js
+function hashUnorderedStringHeap(strArray) // js/helper.js
+function getSuperscriptNumber(char) // js/helper.js
+function getSuperscriptString(str) // js/helper.js
+function mathSign(v) // js/helper.js
+function mobileAndTabletcheck() // js/helper.js
+function isOldBrowser() // js/helper.js
+function Transaction(board, type, id, foreign) // js/transaction.js
+function TransactionManager(system, board) // js/transaction.js
+function Input(system){...} // js/input.js
+function doLogin(login, pass, cb) // js/session.js
+function setLoginCallback(cb) // js/session.js
+function Tool(system, board){...} // js/tool.js
+function BoardLogic(system, board){...} // js/boardlogic.js
+function BoardEventManager(system, board){...} // js/boardevent.js
+function PreviewManager(system, board){...} // js/previewmgr.js
+function Board(system){...} // js/board.js
+function Simulator(system, board){...} // js/simulator.js
+function SimulationBase(){}SimulationBase.prototype. = ...  // js/simulationbase.js
+function UserProvider(system, board){...} // js/users.js
+function System(boardElement){...} // js/system.js
+function App(boardElement){  this.system = new System(boardElement); } // js/app.js
+function SimpleSimulation(){...} SimpleSimulation.prototype = ... // js/simulation/simplesimulation.js
+function Renderer(system, board){...} // js/renderer/renderer.js
+function NativeLayer(){...} // js/renderer/nativelayer.js
+function drawWires(board, wires, zoom, ctx, renderType){...} // js/renderer/draw_wire.js
+function drawElements(board, elements, zoom, ctx, renderType){...} // js/renderer/draw_element.js
+function drawDiodes(board, diodes, zoom, ctx, renderType){...} // js/renderer/draw_diodes.js
+function MapRenderer(renderer, system, board){...} // js/renderer/map.js
+function showMainNav(show) // js/ui/mainnav.js
+function updateProfileMeta() // js/ui/mainnav.js
+function registerToggle(jq, name, interval);  // js/ui/toggle.js
+function unregisterToggle(jq, name) // js/ui/toggle.js
+function getCurrentLoadState(); // js/ui/loading.js
+function getTimeOpened(); // js/ui/overlay.js
+function initOverlay(); // js/ui/overlay.js
+function ensureInitialization(); // js/ui/overlay.js
+function openOverlay(name); // js/ui/overlay.js
+function closeOverlay(); // js/ui/overlay.js
+function initOverlayMessage(); // js/ui/overlaymessage.js
+function initOverlayRegister(); // js/ui/overlayregister.js
+function initOverlayLogin(); // js/ui/overlaylogin.js
+function initOverlayShare(); // js/ui/overlayshare.js
+function initOverlayLink(); // js/ui/overlaylink.js
+function initOverlayBoardRename(); // js/ui/overlayboardrename.js
+function initOverlayFork(); // js/ui/overlayfork.js
+function initOverlayError(); // js/ui/overlayerror.js
+function loginComplete(); // js/ui/overlayfork.js
+
+var FrontendControllers			/* js/controllerbase.js */ = {
+	"HomeController" = HomeController,
+	"UserController" = UserController,
+	"EditorController" = EditorController,
+	"PassResetController" = PassResetController,
+	"ActivationController" = ActivationController,
+	"Error404Controller" = Error404Controller,
+	"StaticController	" = StaticController,
+}; 
+function addController(name,func){	FrontendControllers[name] = func; }		// js/controllerbase.js
+var Validation                 	/* js/shared/validation.js */  = {...simple...}
+var ToolOptionProvider         	/* js/shared/tooloptions.js */ = {...simple...}
+var MetaData                   	/* js/shared/metadata.js */ = new (function MetaDataManager() {...simple...})
+var ElementStore 				/* js/shared/defs.js */	 = {...simple*...}
+var ElementCats 				/* js/shared/defs.js */  = [...simple...]
+var PageMap						/* js/shared/mapping.js */ = [...simple...]; 
+var StaticPageMap				/* js/shared/mapping.js */ = [...simple...]
+var Hotkey 						/* js/hotkey.js */ = new function(){...simple...
+	/*private static*/ registered = [ 
+		{ keys: ["del"]      , cb: function() } // tool.js # 290
+		{ keys: ['ctrl','x'] , cb: function() } // tool.js # 297
+		{ keys: ['ctrl','c'] , cb: function() } // tool.js # 305
+		{ keys: ['ctrl','v'] , cb: function() } // tool.js # 
+		{ keys: ['ctrl','z'] , cb: function() } // tool.js # 
+		{ keys: ['ctrl','y'] , cb: function() } // tool.js # 
+	];
+	register = function(shortcut, cb)
+}
+var Clipboard					/* js/clipboard.js */ = new function(){...simple... }
+var Config 						/* js/config.js */= {...simple...
+	colSelectedBorder: '#ffffff',
+}
+var Backend 					/* js/backend.js */ = {...simple...}
+var sessionLoginCallback 		/* js/session.js */ = null;
+var EventTypes 					/* js/transaction.js */ = {...simple...};
+var logicApp 					/* js/system.js */ = 
+{ // new App($('#board')[0]); 
+	system: { // new System(boardElement); 
+		previewMgr = null,
+		mode = 0,
+		boardElement = $('#board')[0],
+		getMode = function(mode){...} // system.js # 30
+		board = { // new Board(system=this, 0)
+			system = system;
+			logic = /* new BoardLogic(system, board=this); */ {
+				size = [], // size in grid points [x, y]. if you place an element over the size, the size have to adjust
+				grouplessWires = [],		// a temporary list with all wires without a group
+				dirtyDiodes = [],			// a temporary list with all diodes with changed/invalid groups
+				dirtyConnectors = [],		// a temporary list with all connectors which are not updates regarding the group
+				reset = function() // boardlogic # 13
+				execCommand = function(cmd, arg) // boardlogic # 38
+				onCommit = function() // 94
+				addWire = function(arg) // 102 !!!!!!
+				deleteWire = function(arg) // 282 !!!!!
+				toggleConnection = function(p) // 361
+				toggleDiode = function(p, v) // 401
+				addElement = function(id, geo, arg, negators) // 471
+				deleteElement = function(pos) // 497
+				addConnectorHelperWires = function(element) // 524
+				splitWire = function(wire, p) // 567
+				combineWires = function(idA, idB) // 599
+				updateWireGroup = function() // 666
+				updateConnectorGroup = function() // 755
+				updateBoardSize = function() // 773
+				cancelGroup = function(group) // 802
+				findWiresRecursive = function(wire, resultWires) // 833
+				findDedicatedGroupFromPoint = function(result, p, excludeWireId) // 864
+				elementAbleToPlace = function(obj, geo) // 888
+				repairWires = function(list) // 956
+				selectionDelete = function() // 986
+				setSelectionArea = function(area) // 1019
+				selectionSetFloating = function(list) // 1095
+				moveSelected = function(arg) // 1118
+				selectionCopy = function() // 1228
+				selectionPaste = function(arg) // 1236
+				selectionPasteEnd = function(arg) // 1341
+				addText = function(arg) // 1398
+				deleteText = function(pos) // 1415
+				getQuadsByArea = function(area) // 1426
+				getLockAreaByWire = function(geo) // 1446
+				areaAreaIntersection = function(a, b) // 1457
+				areaLineIntersection = function(area, line) // 1466 test if line intersects with area. line=[[x1,y1],[x2,y2]]  area=[startx,starty,endx,endy]
+				areaPointIntersection = function(area, point) // 1509 area=[startx,starty,endx,endy]   point=[x,y]
+				pointEqual = function(a, b) // 1520
+				test = function() // 1527
+			},
+			storage = /*new BoardStorage(system, this, storageOpt),*/ {
+				nextWireId = 0;
+				nextElementId = 0;
+				nextDiodeId = 0;
+				nextTextId = 0;
+				nextGroupId = 0;
+				selectionFloating = false; // if true, all items in selectedGlo are not part this storage yet
+				//                  STORAGE LISTS
+				wiresDir = [ [], [] ]; 		// wires by direction (horizontal and vertical)	// list format: [horArray, verArray]	// wire format: {id: id, geo:[[x,y], [x,y]]}
+				wiresGlo = [];				// all wires				// list format: [ {}, {}, {}, {}, ....}		// wire format: same as in wiresDir. should share the wire objects with wiresDir
+				elementsGlo = [];			// all elements				// list format: [ {}, {}, {}, {}, ....]					// element format: {id, elementId, geo:[x,y]}
+				connectorsGlo = [];			// all connectors of elements	// list format: [ {}, {}, {}, {}, ....]				// element format: {geo: [x, y], element, index}
+				diodesGlo = [];				// all diodes				// list format: [ {}, {}, {}, {}, ....]					// diode format: {id, geo: [x, y]}
+				textsGlo = [];				// all text nodes			// list format: [ {}, {}, {}, {}, ....]					// text format: {id, geo: [x, y], text: "abc"}
+				groupsGlo = [];				// all wire groups			// list format: [ {}, {}, {}, {}, ....]					// group format: {id, wires}
+				quads = {};
+				selectedGlo = [];			// all selected object (wire, diode or element)
+				reset = function() // shared/boardstorage.js # 50 always call this from external, not the board.logic.reset() function
+				setOpt = function(_opt) // 72
+				exportAll = function() // 77
+				importAll = function(obj) // 115
+				exportSelected = function() // 172
+				exportWire = function(wire) // 203
+				exportElement = function(element) // 209
+				exportDiode = function(diode) // 221
+				exportText = function(text) // 226
+				importWire = function(wire, ignoreId) // 231
+				importElement = function(elementData, ignoreId) // 245
+				importDiode = function(diode, ignoreId) // 256
+				importText = function(text, ignoreId) // 265
+				hash = function() // 277
+				pushWire = function(wire) // 314
+				popWire = function(id) // 381
+				pushElement = function(element) // 474
+				popElement = function(id) // 573
+				toggleNegator = function(con) // 678
+				pushDiode = function(diode) // 706
+				popDiode = function(diode) // 765
+				pushText = function(text) // 826
+				popText = function(text) // 863
+				pushWireToQuads = function(wire) // 903
+				popWireFromQuads = function(wire) // 930
+				pushGroup = function() // 976
+				popGroup = function(group) // 1004
+				selectObject = function(obj) // 1046
+				unselectObject = function(obj) // 1062
+				unselectAll = function() // 1079
+				//                     HELPER AND SEARCH FUNCTIONS
+				getQuad = function(x, y) // 1093
+				getWireById = function(id) // 1114
+				getWiresByIntersection = function(p, d, excludeEndpoints) // 1128
+				getWiresByEndpoint = function(p, d, excludeId) // 1171
+				getDiodeAtPoint = function(p) // 1203
+				getDiodeById = function(id) // 1218
+				getTextById = function(id) // 1228
+				getTextAtPos = function(p)
+				getConnectorAtPoint = function(p)
+				getGroupAtPoint = function(p)
+				getElementAtPoint = function(p)
+				getElementById = function(id)
+				getWireDirection = function(wire)
+				getObjectType = function(obj) // we need static types...
+				isSelected = function(obj)
+				anythingSelected = function()
+				pointEqual = function(a, b)
+			},
+			event = /* new BoardEventManager(system, this), */ {
+				board = board; // boardevent.js
+				readOnly = false;
+				pendingForeigns = []; // if you're in simulation mode and cannot edit the board, all foreign events will get here
+				encodeRemoteEvent = function(type, arg, lock)
+				decodeRemoteEventArg = function(type, event)
+				processStorageEvent = function(type, arg)
+				processForeignTransaction = function(data)
+				addOverlaysForTransaction = function(data)
+				reset = function()
+			},
+			users = /* new UserProvider(system, this), */ {
+				users = [];
+				reset = function()
+				getUserByToken = function(token)
+				getColorById = function(id)
+			}
+			reset = function() // board.js # 22
+		}
+		renderer = /* new Renderer(this, this.board) */ {
+			map = /*new MapRenderer(this, system, board); */ {
+				canvasSteps = [$("#board>.minimap>canvas").ctx];
+				canvasFirst = $("#board>.minimap>canvas");.ctx // renderer/map.js # 244 
+				canvasLast = $("#board>.minimap>canvas");.ctx // ??? canvas  и canvas.getContext('2d') - отличаются ???
+				jqParent = $("#board>.minimap");
+				jqMapCurtains = [ $("#board>.minimap>.curtain")[0..4] ];
+				init = function()	{} // renderer/map.js
+				reset = function() // 14
+				setupDom = function(jqParent) // 27
+				draw = function() // 54
+				drawAll = function() // 115
+				drawMapQuad = function(quad, x, y) // 126
+				renderPreview = function(ctx, size) // 165
+				updateLayers = function(count) // 203
+				// !!!!!!!!!!!!! 233 ошибка?
+				updateLayout = function() // 256
+				scaleDownFromTopLayer = function() // 332
+				resizeBoard = function() // 345
+			}
+			nativeLayer = /* new NativeLayer(); */ {
+				/*static private*/ jqBoardElement = $('#board')[0]
+				reset = function() // renderer/nativlayer.js # 65
+				add = function(key, parent)
+			}
+			overlayWires = [ $("#board>div")[1], $("#board>div")[2] ];
+			overlayElement = null;
+			overlaySelection = $("#board>.selection");
+			overlayChanges = $("#board>.changeOverlayContainer");
+			overlayChangesList = null;
+			overlayTextContainer = $("#board>.textNodeContainer");
+			overlayMinimap = $("#board>.minimap");
+			measureBox = $("#board>.measureBox");
+			layerCanvasBg = $("#board>.boardCanvasBg");
+			layerCanvas = [ $("#board>canvas.boardCanvas")[0], $("#board>canvas.boardCanvas")[1] ];
+			minimapTimeout = -1; // setTimeout handle
+			/* INTERFACE */
+			reset = function() // renderer/renderer.js # 25
+			setActive = function(a) // 80
+			// RESIZE BOARD/VIEW PANEL HANDLER
+			resizeRenderPanel = function(start, size) // 94
+			resizeBoard = function(size) // 108
+			// MOVE/ZOOM IMPLEMENTATION AND INTERFACE
+			setViewOffset = function(view) // 116
+			applyZoom = function(delta) // 130
+			moveView = function(rel) // 153
+			setSelectionOffset = function(offset) // 158
+			updateZoom = function() // 163
+			// DIRTY HANDLERS
+			setDirty = function(n) // dirty layer // 176
+			addDirtyMapQuad = function(quad) // dirty single quad in map // 181
+			// MINIMAP INTERFACE
+			minimapShow = function() // 190
+			minimapHide = function() // 198
+			getPreviewBuffer = function(size, returnDataUrl) // 206
+			// ---------------------------------------------- DRAW ----------------------------------------------
+			drawHandler = function() // 256
+			drawMainBoard = function()
+			drawScreen = function(rect, screenRenderMode) // screenRenderMode: 0=everything 1=everything but selections 2=selections only
+			// ------------------------------------- OVERLAY HANDLER: WIRES -------------------------------------
+			// Shows and set the overlay wires
+			// Pass an array per wire (0=hor, 1=ver). array should have 3 values: startX, startY, length
+			// Pass mode, 0=normal 1=thick red line
+			overlayWiresSet = function(w0, w1, mode) // 439
+			overlayWiresHide = function()
+			// -------------------------------------- OVERLAY HANDLER: ELEMENT --------------------------------------
+			overlayElementCreate = function(size) // 477
+			overlayElementMove = function(x, y)
+			overlayElementRemove = function()
+			// --------------------------------------- OVERLAY HANDLER: CHANGE --------------------------------------
+			// store functions for change overlay quads (low level)
+			overlayChangeGetQuad = function(x, y) // 510
+			overlayChangeAddQuad = function(obj)
+			overlayChangeDeleteQuad = function(x, y)
+			overlayChangeAdd = function(area, color)// you have to call overlayChangeUpdate after this
+			overlayChangeUpdate = function()
+			// ------------------------------------- OVERLAY HANDLER: SELECTION -------------------------------------
+			overlaySelectionSet = function(rect)
+			overlaySelectionUpdate = function()
+			// ------------------------------------- OVERLAY HANDLER: TEXT -------------------------------------
+			overlayTextAdd = function(x, y, text, size, ref) // 655
+			overlayTextRemove = function(obj)
+			overlayTextUpdate = function(forceMeasurement) // 731
+			overlayTextSetFloating = function(items)
+			overlayTextUnsetFloating = function()
+			// ------------------------------------- stuff
+			logicTicks = function() // 833
+			getVisibleQuadsFromRect = function(rect)
+		}
+		input = /* new Input(this) */ { // js/input.js
+			toolActive = false; // is mouse down?
+			sideScroll = false;
+			lastUpPos = null; // only for context
+			mousePos = [0, 0];			
+			getBoardOffset = function()
+			onMouseMove = function(e)
+			onMouseDown = function(e)
+			onMouseUp = function(e)
+			onZoomWheel = function(e)
+			onWindowResize = function()
+			onContextMenu = function(e) // 109
+			isBoardElement = function(e) // checks if an event happend on/in the board element
+			isActiveTextElement = function(e) // checks if an event happend on an active text node
+			canvasElement = $("#board>canvas.boardCanvas")[1]
+		}
+		tool = /* new Tool(this, this.board);*/ {
+			toolId = 0;
+			toolState = false;
+			toolActionOffset = [0, 0];
+			toolActionCurrent = [0, 0];
+			toolDirection = -1;
+			toolMoved = false;
+			toolElementId = ''; // yes, this is a string
+			toolElementMod = null; // a prototype object of the element
+			toolElementCanvas = null;
+			toolWireState = null;
+			toolDir = -1;
+			toolColor = '000000';
+			toolInputSize = 2;
+			toolShiftRegisterSize = 4;
+			toolDecoderInputSize = 3;
+			toolMuxInputSize = 2;
+			toolTextSize = 1;
+			toolSegmentDisplay = 'b4';
+			selectOffset = null;
+			selectSize = null;
+			selectMoveStart = null; // start of the last move click
+			selectMoveCur = null; // current pos of move
+			textNodePending = null;
+			scrollState = false;
+			scrollOffset = [0, 0];
+			scrollCurrent = [0, 0];			
+			createArgObject = function() // tool.js # 336
+			getTool = function()
+			toolCommonMove = function()
+			toolCommonEnd = function() // 389
+			toolElementStart = function()
+			toolElementMove = function()
+			toolElementEnd = function()
+			toolSimulatorEnd = function()
+			toolSelectStart = function() // 512
+			toolSelectMove = function()
+			toolSelectEnd = function() // 651
+			toolSelectFinalize = function()
+			toolTextStart = function(e)
+			toolTextEnd = function()
+			toolTextChange = function(node)
+			initTools = function()
+		}
+		transaction = /* new TransactionManager(this, this.board); */ {
+			... simple ... /* transaction.js */ // состояния для undo/redo
+		}
+		simulator = /* new Simulator(this, this.board); */ {
+			clockElements = [];
+			clockStatus = 0; // 0=off 1=infinite 2=wait for stop
+			clockTicks = 0;
+			clockStopOnTick = 0;
+			syncTicks = false;
+			board = board;
+			getMode = function()
+			goBuild = function()
+			goSimulator = function()
+			addDirtyElement = function(e)
+			addDirtyGroup = function(group, change)
+			applyPowerOfGroup = function(group)
+			clickElement = function(element)
+			stopClock = function()
+			startStableClock = function()
+			startLimitedClock = function(n)
+			getClockState = function(state)
+			clockTick = function()
+			ticks = function()
+			singleTick = function()
+		}
+		previewMgr = /* new PreviewManager(this, this.board); */ {
+			reset = function()
+			setActive = function(a)
+			isActive = function()
+			announceChange = function()
+			forcePreviewUpload = function()
+			showPreview = function()
+			/*static private*/ active = false;
+			/*static private*/ announced = false;
+		}
+	}
+}
+var RenderState 				/* js/renderer/renderstate.js */ = {
+	active: false,
+	boardSize: [0, 0], // size of the board (in grid dots)
+	viewOffset: [0, 0], // view offset in pixels
+	viewSize: [0, 0], // view size in pixels
+	boardElement: system.boardElement, // element of the board
+	appliedZoom: 0, // last zoom on rendering
+	dirtyFlags: [false, false, false, false, true],
+	dirtyMapQuads: [],
+	dirtyMapAll: true,
+	overlaySelectionRect: null,
+	selectionOffset: null,
+	selectionBoardRect:  null,
+	overlayChangeList: [],
+	textNodes: [],
+	textNodesActive: false,
+	textNodesFloating: null,
+	canvasCtx: [ $("#board>canvas.boardCanvas")[0].ctx, $("#board>canvas.boardCanvas")[1].ctx ];,
+	reset: function() 
+}
+var Pages 						/* js/pages.js */ = {
+	...simple...
+	/*static private*/ compiled_map = [
+		{
+			url:/^error404$/,
+			type:2,
+			title:"Page not found",
+			controller: "Error404Controller"
+		}
+		...
+	]
+	/*static private*/ loadedViews = [
+		name: "editor",
+		cb: null
+	]
+}
+var zeroOffset 					/* js/renderer/renderer.js */ = [0, 0];
+var RenderHelper 				/* js/renderer/renderhelper.js */ = {
+	_gridBgCache: [],
+	getGridUri: function(z) // рисует квадратик z*z и ставит в нем точку, .toDataURL(), кэширует в _gridBgCache, и возвращает
+}
+var NativeLayerDef 				/* js/renderer/nativelayer.js */ = {...Config.colSelectedBorder...};
+var UI 							/* js/ui/main.js */ = {...simple...
+	_inited: false,
+	_systemPrepare = system;
+	_initQueue: [
+		function(system) {...} // js/ui/loading.js
+		function(system) {...} // js/ui/keyboard.js
+		function(system) {...} // js/ui/spinner.js
+		function(system) {...} // js/ui/button.js
+		function(system) {...} // js/ui/usersearch.js
+		function(system) {...} // js/ui/sections.js
+		function(system) {...} // js/ui/toolbox.js
+		function(system) {...} // js/ui/toolbar.js
+		function(system) {...} // js/ui/elements.js
+		function(system) {...} // js/ui/editorlayout.js
+		function(system) {...} // js/ui/chat.js
+	],
+	init: function(cb)
+}
+var setSidebar, 				/* js/ui/mobilesidebar.js */
+var toggleSidebar, 				/* js/ui/mobilesidebar.js */
+var jqMobileSidebar; 			/* js/ui/mobilesidebar.js */
+var Tooltip						/* js/ui/tooltipbar.js */ = new (function() {...simple...})
+var registerToggleList 			/* js/ui/toggle.js */ = [];
+var LoadingBar 					/* js/ui/loading.js */ = new (function LoadingBar() {...simple...});
+var _currentLoadState 			/* js/ui/loading.js */ = false; 
+var fullSizeErrorActive 		/* js/ui/fullsizeerror.js */ = false;
+var textMeasureSize;			/* js/ui/autotextarea.js */
+var fontLoadTriggerInit;		/* js/ui/autotextarea.js */
+/*static private*/ measureBox = $("#board>.measureBox") /* js/ui/autotextarea.js */
+/*static private*/ fontBoxInited = true
+var Button 						/* js/ui/button.js */ = {...simple...}
+var UserSearch 					/* js/ui/usersearch.js */ = {...simple...}
+var Accordion 					/* js/ui/accordion.js */ = {...simple...}
+var ScrollArea 					/* js/ui/slider.js */ = {...simple...}
+var jqOverlayBackground 		/* js/ui/overlay.js */ = null;
+var overlayName 				/* js/ui/overlay.js */ = null;
+var openTime 					/* js/ui/overlay.js */ = null;
+var overlayInitialized 			/* js/ui/overlay.js */ = false;
+var messageOnCloseCb 			/* js/ui/overlaymessage.js */ = null;
+var Event 						/* js/event.js */ = {...simple... , 
+	_registered: {
+		"userDataOwn" : [ function(profile) {...} /* js/session.js */ ]
+		'registerSuccess' : [ function() {...} /* js/session.js */ ]
+		'loginResult' : [ function(result) {...} /* js/session.js */ ]
+		'fullSizeError' : [ function(msg) {...} /* js/ui/fullsizeerror.js */ ]
+		'setMeasureBox' : [ function(box) {...} /* js/ui/autotextarea.js */ ]
+		'clearFontSizeCache' : [ function() {...} /* js/ui/autotextarea.js */ ]
+		'closeOverlay': [ function() {...} /* js/ui/overlay.js */ ]
+		'userStatusChange': [ 
+			function() {...} /* js/ui/overlay.js */ 
+			function() /* pages.js # 213 */ // do nothing
+		]
+		'keyhit': [ 
+			function(arg){ if(arg.key == 27) function() {...} /* js/ui/overlay.js */ }; 
+		]
+		'button' : [
+			function(arg){ if(arg.key == 'openRegister') function() {...} /* js/ui/overlayregister.js */ },
+			function(arg){ if(arg.key == 'openLogin') function() {...} /* js/ui/overlaylogin.js */ }, 
+			function(arg){ if(arg.key == 'openShare') function() {...} /* js/ui/overlayshare.js */ }, 
+			function(arg){ if(arg.key == 'openLink') function() {...} /* js/ui/overlaylink.js */ }), 
+		],
+		'openMessage':     [ function(data) {...}  /* js/ui/overlaymessage.js */ ]
+		'openRenameBoard': [ function(data) {...}  /* js/ui/overlayboardrename.js */ ]
+		'openForkOverlay': [ function() {...}      /* js/ui/overlayfork.js */ ]
+		'serverError':     [ function(error) {...} /* js/ui/overlayerror.js */ ]
+		'setMode' : [ 
+			function(newMode) {...} /* system.js # 26 */ 
+			function(mode) {...} /* boardevent.js # 11 */
+			function(newMode) {...} /* simulator.js # 24 */
+		],
+		'foreignTransaction' : [ function(data) /* boardevent.js # 251 */ ]
+		'confirmTransaction' : [ function(data) /* boardevent.js # 264 */ ],
+		'rejectTransaction' : [ function(data) /* boardevent.js # 270 */ ],
+		'hashRequest' : [ function(id) /* boardevent.js # 274 */ ],
+		'localUndo' : [ function() /* boardevent.js # 280 */ ],
+		'localRedo' : [ function() /* boardevent.js # 284 */ ],
+		'userJoinBoard' : [ function(data) /* users.js # 40 */ ],
+		'userLeaveBoard' : [ function(data) /* users.js # 47 */ ],
+		'setTool' : [ 
+			function(id) /* renderer/renderer.js # 813 */ 
+			function(id) /* tool.js */
+		],
+		'fontLoaded' : [ function() /* renderer/renderer.js # 822 */ ],
+		'editorVisible' : [ function() /* renderer/renderer.js # 827 */ ],
+		'setElement' : [ function(id) /* tool.js */ ],
+		'setDir' : [ function(dir) /* tool.js */ ],
+		'setColor' : [ function(color) /* tool.js */ ],
+		'setInputSize' : [ function(size) /* tool.js */ ],
+		'setShiftRegisterSize' : [ function(size) /* tool.js */ ],
+		'setDecoderInputSize' : [ function(size) /* tool.js */ ],
+		'setMuxInputSize' : [ function(size) /* tool.js */ ],
+		'setTextSize' : [ function(size) /* tool.js */ ],
+		'setSegmentDisplay' : [ function(type) /* tool.js */ ],
+		'selectionDelete' : [ function() /* tool.js */ ],
+		'selectionCopy' : [ function()  /* tool.js */ ],
+		'selectionPaste' : [ function() /* tool.js */ ],
+		'toolTextChange' : [ function(obj) /* tool.js */ ],
+		'actionStart' : [ function(arg) /* tool.js */ ],
+		'actionMove' : [ function(arg) /* tool.js */ ],
+		'actionEnd' : [ function(arg) /* tool.js */ ],
+		'scrollStart' : [ function(arg) /* tool.js */ ],
+		'scrollMove' : [ function(arg) /* tool.js */ ],
+		'scrollEnd' : [ function(arg) /* tool.js */ ],
+		'joinBoardResult' : [ function()  /* transaction.js # 760 */ ],
+		'loadBoardResult' : [ function() /* transaction.js # 760 */ ],
+		'resetSimulation': [ function() /* simulator.js # 31 */ ],
+		'backendReady' : [ function() /* pages.js # 216 */ ],
+	},
+	on: function(event, cb){...simple...} 
+	onKey: function(event, key, cb) {...simple...}
+}
+
+после загрузки:
+	js/ui/mailobfuscator.js:    1:
+	System(boardElement)	//	js/system.js # 1
+		Pages.init()		//  js/pages.js # 151
+			Pages.go(url, virtualPost=null, initial=true) // # 13
+				загружаем контроллер - instance : 'EditoController'
+				загружаем вью - view : 'editor'
+				Pages.switchToView(view, function1() {...})
+					doIt() - нужную вью активирую, ненужные - деактивирую
+						function1()
+							instance.setup() // editorcontroller.js # 18
+								UI.ensure() // ui/main.js # 37
+									UI.bootUI(UI._systemPrepare)
+										this._initQueue[0](system) // loading.js # 68 - $('#uiLoadOverlay') - 
+											центрируем (хоть и не видно его)
+											Event.on('windowResize', updatePos)
+											Event.on('removeAllLoadTags', function(){...})
+											Event.on('loadState', function(tags){...})
+										this._initQueue[1](system) // keyboard.js
+											при отпускании клавиши - Event.send('keyhit', {key:e.keyCode});
+										this._initQueue[1](system) // spinner.js 
+											$('input[type=number]/*spinner*/').focusout(если за пределами - установить максимальное или минимальное значение)
+										this._initQueue[3](system); // ui/button.js # 35
+											развесить картиночки на кнопочки
+											по нажатию Event.send('button', {key:data-key, n:data-n})
+										this._initQueue[4](system) // usersearch.js # 64
+											Event.on('userPresenceUpdate', UserSearch.onResult);
+
+	js/ui/mainnav.js:    1:
+	js/ui/mobilesidebar.js:    3:
+	---
+	js/renderer/renderer.js: 69
+каждые 0.1 секунды: 300 раз
+	js/ui/autotextarea.js: 64 // если изменился размер шрифта - послать события
+каждую секуду: 120 раз
+	js/previewmgr.js: 70 // если ... загрузить на сервер
+
+

@@ -312,7 +312,7 @@ a.open {
     top: 8px;
     width: 16px;
     height: 16px;
-    background-image: url(/res/indicator.gif); }
+    background-image: url(res/indicator.gif); }
 
 .accordion {
   border: 1px solid #ddd; }
@@ -809,7 +809,7 @@ li.page.home {
           border-radius: 6px; }
   li.page.home section.teaserPerspective {
     min-height: 400px;
-    background-image: url(/res/perspective.jpg); }
+    background-image: url(res/perspective.jpg); }
     li.page.home section.teaserPerspective p {
       color: #fff;
       font-size: 35px;
@@ -913,7 +913,7 @@ li.page.user {
 				}
 
 				&.edit {
-					background-image: url('/res/sprite.svg');
+					background-image: url('res/sprite.svg');
 					background-size: auto $iconSize;
 					background-position: -$iconSize * 10 0;
 				}
@@ -1131,7 +1131,7 @@ li.page.user {
         li.page.user ul.boards li .ctrl div:hover {
           opacity: 0.4; }
         li.page.user ul.boards li .ctrl div.edit {
-          background-image: url("/res/sprite.svg");
+          background-image: url("../res/sprite.svg");
           background-size: auto 20px;
           background-position: -200px 0; }
         li.page.user ul.boards li .ctrl div.delete {
@@ -1890,7 +1890,7 @@ div.fontLoadTrigger {
 /* toolbar */
 #toolbar {
   width: 100%;
-  height: 86px;
+  height: 43px; /* --- modified --- */
   /*background: linear-gradient(to bottom,#f4f4f4,#eee);*/
   background-color: #222;
   -webkit-touch-callout: none;
@@ -1971,7 +1971,7 @@ div.fontLoadTrigger {
       display: inline-block; }
 
 /* buttons in toolbar */
-#toolbar .buttonList li {
+ .buttonList li {
   border: 0;
   border-radius: 0;
   margin: 0;
@@ -2075,7 +2075,7 @@ div.elementSelection {
   background-color: #333;
   border: 1px #555 solid;
   min-height: 100px;
-  max-height: 280px; }
+  max-height: 600px; } /* --- modified --- */
 
 div.elementSelection div.lineLabel {
   font-size: 11px;
@@ -2279,84 +2279,84 @@ div.lineLabel span:before, div.lineLabel span:after {
 	@include button-icon("Del",			1, 24px, 'sprite.png');
 	@include button-icon("Diode",		2, 24px, 'sprite.png');
 	@include button-icon("Select",		3, 24px, 'sprite.png');*/ }
-  #toolbox .buttonList .iconSignal1 .buttonSub {
-    background-image: url("/res/signal1.png");
+  .buttonList .iconSignal1 .buttonSub {
+    background-image: url("../res/signal1.png");
     background-size: auto 24px;
     background-position: 0px 0; }
-  #toolbox .buttonList .iconSignalN .buttonSub {
-    background-image: url("/res/signalN.png");
+  .buttonList .iconSignalN .buttonSub {
+    background-image: url("../res/signalN.png");
     background-size: auto 24px;
     background-position: 0px 0; }
-  #toolbox .buttonList .iconSignalStable .buttonSub {
-    background-image: url("/res/signalStable.png");
+  .buttonList .iconSignalStable .buttonSub {
+    background-image: url("../res/signalStable.png");
     background-size: auto 24px;
     background-position: 0px 0; }
-  #toolbox .buttonList .iconSignalStop .buttonSub {
-    background-image: url("/res/signalStop.png");
+  .buttonList .iconSignalStop .buttonSub {
+    background-image: url("../res/signalStop.png");
     background-size: auto 24px;
     background-position: 0px 0; }
+  .buttonList .iconToolWire .buttonSub {
+    background-image: url("../res/sprite.svg");
+    background-size: auto 24px;
+    background-position: -288px 0; }
+  .buttonList .iconToolDel .buttonSub {
+    background-image: url("../res/sprite.svg");
+    background-size: auto 24px;
+    background-position: -312px 0; }
+  .buttonList .iconToolDiode .buttonSub {
+    background-image: url("../res/sprite.svg");
+    background-size: auto 24px;
+    background-position: -336px 0; }
+   .buttonList .iconToolSelect .buttonSub {
+    background-image: url("../res/sprite.svg");
+    background-size: auto 24px;
+    background-position: -360px 0; }
+  .buttonList .iconToolText .buttonSub {
+    background-image: url("../res/sprite.svg");
+    background-size: auto 24px;
+    background-position: -384px 0; }
 
 #toolbar .buttonList {
   /* there are some more rules regarding icons in toolbarbutton.css */ }
-  #toolbar .buttonList .iconRedo .buttonSub {
-    background-image: url("/res/sprite.svg");
+  .buttonList .iconRedo .buttonSub {
+    background-image: url("../res/sprite.svg");
     background-size: auto 24px;
     background-position: -96px 0; }
-  #toolbar .buttonList .iconUndo .buttonSub {
-    background-image: url("/res/sprite.svg");
+  .buttonList .iconUndo .buttonSub {
+    background-image: url("../res/sprite.svg");
     background-size: auto 24px;
     background-position: -120px 0; }
-  #toolbar .buttonList .iconChat .buttonSub {
-    background-image: url("/res/sprite.svg");
+  .buttonList .iconChat .buttonSub {
+    background-image: url("../res/sprite.svg");
     background-size: auto 24px;
     background-position: -144px 0; }
-  #toolbar .buttonList .iconShare .buttonSub {
-    background-image: url("/res/sprite.svg");
+  .buttonList .iconShare .buttonSub {
+    background-image: url("../res/sprite.svg");
     background-size: auto 24px;
     background-position: -192px 0; }
-  #toolbar .buttonList .iconLink .buttonSub {
-    background-image: url("/res/sprite.svg");
+  .buttonList .iconLink .buttonSub {
+    background-image: url("../res/sprite.svg");
     background-size: auto 24px;
     background-position: -264px 0; }
-  #toolbar .buttonList .iconFork .buttonSub {
-    background-image: url("/res/sprite.svg");
+  .buttonList .iconFork .buttonSub {
+    background-image: url("../res/sprite.svg");
     background-size: auto 24px;
     background-position: -408px 0; }
-  #toolbar .buttonList .iconRun .buttonSub {
-    background-image: url("/res/sprite.svg");
+  .buttonList .iconRun .buttonSub {
+    background-image: url("../res/sprite.svg");
     background-size: auto 24px;
     background-position: -216px 0; }
-  #toolbar .buttonList .iconEdit .buttonSub {
-    background-image: url("/res/sprite.svg");
+  .buttonList .iconEdit .buttonSub {
+    background-image: url("../res/sprite.svg");
     background-size: auto 24px;
     background-position: -240px 0; }
-  #toolbar .buttonList .iconToolWire .buttonSub {
-    background-image: url("/res/sprite.svg");
-    background-size: auto 24px;
-    background-position: -288px 0; }
-  #toolbar .buttonList .iconToolDel .buttonSub {
-    background-image: url("/res/sprite.svg");
-    background-size: auto 24px;
-    background-position: -312px 0; }
-  #toolbar .buttonList .iconToolDiode .buttonSub {
-    background-image: url("/res/sprite.svg");
-    background-size: auto 24px;
-    background-position: -336px 0; }
-  #toolbar .buttonList .iconToolSelect .buttonSub {
-    background-image: url("/res/sprite.svg");
-    background-size: auto 24px;
-    background-position: -360px 0; }
-  #toolbar .buttonList .iconToolText .buttonSub {
-    background-image: url("/res/sprite.svg");
-    background-size: auto 24px;
-    background-position: -384px 0; }
-  #toolbar .buttonList .iconReset .buttonSub {
-    background-image: url("/res/sprite.svg");
+  .buttonList .iconReset .buttonSub {
+    background-image: url("../res/sprite.svg");
     background-size: auto 24px;
     background-position: -432px 0; }
 
 #toolbox .buttonList .iconDir .buttonSub {
-  background-image: url(/res/sprite.svg);
+  background-image: url("../res/sprite.svg");
   background-size: auto 24px; }
 
 #toolbox .buttonList .iconDir:nth-child(1) .buttonSub {

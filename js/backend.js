@@ -1,7 +1,6 @@
 var Backend = {
 	_socket: null,
 	_currentLoadedBoard: null,
-	_transactionId: 0,
 	_ready: false,
 	_msgQueue: [], // push new messages here; will be null once the backend is initialized
 
@@ -12,11 +11,12 @@ var Backend = {
 	},
 
 	isLoggedIn: function(){
-		return Config.userId == null ? false : true;
+		return true; // always logged in
 	},
 	
 	requestView: function(viewName){
-		Backend._queueMsg('_reqView', {name: viewName});
+		console.error('request view',viewName)
+		//Backend._queueMsg('_reqView', {name: viewName});
 	},
 
 	loginWithToken: function(){

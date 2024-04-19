@@ -25,7 +25,7 @@ function System(boardElement)
 	
 	Event.on('setMode', function(newMode) {
 		that.mode = newMode;
-	});
+	}, thisLine());
 	
 	this.getMode = function(mode)
 	{
@@ -36,7 +36,6 @@ function System(boardElement)
 	// construct
 	this.board = new Board(this, 0);
 	//this.boardFloat = new Board(this, boardElement, 1);
-
 	this.renderer = new Renderer(this, this.board);
 
 	this.input = new Input(this);
@@ -45,13 +44,16 @@ function System(boardElement)
 	this.simulator = new Simulator(this, this.board);
 	this.previewMgr = new PreviewManager(this, this.board);
 
-	Config.init();
+	Config.init(); // записзывает пользователя из html в Config
 
 	UI.prebootUI(this);
 
 	Pages.init();
+	console.log("Pages.init()")
 
 	Backend.initBackendSystem();
+	console.log("Backend.initBackendSystem()")
 
 	that.renderer.drawHandler();
+	console.log("that.renderer.drawHandler()")
 }

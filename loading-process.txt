@@ -1,0 +1,185 @@
+$(document).bind('keydown keyup', function(e) {...} // js/hotkey.js
+$(window).bind('storage', function (e) {var original = e.originalEvent;/*???*/}) // js/clipboard.js
+
+//jQuery.fn.shake = function(intShakes, intDistance, intDuration) {...} // js/helper.js
+function BoardStorage(system, board, opt){...} 	// js/shared/boardstorage.js
+function Element()                {};          	Element.prototype = ... // js/shared/element.js
+function Gate()                   {};       	Gate.prototype = ... // js/shared/element/gate.js             
+function AndGate(arg)             { ... }       AndGate.prototype = ... // js/shared/element/andgate.js
+function OrGate(arg)              { ... }		OrGate.prototype = ... // js/shared/element/orgate.js
+function XorGate(arg)             { ... }		XorGate.prototype = ... // js/shared/element/xorgate.js
+function ElementSwitch(arg)       { ... }		ElementSwitch.prototype = ... // js/shared/element/switch.js
+function ElementButton(arg)       { ... }		ElementButton.prototype = ... // js/shared/element/button.js
+function ElementLed(arg)          { ... }		ElementLed.prototype = ... // js/shared/element/led.js
+function NotGate(arg)             { ... }		NotGate.prototype = ... // js/shared/element/notgate.js
+function BufferGate(arg)          { ... }		BufferGate.prototype = ... // js/shared/element/buffergate.js
+function ElementHalfAdder(arg)    { ... }		ElementHalfAdder.prototype = ... // js/shared/element/halfadder.js
+function ElementFullAdder(arg)    { ... }		ElementFullAdder.prototype = ... // js/shared/element/fulladder.js
+function ElementFlipFlopD(arg)    { ... }		ElementFlipFlopD.prototype = ... // js/shared/element/flipflopd.js
+function ElementFlipFlopRS(arg)   { ... }		ElementFlipFlopRS.prototype = ... // js/shared/element/flipfloprs.js
+function ElementFlipFlopJK(arg)   { ... }		ElementFlipFlopJK.prototype = ... // js/shared/element/flipflopjk.js
+function ElementShiftRegister(arg){ ... }		ElementShiftRegister.prototype = ... // js/shared/element/shiftregister.js
+function ElementDecoder(arg)      { ... }		ElementDecoder.prototype = ... // js/shared/element/decoder.js
+function ElementMux(arg)          { ... }		ElementMux.prototype = ... // js/shared/element/mux.js
+function ElementDemux(arg)        { ... }		ElementDemux.prototype = ... // js/shared/element/demux.js
+function ElementClock(arg)        { ... }		ElementClock.prototype = ... // js/shared/element/clock.js
+function ElementSegmentDisplay(arg){...} 		ElementSegmentDisplay.prototype = ... // js/shared/element/segmentdisplay.js
+function ControllerBase()						ControllerBase.prototype.=...; // js/controllerbase.js
+function HomeController()     {}   HomeController.prototype      = ...; // js/controller/homecontroller.js
+function UserController()     {...}UserController.prototype      = ...; // js/controller/usercontroller.js
+function EditorController()   {...}EditorController.prototype    = ...; // js/controller/editorcontroller.js
+function PassResetController(){...}PassResetController.prototype = ...; // js/controller/passresetcontroller.js
+function ActivationController()   {}ActivationController.prototype  =...; // js/controller/activationcontroller.js
+function Error404Controller() {} Error404Controller.prototype  = ...; // js/controller/error404controller.js
+function StaticController()   {}   StaticController.prototype    = ...; // js/controller/staticcontroller.js
+function clipScalar(v, bound) // js/helper.js
+function hexToRGB(str) // js/helper.js
+function md5(str) // js/helper.js
+function hashUnorderedStringHeap(strArray) // js/helper.js
+function getSuperscriptNumber(char) // js/helper.js
+function getSuperscriptString(str) // js/helper.js
+function mathSign(v) // js/helper.js
+function mobileAndTabletcheck() // js/helper.js
+function isOldBrowser() // js/helper.js
+function Transaction(board, type, id, foreign) // js/transaction.js
+function TransactionManager(system, board) // js/transaction.js
+function Input(system){...} // js/input.js
+function doLogin(login, pass, cb) // js/session.js
+function setLoginCallback(cb) // js/session.js
+function Tool(system, board){...} // js/tool.js
+function BoardLogic(system, board){...} // js/boardlogic.js
+function BoardEventManager(system, board){...} // js/boardevent.js
+function PreviewManager(system, board){...} // js/previewmgr.js
+function Board(system){...} // js/board.js
+function Simulator(system, board){...} // js/simulator.js
+function SimulationBase(){}SimulationBase.prototype. = ...  // js/simulationbase.js
+function UserProvider(system, board){...} // js/users.js
+function System(boardElement){...} // js/system.js
+function App(boardElement){  this.system = new System(boardElement); } // js/app.js
+function SimpleSimulation(){...} SimpleSimulation.prototype = ... // js/simulation/simplesimulation.js
+function Renderer(system, board){...} // js/renderer/renderer.js
+function NativeLayer(){...} // js/renderer/nativelayer.js
+function drawWires(board, wires, zoom, ctx, renderType){...} // js/renderer/draw_wire.js
+function drawElements(board, elements, zoom, ctx, renderType){...} // js/renderer/draw_element.js
+function drawDiodes(board, diodes, zoom, ctx, renderType){...} // js/renderer/draw_diodes.js
+function MapRenderer(renderer, system, board){...} // js/renderer/map.js
+function showMainNav(show) // js/ui/mainnav.js
+function updateProfileMeta() // js/ui/mainnav.js
+function registerToggle(jq, name, interval);  // js/ui/toggle.js
+function unregisterToggle(jq, name) // js/ui/toggle.js
+function getCurrentLoadState(); // js/ui/loading.js
+function getTimeOpened(); // js/ui/overlay.js
+function initOverlay(); // js/ui/overlay.js
+function ensureInitialization(); // js/ui/overlay.js
+function openOverlay(name); // js/ui/overlay.js
+function closeOverlay(); // js/ui/overlay.js
+function initOverlayMessage(); // js/ui/overlaymessage.js
+function initOverlayRegister(); // js/ui/overlayregister.js
+function initOverlayLogin(); // js/ui/overlaylogin.js
+function initOverlayShare(); // js/ui/overlayshare.js
+function initOverlayLink(); // js/ui/overlaylink.js
+function initOverlayBoardRename(); // js/ui/overlayboardrename.js
+function initOverlayFork(); // js/ui/overlayfork.js
+function initOverlayError(); // js/ui/overlayerror.js
+function loginComplete(); // js/ui/overlayfork.js
+
+var FrontendControllers			/* js/controllerbase.js */ = {
+	"HomeController" = HomeController,
+	"UserController" = UserController,
+	"EditorController" = EditorController,
+	"PassResetController" = PassResetController,
+	"ActivationController" = ActivationController,
+	"Error404Controller" = Error404Controller,
+	"StaticController	" = StaticController,
+}; 
+function addController(name,func){	FrontendControllers[name] = func; }		// js/controllerbase.js
+var Validation                 	/* js/shared/validation.js */  = {...simple...}
+var ToolOptionProvider         	/* js/shared/tooloptions.js */ = {...simple...}
+var MetaData                   	/* js/shared/metadata.js */ = new (function MetaDataManager() {...simple...})
+var ElementStore 				/* js/shared/defs.js */	 = {...simple*...}
+var ElementCats 				/* js/shared/defs.js */  = [...simple...]
+var PageMap						/* js/shared/mapping.js */ = [...simple...]; 
+var StaticPageMap				/* js/shared/mapping.js */ = [...simple...]
+var Hotkey 						/* js/hotkey.js */ = new function(){...simple...}
+var Clipboard					/* js/clipboard.js */ = new function(){...simple... }
+var Event 						/* js/event.js */ = {...simple... , 
+	_registered: {
+		"userDataOwn" : [ function(profile) {...} /* js/session.js */ ]
+		'registerSuccess' : [ function() {...} /* js/session.js */ ]
+		'loginResult' : [ function(result) {...} /* js/session.js */ ]
+		'fullSizeError' : [ function(msg) {...} /* js/ui/fullsizeerror.js */ ]
+		'setMeasureBox' : [ function(box) {...} /* js/ui/autotextarea.js */ ]
+		'clearFontSizeCache' : [ function() {...} /* js/ui/autotextarea.js */ ]
+		'closeOverlay': [ function() {...} /* js/ui/overlay.js */ ]
+		'userStatusChange': [ function() {...} /* js/ui/overlay.js */ ]
+		'keyhit': [ 
+			function(arg){ if(arg.key == 27) function() {...} /* js/ui/overlay.js */ }; 
+		]
+		'button' : [
+			function(arg){ if(arg.key == 'openRegister') function() {...} /* js/ui/overlayregister.js */ },
+			function(arg){ if(arg.key == 'openLogin') function() {...} /* js/ui/overlaylogin.js */ }, 
+			function(arg){ if(arg.key == 'openShare') function() {...} /* js/ui/overlayshare.js */ }, 
+			function(arg){ if(arg.key == 'openLink') function() {...} /* js/ui/overlaylink.js */ }), 
+		],
+		'openMessage':     [ function(data) {...}  /* js/ui/overlaymessage.js */ ]
+		'openRenameBoard': [ function(data) {...}  /* js/ui/overlayboardrename.js */ ]
+		'openForkOverlay': [ function() {...}      /* js/ui/overlayfork.js */ ]
+		'serverError':     [ function(error) {...} /* js/ui/overlayerror.js */ ]
+	},
+	on: function(event, cb){...simple...} 
+	onKey: function(event, key, cb) {...simple...}
+}
+var Config 						/* js/config.js */= {...simple...
+	colSelectedBorder: '#ffffff',
+}
+var Backend 					/* js/backend.js */ = {...simple...}
+var sessionLoginCallback 		/* js/session.js */ = null;
+var EventTypes 					/* js/transaction.js */ = {...simple...};
+var logicApp 					/* js/system.js */ = null;
+var Pages 						/* js/pages.js */ = (new function() {...simple...})
+var zeroOffset 					/* js/renderer/renderer.js */ = [0, 0];
+var RenderHelper 				/* js/renderer/renderhelper.js */ = {...simple...}
+var RenderState 				/* js/renderer/renderstate.js */ = {...simple...}
+var NativeLayerDef 				/* js/renderer/nativelayer.js */ = {...Config.colSelectedBorder...};
+var UI 							/* js/ui/main.js */ = {...simple...
+	_inited: false,
+	_initQueue: [
+		function(system) {...} // js/ui/loading.js
+		function(system) {...} // js/ui/keyboard.js
+		function(system) {...} // js/ui/spinner.js
+		function(system) {...} // js/ui/button.js
+		function(system) {...} // js/ui/usersearch.js
+		function(system) {...} // js/ui/sections.js
+		function(system) {...} // js/ui/toolbox.js
+		function(system) {...} // js/ui/toolbar.js
+		function(system) {...} // js/ui/elements.js
+		function(system) {...} // js/ui/editorlayout.js
+		function(system) {...} // js/ui/chat.js
+	],
+	init: function(cb)
+}
+var setSidebar, 				/* js/ui/mobilesidebar.js */
+var toggleSidebar, 				/* js/ui/mobilesidebar.js */
+var jqMobileSidebar; 			/* js/ui/mobilesidebar.js */
+var Tooltip						/* js/ui/tooltipbar.js */ = new (function() {...simple...})
+var registerToggleList 			/* js/ui/toggle.js */ = [];
+var LoadingBar 					/* js/ui/loading.js */ = new (function LoadingBar() {...simple...});
+var _currentLoadState 			/* js/ui/loading.js */ = false; 
+var fullSizeErrorActive 		/* js/ui/fullsizeerror.js */ = false;
+var textMeasureSize;			/* js/ui/autotextarea.js */
+var fontLoadTriggerInit;		/* js/ui/autotextarea.js */
+var Button 						/* js/ui/button.js */ = {...simple...}
+var UserSearch 					/* js/ui/usersearch.js */ = {...simple...}
+var Accordion 					/* js/ui/accordion.js */ = {...simple...}
+var ScrollArea 					/* js/ui/slider.js */ = {...simple...}
+var jqOverlayBackground 		/* js/ui/overlay.js */ = null;
+var overlayName 				/* js/ui/overlay.js */ = null;
+var openTime 					/* js/ui/overlay.js */ = null;
+var overlayInitialized 			/* js/ui/overlay.js */ = false;
+var messageOnCloseCb 			/* js/ui/overlaymessage.js */ = null;
+
+после загрузки:
+	js\system.js:    5:
+	js\ui\mailobfuscator.js:    1:
+	js\ui\mainnav.js:    1:
+	js\ui\mobilesidebar.js:    3:

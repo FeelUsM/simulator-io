@@ -18,7 +18,7 @@ var Event = {
 	
 	on: function(event, cb, where)
 	{
-		console.log("on",event,where)
+		//console.log("on",event,where)
 		if(!this._registered[event]) this._registered[event] = [];
 		this._registered[event].push(cb);
 	},
