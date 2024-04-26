@@ -23,7 +23,7 @@ var Pages = (new function() {
 		url = this.redirectUrl(url)
 		initial = initial || false;
 		var args = [];
-		var ctrl = this.setCurrentPageByUrl(url, args);
+		var ctrl = this.setCurrentPageByUrl(decodeURI(url), args);
 		// ищет в compiledMap подходящую строку
 		// args = то что соответсвует '$' из PageMap
 		// ctrl = compiledMap[i]
@@ -174,7 +174,7 @@ var Pages = (new function() {
 		this.initBackListener();
 
 		// init basic transitions (like: what happens when the logout is complete?)		
-		this.initBasicTransitions();
+		this.initBasicTransitions(); // .on('userStatusChange'), .on('backendReady')
 
 		// go to page
 		this.go(window.location.pathname+window.location.search, null, true);

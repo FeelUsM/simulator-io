@@ -1,0 +1,401 @@
+386 matches across 41 files
+// ------------------------------------- одинокие события ----------------------------------------------
+buttonAccount	send	ui\toolbar.js:  108: 		Event.send('buttonAccount', {key:key, n:0});
+
+pageChange	on	ui\main.js:   21: 		Event.on('pageChange', function() {
+
+setLoginOverlayCallback	send	controller\passresetcontroller.js:   50: 						Event.send('setLoginOverlayCallback', function() {
+setLoginOverlayCallback	send	ui\overlayfork.js:   71: 		Event.send('setLoginOverlayCallback', loginComplete);
+
+logoutComplete		send	backend.js:  307: 			Event.send('logoutComplete');
+
+userPresenceUpdate	send	backend.js:  420: 			Event.send('userPresenceUpdate', data);
+
+validationUpdated	send	backend.js:  323: 					Event.send('validationUpdated');
+
+updatePermissions	send	backend.js:  440: 			Event.send('updatePermissions', permissions);
+
+userJoinChat		send	users.js:   43: 		Event.send('userJoinChat', data);
+
+userLeaveChat		send	users.js:   48: 		Event.send('userLeaveChat', data);
+
+
+
+
+
+
+
+
+	диалог переименования схемы
+openRenameBoard	on	ui\overlayboardrename.js:   39: Event.on('openRenameBoard', function(data) {
+openRenameBoard	send	controller\usercontroller.js:  116: 		Event.send('openRenameBoard', {
+openRenameBoard	send	controller\usercontroller.js:  313: 				Event.send('openRenameBoard', {
+openRenameBoard	send	ui\toolbar.js:  169: 		Event.send('openRenameBoard', {
+	диалог форка
+openForkOverlay	on	ui\overlayfork.js:   63: Event.on('openForkOverlay', function() {
+openForkOverlay	send	ui\toolbar.js:   64: 		Event.send("openForkOverlay");
+	диалог открылся - инициализируй его
+overlayOpened	on	ui\overlayboardrename.js:   31: 	Event.on('overlayOpened', function(name) {
+overlayOpened	on	ui\overlayfork.js:   48: 	Event.on('overlayOpened', function(name) {
+overlayOpened	on	ui\overlaylink.js:   64: 	Event.on('overlayOpened', function(name) {
+overlayOpened	send	ui\overlay.js:   71: 	Event.send('overlayOpened', overlayName);
+
+clickBoardRecord	on	controller\usercontroller.js:  111: 	Event.on('clickBoardRecord', function(id) {
+clickBoardRecord	send	controller\usercontroller.js:  305: 			Event.send('clickBoardRecord', boardId);
+
+removeAllLoadTags	on	ui\loading.js:  108: 	Event.on('removeAllLoadTags', function() {
+removeAllLoadTags	send	controller\error404controller.js:   21: 	Event.send('removeAllLoadTags');
+
+resetSimulation	on	simulator.js:   31: 	Event.on('resetSimulation', function() {
+resetSimulation	send	ui\toolbar.js:   28: 		Event.send('resetSimulation');
+
+setBoardLiveType	on	ui\toolbar.js:  119: 	Event.on('setBoardLiveType', function(type) {
+setBoardLiveType	send	controller\editorcontroller.js:  244: 	Event.send('setBoardLiveType', type);
+
+
+updateEditorUI	on	ui\toolbox.js:  279: 	Event.on('updateEditorUI', function() {
+updateEditorUI	send	controller\editorcontroller.js:  241: 	Event.send('updateEditorUI');
+	изменился статус юзера
+userStatusChange	on	pages.js:  219: 		Event.on('userStatusChange', function() {
+userStatusChange	on	ui\mainnav.js:   15: 	Event.on('userStatusChange', function() {
+userStatusChange	on	ui\overlay.js:   92: Event.on('userStatusChange', function() {
+userStatusChange	on	ui\toolbar.js:  111: 	Event.on('userStatusChange', function() {
+userStatusChange	send	backend.js:  239: 				Event.send('userStatusChange');
+userStatusChange	send	backend.js:  284: 				Event.send('userStatusChange');
+userStatusChange	send	backend.js:  308: 			Event.send('userStatusChange');
+userStatusChange	send	ui\toolbar.js:  224: 	Event.send('userStatusChange');
+
+// ------------------------------------ совместное редактирование ----------------------------------------------------
+
+loadState	on	ui\loading.js:  119: 	Event.on('loadState', function(tags) {
+loadState	send	backend.js:  274: 			Event.send('loadState', {login: false});
+loadState	send	backend.js:  357: 			Event.send('loadState', {boardList: false});
+loadState	send	controller\editorcontroller.js:  100: 	Event.send('loadState', {board: true});
+loadState	send	controller\editorcontroller.js:  235: 	Event.send('loadState', {board: false});
+loadState	send	controller\passresetcontroller.js:   80: 	Event.send('loadState', {'resetPasswordLoad': false});
+loadState	send	controller\passresetcontroller.js:   91: 		Event.send('loadState', {'resetPasswordLoad': true});
+loadState	send	controller\passresetcontroller.js:  112: 			Event.send('loadState', {'resetPasswordLoad': false});
+loadState	send	pages.js:  115: 							Event.send('loadState', {switchWaitForLogin: true});
+loadState	send	pages.js:  231: 			Event.send('loadState', {switchWaitForLogin: false});
+loadState	send	session.js:   36: 		Event.send('loadState', {boardList: true});
+loadState	send	session.js:   62: 	Event.send('loadState', {login: true});
+loadState	send	ui\loading.js:  116: 		Event.send('loadState', changeTags);
+
+saveState	on	ui\toolbar.js:  156: 	Event.on('saveState', function(state) {
+saveState	send	transaction.js:  730: 				Event.send('saveState', 2);
+saveState	send	transaction.js:  734: 				Event.send('saveState', 1);
+saveState	send	transaction.js:  739: 			Event.send('saveState', 3);	
+saveState	send	transaction.js:  758: 		Event.send('saveState', 0);
+saveState	send	transaction.js:  763: 		Event.send('saveState', 0);
+
+undoFailed	send	transaction.js:  646: 			Event.send('undoFailed', redo ? 'emptyRedo' : 'emptyUndo');
+undoFailed	send	transaction.js:  687: 			Event.send('undoFailed', 'collide');
+	undo/redo
+updateDoButtonsState	on	ui\toolbar.js:  182: 	Event.on('updateDoButtonsState', function(state) {
+updateDoButtonsState	send	transaction.js:  718: 		Event.send('updateDoButtonsState', {
+	
+joinBoardResult		on	controller\editorcontroller.js:   24: 	Event.on('joinBoardResult', function(result) {
+joinBoardResult		on	transaction.js:  756: 	Event.on('joinBoardResult', function() {
+joinBoardResult		send	backend.js:  345: 			Event.send('joinBoardResult', data);
+
+loadBoardResult	on	controller\editorcontroller.js:   54: 	Event.on('loadBoardResult', function(result) {
+loadBoardResult	on	transaction.js:  761: 	Event.on('loadBoardResult', function() {
+loadBoardResult	send	backend.js:  351: 			Event.send('loadBoardResult', data);
+loadBoardResult	send	controller\editorcontroller.js:   87: 			Event.send('loadBoardResult', {
+
+confirmTransaction	on	boardevent.js:  264: 	Event.on('confirmTransaction', function(data) {
+confirmTransaction	send	backend.js:  395: 				Event.send('confirmTransaction', data);
+
+rejectTransaction	on	boardevent.js:  270: 	Event.on('rejectTransaction', function(data) {
+rejectTransaction	send	backend.js:  391: 				Event.send('rejectTransaction', data);
+
+	внешнее радактирование
+foreignTransaction	on	boardevent.js:  251: 	Event.on('foreignTransaction', function(data) {
+foreignTransaction	send	backend.js:  385: 			Event.send('foreignTransaction', data);
+
+hashRequest		on	boardevent.js:  274: 	Event.on('hashRequest', function(id) {
+hashRequest		send	backend.js:  404: 			Event.send('hashRequest', id);
+
+	0 - редактируем, 1 - симулируем
+setMode	on	boardevent.js:   11: 	Event.on('setMode', function(mode) {		обновить that.readOnly
+setMode	on	simulator.js:   24: 	Event.on('setMode', function(newMode) {
+setMode	on	system.js:   26: 	Event.on('setMode', function(newMode) {		обновить system.mode
+setMode	on	ui\toolbar.js:   31: 	Event.on('setMode', function(mode) { // update RUN/EDIT button
+setMode	send	controller\editorcontroller.js:  189: 	Event.send('setMode', 0); // go to build mode first to import everything
+setMode	send	controller\editorcontroller.js:  212: 			Event.send('setMode', 1);
+setMode	send	ui\toolbar.js:   23: 			Event.send('setMode', mode);
+
+// ------------------------------------ подключение пользователей к совместному редактированию ----------------------------------------------------
+
+userJoinBoard		on	users.js:   40: 	Event.on('userJoinBoard', function(data) {
+userJoinBoard		send	backend.js:  408: 			Event.send('userJoinBoard', data);
+
+userLeaveBoard		on	users.js:   47: 	Event.on('userLeaveBoard', function(data) {
+userLeaveBoard		send	backend.js:  412: 			Event.send('userLeaveBoard', data);
+
+updateUserList	send	controller\editorcontroller.js:  238: 	Event.send('updateUserList');
+updateUserList	send	users.js:   44: 		Event.send('updateUserList');		
+updateUserList	send	users.js:   62: 		Event.send('updateUserList');
+
+// ------------------------------------ чат ----------------------------------------------------
+toggleChat	on	ui\editorlayout.js:   42: 	Event.on('toggleChat', function() {
+toggleChat	send	ui\toolbar.js:   77: 		Event.send('toggleChat');
+
+foreignMsg		on	ui\toolbar.js:   85: 	Event.on('foreignMsg', function(data) {
+foreignMsg		send	backend.js:  416: 			Event.send('foreignMsg', data);
+
+// ------------------------------------ сетевые ----------------------------------------------------
+
+loginResult		on	session.js:   33: Event.on('loginResult', function(result) {
+loginResult		send	backend.js:  283: 				Event.send('loginResult', true);
+loginResult		send	backend.js:  293: 				Event.send('loginResult', false);
+
+userDataOwn		on	session.js:    6: Event.on('userDataOwn', function(profile) {
+userDataOwn		on	ui\toolbar.js:  176: 	Event.on('userDataOwn', function(data) {
+userDataOwn		send	backend.js:  368: 				Event.send('userDataOwn', data);
+
+registerSuccess		on	session.js:   11: Event.on('registerSuccess', function() {
+registerSuccess		send	backend.js:  315: 				Event.send('registerSuccess');
+
+userBoardsChange	on	controller\usercontroller.js:  107: 	Event.on('userBoardsChange', function() {
+userBoardsChange	send	backend.js:  356: 			Event.send('userBoardsChange');
+
+profileResult		on	controller\usercontroller.js:  101: 	Event.on('profileResult', function() {
+profileResult		send	backend.js:  363: 			Event.send('profileResult', data);
+
+
+
+backendReady		on	pages.js:  223: 		Event.on('backendReady', function() {
+backendReady		send	backend.js:  493: 		Event.send('backendReady');
+
+
+
+// ------------------------------------ размеры модели (фреймов) ----------------------------------------------------
+
+triggerLayoutUpdate	on	ui\editorlayout.js:   40: 	Event.on('triggerLayoutUpdate', handler);
+triggerLayoutUpdate	send	board.js:   30: 		Event.send('triggerLayoutUpdate');
+
+updateSubLayouts	on	ui\chat.js:  139: 	Event.on('updateSubLayouts', function() {
+updateSubLayouts	send	ui\editorlayout.js:   35: 		Event.send('updateSubLayouts');
+
+// ------------------------------------ измерение размера шрифта ----------------------------------------------------
+
+clearFontSizeCache	on	ui\autotextarea.js:   87: 	Event.on('clearFontSizeCache', function() {
+clearFontSizeCache	send	renderer\renderer.js:  823: 		Event.send('clearFontSizeCache');
+clearFontSizeCache	send	renderer\renderer.js:  828: 		Event.send('clearFontSizeCache');
+clearFontSizeCache	send	ui\autotextarea.js:   70: 				Event.send('clearFontSizeCache');
+
+setMeasureBox	on	ui\autotextarea.js:   83: 	Event.on('setMeasureBox', function(box) {
+setMeasureBox	send	renderer\renderer.js:   62: 		Event.send('setMeasureBox', this.measureBox);
+
+fontLoaded	on	renderer\renderer.js:  822: 	Event.on('fontLoaded', function() {
+fontLoaded	send	ui\autotextarea.js:   71: 				Event.send('fontLoaded');
+	начать отрисовку
+editorVisible	on	renderer\renderer.js:  827: 	Event.on('editorVisible', function() {
+editorVisible	send	controller\editorcontroller.js:  250: 	Event.send('editorVisible');
+// ------------------------------------ низкоуровневые логические (редактор) ----------------------------------------------------
+	copy
+selectionCopy	on	tool.js:  137: 	Event.on('selectionCopy', function() {
+selectionCopy	send	tool.js:  300: 			Event.send('selectionCopy');
+selectionCopy	send	tool.js:  308: 			Event.send('selectionCopy');
+	delete
+selectionDelete	on	tool.js:  129: 	Event.on('selectionDelete', function() {
+selectionDelete	send	tool.js:  293: 			Event.send('selectionDelete');
+selectionDelete	send	tool.js:  301: 			Event.send('selectionDelete');
+selectionDelete	send	ui\toolbox.js:  262: 		Event.send('selectionDelete');
+	paste
+selectionPaste	on	tool.js:  141: 	Event.on('selectionPaste', function() {
+selectionPaste	send	tool.js:  318: 		Event.send('selectionPaste');
+	redo
+localRedo	on	boardevent.js:  284: 	Event.on('localRedo', function() {
+localRedo	on	tool.js:  125: 	Event.on('localRedo', function() {
+localRedo	send	tool.js:  328: 		Event.send('localRedo');
+localRedo	send	ui\toolbar.js:   56: 		Event.send('localRedo');
+	undo
+localUndo	on	boardevent.js:  280: 	Event.on('localUndo', function() {
+localUndo	on	tool.js:  121: 	/*Event.on('localUndo', function() {
+localUndo	send	tool.js:  323: 		Event.send('localUndo');
+localUndo	send	ui\toolbar.js:   50: 		Event.send('localUndo');
+	редактируем метку на схеме
+toolTextChange	on	tool.js:  164: 	Event.on('toolTextChange', function(obj) {
+toolTextChange	send	renderer\renderer.js:  703: 			Event.send('toolTextChange', obj);
+	задаем элемент
+setSegmentDisplay	on	tool.js:  117: 	Event.on('setSegmentDisplay', function(type) {
+setSegmentDisplay	send	ui\toolbox.js:  205: 			Event.send('setSegmentDisplay', type);
+	задаем цвет диода
+setColor	on	tool.js:   81: 	Event.on('setColor', function(color) {
+setColor	on	ui\toolbox.js:   99: 		Event.on('setColor', function(arg) { // ERROR FIX
+setColor	send	tool.js:  818: 		Event.send('setColor', ToolOptionProvider.getOptionByName('color').values[0]);
+setColor	send	ui\toolbox.js:   96: 			Event.send('setColor', colors[arg.n]);
+	задаем направление элемента
+setDir	on	tool.js:   77: 	Event.on('setDir', function(dir) {
+setDir	on	ui\toolbox.js:  119: 		Event.on('setDir', function(n){
+setDir	send	tool.js:  817: 		Event.send('setDir', 0);
+setDir	send	ui\toolbox.js:  116: 			Event.send('setDir', arg.n);
+	задаем элемент
+setElement	on	tool.js:   73: 	Event.on('setElement', function(id) {
+setElement	on	ui\elements.js:   99: 	Event.on('setElement', function(element) {
+setElement	send	ui\elements.js:   41: 			Event.send('setElement', element);
+	задаем количество входов в элемент
+setMuxInputSize	on	tool.js:  106: 	Event.on('setMuxInputSize', function(size) {
+setMuxInputSize	send	ui\toolbox.js:  168: 			Event.send('setMuxInputSize', ~~v);
+	задаем количество входов в элемент
+setShiftRegisterSize	on	tool.js:   92: 	Event.on('setShiftRegisterSize', function(size) {
+setShiftRegisterSize	send	ui\toolbox.js:  144: 			Event.send('setShiftRegisterSize', ~~v);
+	задаем количество входов в элемент
+setDecoderInputSize	on	tool.js:   99: 	Event.on('setDecoderInputSize', function(size) {
+setDecoderInputSize	send	ui\toolbox.js:  156: 			Event.send('setDecoderInputSize', ~~v);
+	задаем количество входов в элемент
+setInputSize	on	tool.js:   85: 	Event.on('setInputSize', function(size) {
+setInputSize	send	ui\toolbox.js:  131: 			Event.send('setInputSize', ~~v);
+	задаем размер меток
+setTextSize	on	tool.js:  113: 	Event.on('setTextSize', function(size) {
+setTextSize	send	ui\toolbox.js:  193: 			Event.send('setTextSize', factor);
+	Tool IDs
+		0 - No tool
+		1 - Add Wire Tool
+		2 - Delete Tool
+		3 - Add Element Tool
+		4 - Simulator Tool
+		5 - Diode Tool
+		6 - Selection Tool
+		7 - Text Tool
+setTool	on	renderer\renderer.js:  813: 	Event.on('setTool', function(id) {
+setTool	on	tool.js:   50: 	Event.on('setTool', function(id) {
+setTool	on	ui\elements.js:  111: 	Event.on('setTool', function(id) {
+setTool	on	ui\toolbox.js:   31: 	Event.on('setTool', function(id) {
+setTool	send	controller\editorcontroller.js:  190: 	Event.send('setTool', 1); // reset tool
+setTool	send	controller\editorcontroller.js:  213: 			Event.send('setTool', 4); // simulator tool
+setTool	send	simulator.js:   38: 		if(lastTool > 0) Event.send('setTool', lastTool); // restore last tool
+setTool	send	simulator.js:   81: 		Event.send('setTool', 4); // simulator tool
+setTool	send	tool.js:  142: 		Event.send('setTool', 6);
+setTool	send	tool.js:  816: 		Event.send('setTool', 1);
+setTool	send	ui\elements.js:   42: 			Event.send('setTool', 3);
+setTool	send	ui\toolbox.js:   11: 		Event.send('setTool', 1);
+setTool	send	ui\toolbox.js:   15: 		Event.send('setTool', 2);
+setTool	send	ui\toolbox.js:   19: 		Event.send('setTool', 5);
+setTool	send	ui\toolbox.js:   23: 		Event.send('setTool', 6);
+setTool	send	ui\toolbox.js:   27: 		Event.send('setTool', 7);
+
+// ------------------------------------ интерфейсные вЫвод ----------------------------------------------------
+	показать сообщение
+openMessage	on	ui\overlaymessage.js:   28: Event.on('openMessage', function(data) {
+openMessage	send	backend.js:  330: 					Event.send('openMessage', {error: true, title: 'Registration', text: 'Registration failed.'});
+openMessage	send	backend.js:  375: 				Event.send('openMessage', {title: 'Password changed', text: 'Your password was successfully changed'});
+openMessage	send	backend.js:  379: 				Event.send('openMessage', {error: true, title: 'Error', text: 'Failed to change password.'});
+openMessage	send	controller\editorcontroller.js:  105: 			Event.send('openMessage', {
+openMessage	send	controller\editorcontroller.js:  116: 			Event.send('openMessage', {
+openMessage	send	controller\passresetcontroller.js:   48: 					Event.send('openMessage', {title: 'Password changed', text: 'Your password was successfully changed', onClose: function() {
+openMessage	send	controller\passresetcontroller.js:   57: 					Event.send('openMessage', {error: true, title: 'Error', text: 'Failed to reset password'});
+openMessage	send	controller\passresetcontroller.js:   63: 			Event.send('openMessage', {error: true, title: 'Error', text: 'Your password is too weak.'});
+openMessage	send	controller\usercontroller.js:   70: 				Event.send('openMessage', {title: 'Profile', text: 'Profile settings has been updated'});
+openMessage	send	controller\usercontroller.js:   74: 				Event.send('openMessage', {error: true, title: 'Error', text: 'Could not update profile settings'});
+openMessage	send	controller\usercontroller.js:   93: 			Event.send('openMessage', {error: true, title: 'Error', text: 'Your password is too weak.'});
+openMessage	send	session.js:   12: 	Event.send('openMessage', {
+openMessage	send	ui\overlayfork.js:   39: 				Event.send('openMessage', {title: 'Board forked', text: 'This is your copy of the board now. You can also find it in your workspace.'});
+openMessage	send	ui\toolbar.js:   12: 			Event.send('openMessage', {
+	закрыть окошко (оверлей)
+closeOverlay	on	ui\overlay.js:   88: Event.on('closeOverlay', function() {
+closeOverlay	send	backend.js:  314: 				Event.send('closeOverlay');
+closeOverlay	send	backend.js:  328: 					Event.send('closeOverlay');
+closeOverlay	send	pages.js:   92: 					Event.send('closeOverlay');
+closeOverlay	send	ui\overlay.js:   37: 		Event.send('closeOverlay');
+closeOverlay	send	ui\overlay.js:   93: 	Event.send('closeOverlay');
+closeOverlay	send	ui\overlay.js:   99: 		Event.send('closeOverlay');
+closeOverlay	send	ui\overlaymessage.js:   10: 		Event.send('closeOverlay');
+	показать сообщение об ошибке
+fullSizeError	on	ui\fullsizeerror.js:    3: Event.on('fullSizeError', function(msg) {
+fullSizeError	send	backend.js:  249: 				Event.send('fullSizeError', "Lost connection to server.");
+fullSizeError	send	backend.js:  269: 				Event.send('fullSizeError', data);
+fullSizeError	send	controller\editorcontroller.js:   36: 					Event.send('fullSizeError', {code: 301, msg: 'No free slot'});
+fullSizeError	send	controller\editorcontroller.js:   40: 					Event.send('fullSizeError', {code: 302, msg: 'No permissions'});
+fullSizeError	send	controller\editorcontroller.js:   44: 					Event.send('fullSizeError', {type: 'error403'});
+fullSizeError	send	controller\editorcontroller.js:   48: 					Event.send('fullSizeError', {code: 304, msg: 'General join error; Status: ' + error});
+fullSizeError	send	pages.js:  129: 							Event.send('fullSizeError', {type: 'error403'});
+fullSizeError	send	pages.js:  208: 					Event.send('fullSizeError', {type: 'error403'});
+	сообщение об ошибке
+serverError		on	ui\overlayerror.js:   11: Event.on('serverError', function(error) {
+serverError		send	backend.js:  265: 				Event.send('serverError', data);
+	обновить доступные действия с генератором
+updateClock	on	ui\toolbox.js:  219: 	Event.on('updateClock', function(available) {
+updateClock	send	ui\toolbox.js:  216: 		Event.send('updateClock');
+updateClock	send	simulator.js:  160: 		Event.send("updateClock");
+updateClock	send	simulator.js:  166: 		Event.send("updateClock");
+updateClock	send	simulator.js:  173: 		Event.send("updateClock");
+	показать/скрыть доступные действия с генератором
+setClockAvailable	on	ui\toolbox.js:  212: 	Event.on('setClockAvailable', function(available) {
+setClockAvailable	send	simulator.js:  104: 		Event.send('setClockAvailable', this.clockElements.length == 0 ? false : true);
+	отобразить заголовок страницы
+setBoardTitle	on	ui\toolbar.js:  133: 	Event.on('setBoardTitle', function(arg) {
+setBoardTitle	send	controller\editorcontroller.js:   68: 		Event.send('setBoardTitle', {
+setBoardTitle	send	controller\editorcontroller.js:  226: 		Event.send('setBoardTitle', {
+	задать заголовок всего вот этого
+updateBoardTitle	on	controller\editorcontroller.js:   65: 	Event.on('updateBoardTitle', function(title) {
+updateBoardTitle	send	backend.js:  444: 			Event.send('updateBoardTitle', result);
+	отобразить посказку как сохранить схему
+saveText	on	ui\toolbar.js:  152: 	Event.on('saveText', function(txt) {
+saveText	send	ui\toolbar.js:  157: 		if(state == 0)  Event.send('saveText', '&nbsp;');
+saveText	send	ui\toolbar.js:  158: 		if(state == 1)  Event.send('saveText', 'Saving...');
+saveText	send	ui\toolbar.js:  159: 		if(state == 2)  Event.send('saveText', 'All changes saved');
+saveText	send	ui\toolbar.js:  160: 		if(state == 3) Event.send('saveText', 'Unsaved changes. Click <b>Link</b> or <b>Fork</b> to save.');
+	отобразить видимые опции
+setVisibleOptions	on	ui\toolbox.js:   60: 		Event.on('setVisibleOptions', function(options) {
+setVisibleOptions	send	shared\tooloptions.js:   61: 		Event.send('setVisibleOptions', options);
+
+// ------------------------------------ интерфейсные ввод ----------------------------------------------------
+	нажатия на кнопочки на экране
+button	onKey	ui\overlaylink.js:   75: Event.onKey('button', 'openLink', function() {
+button	onKey	ui\toolbar.js:    9: 	Event.onKey('button', 'run', function() {
+button	onKey	ui\toolbar.js:   27: 	Event.onKey('button', 'reset', function() {
+button	onKey	ui\toolbar.js:   47: 	Event.onKey('button', 'undo', function() {
+button	onKey	ui\toolbar.js:   53: 	Event.onKey('button', 'redo', function() {
+button	onKey	ui\toolbar.js:   59: 	Event.onKey('button', 'openWorkspace', function() {
+button	onKey	ui\toolbar.js:   63: 	Event.onKey('button', 'openFork', function() {
+button	onKey	ui\toolbar.js:   68: 	Event.onKey('button', 'toggleChat', function() {
+button	onKey	ui\toolbar.js:   98: 	/*Event.onKey('button', 'openAccount', function() {
+button	onKey	ui\toolbox.js:   10: 	Event.onKey('button', 'toolAdd', function(){
+button	onKey	ui\toolbox.js:   14: 	Event.onKey('button', 'toolDelete', function(){
+button	onKey	ui\toolbox.js:   18: 	Event.onKey('button', 'toolDiode', function(){
+button	onKey	ui\toolbox.js:   22: 	Event.onKey('button', 'toolSelect', function(){
+button	onKey	ui\toolbox.js:   26: 	Event.onKey('button', 'toolText', function(){
+button	onKey	ui\toolbox.js:   95: 		Event.onKey('button', 'color', function(arg){
+button	onKey	ui\toolbox.js:  115: 		Event.onKey('button', 'dir', function(arg){
+button	onKey	ui\toolbox.js:  231: 	Event.onKey('button', 'signal1', function() {
+button	onKey	ui\toolbox.js:  238: 	Event.onKey('button', 'signalN', function() {
+button	onKey	ui\toolbox.js:  246: 	Event.onKey('button', 'signalStable', function() {
+button	onKey	ui\toolbox.js:  253: 	Event.onKey('button', 'signalStop', function() {
+button	onKey	ui\toolbox.js:  261: 	Event.onKey('button', 'deleteselection', function() {
+button	send	ui\button.js:   55: 			Event.send('button', {key:key, n:n});
+button	send	ui\mainnav.js:    6: 		Event.send('button', {key: 'openLogin'});
+button	send	ui\mainnav.js:   11: 		Event.send('button', {key: 'openRegister'});
+	нажатия клавиатуры
+keyhit	onKey	ui\overlay.js:   96: Event.onKey('keyhit', 27, function() { // esc
+keyhit	onKey	ui\overlaymessage.js:   20: 	Event.onKey('keyhit', 13, function() { // enter
+keyhit	send	ui\keyboard.js:    4: 		Event.send('keyhit', {key:e.keyCode});
+	движение мышки
+actionMove	on	tool.js:  194: 	Event.on('actionMove', function(arg) { 
+actionMove	send	input.js:   32: 			Event.send('actionMove', [that.mousePos[0], that.mousePos[1]]);
+actionMove	send	tool.js:  191: 		Event.send('actionMove', arg);
+actionMove	send	tool.js:  245: 		Event.send('actionMove', arg);
+	нажали мышкой
+actionStart	on	tool.js:  169: 	Event.on('actionStart', function(arg) {
+actionStart	send	input.js:   48: 			Event.send('actionStart', [
+	отпутили мышкой
+actionEnd	on	tool.js:  243: 	Event.on('actionEnd', function(arg) {
+actionEnd	send	input.js:   28: 			Event.send('actionEnd', [that.mousePos[0], that.mousePos[1]]);
+actionEnd	send	input.js:   77: 				Event.send('actionEnd', [e.clientX - offset[0], e.clientY - offset[1]]);
+	движение мышки с зажатой правой кнопкой
+scrollMove	on	tool.js:  274: 	Event.on('scrollMove', function(arg) {
+scrollMove	send	tool.js:  225: 			Event.send('scrollMove', arg);
+scrollMove	send	tool.js:  284: 		Event.send('scrollMove', arg);
+	нажали ПКМ
+scrollStart	on	tool.js:  268: 	Event.on('scrollStart', function(arg) {
+scrollStart	send	input.js:   63: 			Event.send('scrollStart', [e.clientX - offset[0], e.clientY - offset[1]]);
+	отпустили ПКМ
+scrollEnd	on	tool.js:  281: 	Event.on('scrollEnd', function(arg) {
+scrollEnd	send	input.js:   86: 			Event.send('scrollEnd', [e.clientX - offset[0], e.clientY - offset[1],]);
+	изменение размеров окна
+windowResize	on	ui\editorlayout.js:   38: 	Event.on('windowResize', handler);
+windowResize	on	ui\loading.js:  104: 	Event.on('windowResize', function() {
+windowResize	send	input.js:  106: 		Event.send('windowResize');
+// вращение колёсика не создает события а напрямую вызывает renderer

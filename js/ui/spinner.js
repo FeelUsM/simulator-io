@@ -1,4 +1,5 @@
 UI.init(function(system) {
+	console.log('UI.init spinner.js # 1')
 	function initSpinner()
 	{
 		$('input[type=number]').each(function(){

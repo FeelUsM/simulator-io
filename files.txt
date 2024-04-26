@@ -1,0 +1,168 @@
+75	js/config.js						Config							параметры, когфиги
+31	js/event.js							Event .send .on .onKey			свой обработчик событий
+--------
+412 js/pages.js							Pages							redirection-ы and url-ы
+		.go(url)
+50	js/shared/mapping.js				PageMap, StaticPageMap			конкретные redirection-ы and url-ы для pages.js
+--------
+6	js/app.js							App .system						глобальный объект для доступа ко всему
+68	js/system.js						logicApp = new App(), System 	контейнер всей системы
+		.board = new Board
+		.renderer = new Renderer
+		.input = new Input
+		.tool = new Tool
+		.transaction = new TransactionManager
+		.simulator = new Simulator
+		.previewMgr = new PreviewManager
+--------
+32	js/board.js							Board							контейнер схемы
+		.logic = new BoardLogic
+		.storage = new BoardStorage
+		.event = new BoardEventManager
+		.users = new UserProvider
+1558 js/boardlogic.js					BoardLogic						ядро редактирования схемы
+1383 js/shared/boardstorage.js			BoardStorage					хранилище схемы, методы выделения и редактирования
+765	js/transaction.js					Transaction, TransactionManager	контролирует состояния undo/redo  и синхронизрет это с сетью
+250	js/simulator.js						Simulator						симулирует
+--------
+287	js/boardevent.js					BoardEventManager				обрабатывает внешние редактирования
+64	js/users.js							UserProvider					подключение/отключение пользователей к редактированию
+78	js/previewmgr.js					PreviewManager					превью - отправляет на сервер и показывает здесь
+--------
+860 js/renderer/renderer.js				Renderer						ядро отрисовки
+		.map = new MapRenderer
+		.nativeLayer = new NativeLayer
+53  js/renderer/renderstate.js			RenderState						состояние экрана (размер и т.п.)
+366	js/renderer/map.js					MapRenderer	.setupDom			отрисовка миникарты
+98  js/renderer/nativelayer.js			NativeLayer .add				html элементы на схеме
+90	js/ui/autotextarea.js				textMeasureSize;var fontLoadTriggerInit;(function() {...simple...})()		измеряет размер шрифта (требуется для renderer-а)
+--------
+185	js/hotkey.js						Hotkey  .changeTags() - ????	события при нажатиях клавиатуры
+155 js/input.js							Input							события мышки вызывают Event-ы
+73	js/shared/tooloptions.js			ToolOptionProvider .setVisibleOptions .getOptionByName		какие у нас вообще есть опции для инструментов
+820 js/tool.js							Tool							выбор инструментов для редактирования
+503 js/shared/element.js               	Element()                {};                 Element.prototype = ...
+41  js/shared/element/gate.js          	Gate()                   {};                    Gate.prototype = ...
+27  js/shared/element/andgate.js       	AndGate(arg)             { ... }             AndGate.prototype = ...
+27  js/shared/element/orgate.js        	OrGate(arg)              { ... }              OrGate.prototype = ...
+27  js/shared/element/xorgate.js       	XorGate(arg)             { ... }             XorGate.prototype = ...
+44  js/shared/element/switch.js        	ElementSwitch(arg)       { ... }       ElementSwitch.prototype = ...
+51  js/shared/element/button.js        	ElementButton(arg)       { ... }       ElementButton.prototype = ...
+59  js/shared/element/led.js           	ElementLed(arg)          { ... }          ElementLed.prototype = ...
+28  js/shared/element/notgate.js       	NotGate(arg)             { ... }             NotGate.prototype = ...
+28  js/shared/element/buffergate.js    	BufferGate(arg)          { ... }          BufferGate.prototype = ...
+37  js/shared/element/halfadder.js     	ElementHalfAdder(arg)    { ... }    ElementHalfAdder.prototype = ...
+39  js/shared/element/fulladder.js     	ElementFullAdder(arg)    { ... }    ElementFullAdder.prototype = ...
+51  js/shared/element/flipflopd.js     	ElementFlipFlopD(arg)    { ... }    ElementFlipFlopD.prototype = ...
+48  js/shared/element/flipfloprs.js    	ElementFlipFlopRS(arg)   { ... }   ElementFlipFlopRS.prototype = ...
+66  js/shared/element/flipflopjk.js    	ElementFlipFlopJK(arg)   { ... }   ElementFlipFlopJK.prototype = ...
+128 js/shared/element/shiftregister.js 	ElementShiftRegister(arg){ ... }ElementShiftRegister.prototype = ...
+111 js/shared/element/decoder.js       	ElementDecoder(arg)      { ... }      ElementDecoder.prototype = ...
+72  js/shared/element/mux.js           	ElementMux(arg)          { ... }          ElementMux.prototype = ...
+78  js/shared/element/demux.js         	ElementDemux(arg)        { ... }        ElementDemux.prototype = ...
+59  js/shared/element/clock.js         	ElementClock(arg)        { ... }        ElementClock.prototype = ...
+212 js/shared/element/segmentdisplay.js	ElementSegmentDisplay(arg){...}ElementSegmentDisplay.prototype = ...
+
+
+
+37	js/controllerbase.js				ControllerBase					прототип контроллеров
+			.defaultProperties = {}
+			.getProperty(key)
+			.setupDone = false
+			.getView()
+			.setup()
+			.switch()
+			.leavу()
+			.onBackendReady()
+		FrontendControllers = {}; 
+        addController(name,func){simple}
+259	js/controller/editorcontroller.js	EditorController()   {...}EditorController.prototype    = ...;addController('EditorController', EditorController);-->
+
+
+
+
+
+
+
+
+js/shared/validation.js               <!--144 Validation                      = {...simple...}-->
+js/shared/defs.js                     <!--59  var ElementStore = {...simple*...}; var ElementCats = [...simple...]-->
+
+js/controller/homecontroller.js       <!--43  function HomeController()     {}   HomeController.prototype      = ...;addController('HomeController',   HomeController);-->
+js/controller/usercontroller.js       <!--413 function UserController()     {...}UserController.prototype      = ...;addController('UserController',   UserController);-->
+js/controller/passresetcontroller.js  <!--122 function PassResetController(){...}PassResetController.prototype = ...;addController('PassResetController', ...);-->
+js/controller/activationcontroller.js <!--52  function ActivationController()   {}ActivationController.prototype  =...;addController('ActivationController',...);-->
+js/controller/error404controller.js   <!--24  function Error404Controller() {} Error404Controller.prototype  = ...;addController('Error404Controller', Error404Controller);-->
+js/controller/staticcontroller.js     <!--102 function StaticController()   {}   StaticController.prototype    = ...;addController('StaticController', StaticController);-->
+
+js/helper.js                          <!--132 functions... ; jQuery.fn.shake = function(intShakes, intDistance, intDuration) {...}-->
+js/clipboard.js                       <!--37  var Clipboard = new function(){...simple... $(window).bind('storage', function (e) {var original = e.originalEvent;/*???*/})}-->
+	<!-- на самом деле это localStorage.getItem('clipboard') -->
+js/backend.js                         <!--530 var Backend = {...simple...}-->
+	<!-- взимодействие с сервером -->
+js/session.js                         <!--71  var sessionLoginCallback = null; Event.on('userDataOwn', function(profile) {...}); Event.on('registerSuccess', function() {...})
+                                                                          Event.on('loginResult', function(result) {...}); functions... ;-->
+js/simulationbase.js                  <!--10  function SimulationBase(){}SimulationBase.prototype. = ...-->
+js/simulation/simplesimulation.js     <!--21  function SimpleSimulation(){...}SimpleSimulation.prototype = -->
+js/renderer/renderhelper.js           <!--30  var RenderHelper = {...simple...}-->
+js/renderer/draw_wire.js              <!--78  function drawWires(board, wires, zoom, ctx, renderType){...}-->
+js/renderer/draw_element.js           <!--30  function drawElements(board, elements, zoom, ctx, renderType){...}-->
+js/renderer/draw_diodes.js            <!--36  function drawDiodes(board, diodes, zoom, ctx, renderType){...}-->
+
+
+
+
+
+
+
+
+
+
+
+
+50	js/shared/metadata.js				MetaData						управляет заголовком и уведомлениями
+51	js/ui/main.js						UI								отложенная инициализация страницы
+		0	loading.js
+		1	keyboard.js
+		2	spinner.js
+		3	button.js
+		4	sections.js
+		5	toolbox.js
+		6	toolbar.js
+		7	elements.js
+50  js/ui/mainnav.js					showMainNav()					скрывает показывает хедер-футер
+										updateProfileMeta
+177	js/ui/loading.js					LoadingBar .on('loadState')		$('#mainLoadingBar') - почему-то не виден		$('#uiLoadOverlay')
+81  js/ui/mobilesidebar.js				var setSidebar, toggleSidebar, jqMobileSidebar	
+5	js/ui/keyboard.js													событие 'keyhit' при нажатии на кнопки клавиатуры
+22	js/ui/spinner.js													ограничивает значение в $('input[type=number]')
+57	js/ui/button.js														развешивает иконки и события 'button' на кнопки
+20	js/ui/sections.js													делает сворачивание секций
+286	js/ui/toolbox.js													кнопки в левой колонке
+100	js/ui/slider.js						ScrollArea						.scrollArea - маленькая область с полосой прокрутки
+43  js/ui/tooltipbar.js					Tooltip							отображение описания инструмента внизу экрана
+222	js/ui/toolbar.js													кнопки в верхней полосе (события на них) + инициализация tooltip
+101	js/ui/overlay.js													открытие, закрытие и инициализация оверлеев
+41	js/ui/overlaymessage.js				.on('openMessage')				сообщение
+77	js/ui/overlaylink.js				.onKey('button', 'openLink')	snapshot	1 кнопка create
+47	js/ui/overlayboardrename.js			.on('openRenameBoard')			переименование схемы
+73	js/ui/overlayfork.js				.on('openForkOverlay')			логика форка
+17	js/ui/overlayerror.js				.on('serverError')				по нажатию на кнопку - перезагрузка страницы
+46	js/ui/editorlayout.js												обработка изменений размеров окна и подокон
+116	js/ui/elements.js													элементы в окошке/панельке с элементами
+
+
+
+
+
+
+
+js/ui/mailobfuscator.js               <!--6   после загрузки: $('#mailPlaceholderAddressBug').attr('href', "mailto:bug@simulator.io");-->
+js/ui/toggle.js                       <!--48  var registerToggleList = []; function registerToggle(jq, name, interval); function unregisterToggle(jq, name)-->
+js/ui/fullsizeerror.js                <!--53  var fullSizeErrorActive = false; Event.on('fullSizeError', function(msg) {...})-->
+js/ui/accordion.js                    <!--37  var Accordion = {...simple...}-->
+
+js/ui/footer.js                       <!--0   пусто-->
+js/ui/homepage.js                     <!--1   //deprecated-->
+js/ui/userpage.js                     <!--1   //deprecated-->
+                                                        <!--всего 14165 строк, 104 файла-->

@@ -1,3 +1,5 @@
+изначально модифицировал pages.js, backend.js, ...
+
 $(document).bind('keydown keyup', function(e) {...} // js/hotkey.js
 $(window).bind('storage', function (e) {var original = e.originalEvent;/*???*/}) // js/clipboard.js
 document.title = sloganLong
@@ -7,8 +9,8 @@ $(document).mousemove(this.onMouseMove);
 $(document).mousedown(this.onMouseDown);
 $(document).mouseup(this.onMouseUp);
 $(document).bind('contextmenu', this.onContextMenu);
-$('body').on('click', 'a.virtual', function(e) /* pages.js # 179 */) // Pages.go(href)
 window.onresize = this.onWindowResize;
+$('body').on('click', 'a.virtual', function(e) /* pages.js # 179 */) // Pages.go(href)
 window.addEventListener('popstate', function(event) /* pages.js # 359 */ ) // Pages.go(location.pathname, virtualPost, true)
 
 $('#mailPlaceholderAddressBug').attr('href', "mailto:bug@simulator.io");
@@ -411,7 +413,7 @@ var logicApp 					/* js/system.js */ =
 			canvasElement = $("#board>canvas.boardCanvas")[1]
 		}
 		tool = /* new Tool(this, this.board);*/ {
-			toolId = 0;
+			toolId = 0; = 1 // Event.send('setTool', 1)
 			toolState = false;
 			toolActionOffset = [0, 0];
 			toolActionCurrent = [0, 0];
@@ -462,7 +464,7 @@ var logicApp 					/* js/system.js */ =
 			clockStatus = 0; // 0=off 1=infinite 2=wait for stop
 			clockTicks = 0;
 			clockStopOnTick = 0;
-			syncTicks = false;
+			syncTicks = false; = true // toolbox.js # 272
 			board = board;
 			getMode = function()
 			goBuild = function()
@@ -570,7 +572,7 @@ var ScrollArea 					/* js/ui/slider.js */ = {...simple...}
 var jqOverlayBackground 		/* js/ui/overlay.js */ = null;
 var overlayName 				/* js/ui/overlay.js */ = null;
 var openTime 					/* js/ui/overlay.js */ = null;
-var overlayInitialized 			/* js/ui/overlay.js */ = false;
+var overlayInitialized 			/* js/ui/overlay.js */ = false; = true // ensureInitialization()
 var messageOnCloseCb 			/* js/ui/overlaymessage.js */ = null;
 var Event 						/* js/event.js */ = {...simple... , 
 	_registered: {
@@ -653,6 +655,7 @@ var Event 						/* js/event.js */ = {...simple... ,
 				загружаем контроллер - instance : 'EditoController'
 				загружаем вью - view : 'editor'
 				Pages.switchToView(view, function1() {...})
+					если view отсутствует, пытается загрузить view  с сервера
 					doIt() - нужную вью активирую, ненужные - деактивирую
 						function1()
 							instance.setup() // editorcontroller.js # 18
@@ -665,13 +668,144 @@ var Event 						/* js/event.js */ = {...simple... ,
 											Event.on('loadState', function(tags){...})
 										this._initQueue[1](system) // keyboard.js
 											при отпускании клавиши - Event.send('keyhit', {key:e.keyCode});
-										this._initQueue[1](system) // spinner.js 
+										this._initQueue[2](system) // spinner.js 
 											$('input[type=number]/*spinner*/').focusout(если за пределами - установить максимальное или минимальное значение)
 										this._initQueue[3](system); // ui/button.js # 35
 											развесить картиночки на кнопочки
 											по нажатию Event.send('button', {key:data-key, n:data-n})
-										this._initQueue[4](system) // usersearch.js # 64
-											Event.on('userPresenceUpdate', UserSearch.onResult);
+										//this._initQueue[4](system) // usersearch.js # 64
+										//	Event.on('userPresenceUpdate', UserSearch.onResult);
+										this._initQueue[4](system) // sections.js # 2
+											$('.tbSection').each(по клику на $('.sectionHeader') свернуть/развернуть $('.sectionContent') )
+										this._initQueue[5](system) // toolbox.js # 3
+											// initially: hide simulator view
+											$('#toolbox .tbSimulator').hide();
+											// init scroll areas
+											ScrollArea.init( $('.scrollArea[data-key="elementSelection"]') ) // slider.js # 6
+											/*static private*/scrollAreaElements = {
+												/*static private*/that = this;
+												/*static private*/pos = 0;
+												/*static private*/mouseOffset = null;
+												/*static private*/posPerPixel = 0;
+												/*static private*/scrollableHeight = 0;
+												/*static private*/scrollHeight = 0;
+												getHeight = function()
+												getPos = function()
+												setPos = function(p)
+												update = function() - система скроллинга панели элемментов
+											}
+												$('.scrollArea[data-key=""]').bind('mousewheel DOMMouseScroll', function(e) ) обновляет pos и вызывает update()
+												scrollArea.find('.slider .innerSlider').mousedown(function(e))
+												$(document).mouseup(function() )
+												$(document).mousemove(function(e) )
+											// ----------------------------------------------------------------- TOOLS // toolbox.js # 9
+											Event.onKey('button', 'toolAdd', function(){ Event.send('setTool', 1); })
+											Event.onKey('button', 'toolDelete', function(){		Event.send('setTool', 2); })
+											Event.onKey('button', 'toolDiode', function(){		Event.send('setTool', 5); })
+											Event.onKey('button', 'toolSelect', function(){		Event.send('setTool', 6); })
+											Event.onKey('button', 'toolText', function(){		Event.send('setTool', 7); })
+											Event.on('setTool', function(id) )
+											// ----------------------------------------------------------------- OPTIONS
+											Event.on('setVisibleOptions', function(options) )
+											ToolOptionProvider.setVisibleOptions([]); // tooloptions.js # 58
+												Event.send('setVisibleOptions', options);
+											// ----------------------------------------------------------------- COLOR 
+											настраиваю цвета светодиодов
+											Event.onKey('button', 'color', function(arg){		Event.send('setColor', colors[arg.n]); })
+											Event.on('setColor', function(arg)
+											// ----------------------------------------------------------------- DIR direction
+											Event.onKey('button', 'dir', function(arg){			Event.send('setDir', arg.n); })
+											Event.on('setDir', function(n))
+											// ----------------------------------------------------------------- GATE INPUT SIZE
+											$('#optionGateInSize input[name="gateInputSize"]').change(function(){Event.send('setInputSize', ~~input.val())})
+											// ----------------------------------------------------------------- SHIFTREGISTER SIZE
+											$('#optionShiftRegisterSize input[name="shiftRegisterSize"]').change(function(){Event.send('setShiftRegisterSize', ~~input.val())})
+											// ----------------------------------------------------------------- DECODER INPUT SIZE
+											$('#optionDecoderInputSize input[name="decoderInputSize"]').change(function(){Event.send('setDecoderInputSize', ~~input.val())})
+											// ----------------------------------------------------------------- MUX INPUT SIZE
+											$('#optionMuxInputSize input[name="muxInputSize"]').change(function(){Event.send('setMuxInputSize', ~~input.val())})
+											// ----------------------------------------------------------------- TEXT SIZE
+											$('#optionTextSize select[name="textSize"]').change(function(){Event.send('setTextSize', factor)})
+											// ----------------------------------------------------------------- SEGMENT DISPLAY TYPE
+											$('#optionSegmentDisplay select[name="segmentDisplay"]').change(function(){Event.send('setSegmentDisplay', type/*input.val()*/)})
+											// ----------------------------------------------------------------- CLOCK
+											Event.on('setClockAvailable', function(available))
+											Event.on('updateClock', function(available))
+											Event.onKey('button', 'signal1', function())
+											Event.onKey('button', 'signalN', function())
+											Event.onKey('button', 'signalStable', function())
+											Event.onKey('button', 'signalStop', function())
+											// ----------------------------------------------------------------- SELECT
+											Event.onKey('button', 'deleteselection', function())
+											// ----------------------------------------------------------------- SYNC TICKS
+											$('#simulationSyncTicks').change(function(){system.simulator.syncTicks = checked})
+											// ----------------------------------------------------------------- UI
+											Event.on('updateEditorUI', function())
+											// init tools
+											system.tool.initTools() // tool.js # 816
+												Event.send('setTool', 1)
+												Event.send('setDir', 0);
+												Event.send('setColor', ToolOptionProvider.getOptionByName('color').values[0]);
+										this._initQueue[6](system) // toolbar.js # 2
+											Event.onKey('button', 'run', function() {  ... Event.send('setMode', mode); })
+											Event.onKey('button', 'reset', function(){ ... Event.send('resetSimulation')})
+											Event.on('setMode', function(mode){ ... })
+											Event.onKey('button', 'undo', function() { ... Event.send('localUndo') })
+											Event.onKey('button', 'redo', function() { ... Event.send('localRedo') })
+											Event.onKey('button', 'openWorkspace', function() { Pages.go('/user/boards'); });
+											Event.onKey('button', 'openFork', function() { Event.send("openForkOverlay") })
+											Event.onKey('button', 'toggleChat', function() { ... Event.send('toggleChat') ... }) // !!!! удалить
+											Event.on('foreignMsg', function(data) )
+											Event.on('userStatusChange', function() { ... Backend.isLoggedIn() ... })
+											Event.on('setBoardLiveType', function(type) )
+											Event.on('setBoardTitle', function(arg) )
+											Event.on('saveText', function(txt))
+											Event.on('saveState', function(state))
+											Event.on('saveState', function(state) { Event.send('saveText', ...)})
+											$('.boardTitle .val1').click(function() { ... Event.send('openRenameBoard', {...})})
+											Event.on('userDataOwn', function(data) { чтото про аватар })
+											Event.on('updateDoButtonsState', function(state))
+											развешивает подсказки при наведении на 5 кнопок
+											Event.send('userStatusChange')
+												Event.send('closeOverlay') // overlay.js # 93
+													closeOverlay()
+														ensureInitialization()
+															initOverlay()
+																добавили и скрыли заслонку экрана
+																initOverlayMessage();
+																	$("#uiOverlayMessage").find('button').click(function(){ Event.send('closeOverlay'); data.onClose() })
+																initOverlayLink();
+																	$("#uiOverlayLink").find('.createButton button').click(function(){
+																		var data = logicApp.system.board.storage.exportAll()
+																		Backend.createSnapshot(onResult)
+																		Backend.createSnapshotFromLocal(Config.currentBoardMeta.urlid, data, onResult)
+																		Backend.createAnonymousBoard(data, Config.currentBoardMeta.title, onResult)
+																	})
+																	Event.on('overlayOpened', function(name))
+																	$("#uiOverlayLink").find('div.status').filter('.link').find('input').click(function() { $(this).select(); });
+																initOverlayBoardRename();
+																	$('#uiOverlayBoardName').find('.footerButton button').click(function save() {
+																		Backend.addBoard(title)
+																		Backend.renameBoard(ctx, title);
+																	}
+																	Event.on('overlayOpened', function(name))
+																initOverlayFork();
+																	$('#uiOverlayFork').find('.createButton button').click(function() {
+																		var data = logicApp.system.board.storage.exportAll();
+																		Backend.createFork(title, data, function(result) {
+																			Pages.go("/board/" + result.urlId)
+																		}
+																	Event.on('overlayOpened', function(name))
+																initOverlayError();
+																	$("#uiOverlayError").find('button').click(function() { location.reload() })
+																$('.uiOverlay .close').click(function() {	Event.send('closeOverlay');	});
+												Backend.isLoggedIn() // toolbar # 112
+												показать $('.tbStatic .workspace')
+										this._initQueue[7](system) // elements.js
+
+
+
+							instance.switch()
 
 	js/ui/mainnav.js:    1:
 	js/ui/mobilesidebar.js:    3:

@@ -1698,13 +1698,13 @@ div.staticPage {
     border-radius: 4px; }
 
 #uiOverlayLink {
-  width: 700px;
+  width: 900px;
   height: 350px;
   line-height: 24px; }
   #uiOverlayLink .body {
     line-height: 22px; }
     #uiOverlayLink .body .create {
-      width: 600px;
+      width: 95%;
       height: 150px;
       margin: 50px auto 0 auto; }
       #uiOverlayLink .body .create .status {
@@ -1721,7 +1721,7 @@ div.staticPage {
           text-align: center;
           padding-top: 15px; }
         #uiOverlayLink .body .create .status.link input {
-          width: 528px;
+          width: 98%;
           height: 25px;
           padding: 10px;
           margin: 10px 0;

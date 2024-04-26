@@ -32,7 +32,7 @@ function initOverlayLink()
 		if(!!Config.currentBoardMeta.snapshot)
 		{
 			// switch to page (virtually)
-			Pages.simulateNativeSwitch(result.rel, null, null);
+			Pages.simulateNativeSwitch(Pages.redirectUrl(result.rel), null, null);
 		}
 
 		setStatus(2);
@@ -44,6 +44,7 @@ function initOverlayLink()
 
 		if(!!Config.boardServerState) // is live board?
 		{
+			console.error("not implemented")
 			Backend.createSnapshot(onResult);
 		}
 		else // nope, it's just a local change
@@ -52,7 +53,7 @@ function initOverlayLink()
 
 			if(Config.currentBoardMeta.snapshot != null) // create a new snapshot by local changes of an existing board
 			{
-				Backend.createSnapshotFromLocal(Config.currentBoardMeta.urlid, data, onResult);
+				Backend.createSnapshotFromLocal(Config.currentBoardMeta.urlid, Config.currentBoardMeta.snapshot, data, onResult);
 			}
 			else // create an anonymous board and the first snapshot for it
 			{

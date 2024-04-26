@@ -1,4 +1,5 @@
 UI.init(function(system) {
+	console.log('UI.init elements.js # 1')
 	function initElement(element, jqList)
 	{
 		var jqItem = $('<li></li>').appendTo(jqList);

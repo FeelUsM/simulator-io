@@ -1,4 +1,5 @@
 UI.init(function(system) {
+	console.log('UI.init editorlayout.js # 1')
 	var handler = function() {
 		// toggle chatbox
 		$('#chatbox').toggle(Config.layoutShowChat);
@@ -21,7 +22,7 @@ UI.init(function(system) {
 
 		
 		// fix all sizes
-		var space = $('#toolbox').outerHeight(true) - $('#toolbox').height();
+		//var space = $('#toolbox').outerHeight(true) - $('#toolbox').height(); // ERROR FIX
 		$('#toolbox').height(toolBoxHeight);
 		$('#chatbox').height(toolBoxHeight);
 		$('#tooltipBar').width(boardWidth);

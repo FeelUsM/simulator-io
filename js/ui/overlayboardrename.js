@@ -10,16 +10,22 @@ function initOverlayBoardRename()
 
 		var ctx = jqOverlay.data('ctx');
 		var title = jqInput.val();
+		console.log("save",ctx,title)
 
+		if(title == '') title = 'Untitled';
+		if(encodeURI(title)!=encodeURIComponent(title)){
+			Event.send('openMessage', {title: 'Wrong title', text: 'Title cannot contain ; / ? : @ & = + $ , #'});
+			return
+		}
 		if(ctx == null) // add
 		{
-			if(title == '') title = 'Untitled';
-
+			console.error('not implemented')
 			Backend.addBoard(title);
 		}
 		else // rename
 		{
-			Backend.renameBoard(ctx, title);
+			var data = logicApp.system.board.storage.exportAll();
+			Backend.renameBoard(data, Config.currentBoardMeta.urlid, Config.currentBoardMeta.snapshot, title);
 		}
 	}
 

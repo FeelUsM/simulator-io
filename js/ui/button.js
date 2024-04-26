@@ -33,6 +33,7 @@ var Button = {
 }
 
 UI.init(function(system) {
+	console.log('UI.init button.js # 35')
 	$('.button').each(function() {
 		if($(this).hasClass('noSub')) return;
 

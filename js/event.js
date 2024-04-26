@@ -5,6 +5,8 @@ var Event = {
 	{
 		if(!!this._registered[event])
 		{
+			if(event!='actionMove' && event!='scrollMove')
+				console.log('Event',event,'('+this._registered[event].length+')',arg)
 			for(var i = 0; i < this._registered[event].length; i++)
 			{
 				this._registered[event][i](arg);

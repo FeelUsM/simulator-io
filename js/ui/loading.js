@@ -66,6 +66,7 @@ function getCurrentLoadState()
 }
 
 UI.init(function(system) {
+	console.log('UI.init loading.js # 68')
 	var jqOverlay = $('#uiLoadOverlay');
 	var jqIndicator = jqOverlay.find('.indicator');
 

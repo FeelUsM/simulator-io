@@ -23,13 +23,13 @@ function initOverlay()
 	jqOverlayBackground.css('opacity', 0.5);
 	jqOverlayBackground.hide();
 	
-	initOverlayLogin();
-	initOverlayRegister();
+	//initOverlayLogin();
+	//initOverlayRegister();
 	initOverlayMessage();
-	initOverlayShare();
+	//initOverlayShare();
 	initOverlayLink();
 	initOverlayBoardRename();
-	initOverlayFork();
+	//initOverlayFork();
 	initOverlayError();
 	
 	// close button listener

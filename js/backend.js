@@ -90,13 +90,53 @@ var Backend = {
 		Config.currentBoardMeta = null;
 	},
 
+	_saveBoard: function(data, title, parent) {
+		// ищу title
+		// вычисляю новый номер
+		var number=1;
+		/*
+		for(var i=0; i<localStorage.length; i++){
+			if(title==localStorage.key(i)){
+				number = 1+ +localStorage.getItem(title)
+				break
+			}
+		}*/
+		if(localStorage.getItem(title) !== null) {
+			number = 1+ +localStorage.getItem(title)
+		}
+		// создаю объект и сохраняю
+		var entry = {
+			data     : data,
+			parent   : parent,
+			title    : title,
+			urlId    : title,
+			snapshot : number,
+			time     : Date(),
+		}
+		console.log('local save',title,number,entry)
+		localStorage.setItem(title+'/'+number,JSON.stringify(entry))
+		localStorage.setItem(title,number)
+		return number;
+	},
+
 	loadBoard: function(urlId, snapshot) {
-		Backend._queueMsg('loadBoard', {
+		/*Backend._queueMsg('loadBoard', {
 			urlId: urlId,
 			snapshot: snapshot
-		});
+		});*/
 		Config.boardServerState = null;
 		Config.currentBoardMeta = null;
+		if(localStorage.getItem(urlId) === null) {
+			console.error('cannot find board',urlId)
+			data = null
+		} else {
+			data = JSON.parse(localStorage.getItem(urlId+"/"+snapshot))
+			console.log('load',urlId+"/"+snapshot)
+		}
+		that = this
+		setTimeout(function(){
+			that._socket.send('loadBoardResult', data)
+		},0)
 	},
 
 	createSnapshot: function(cb) {
@@ -109,24 +149,52 @@ var Backend = {
 		Backend._queueMsg('createFork', {title: title, data: data});
 	},
 
-	createSnapshotFromLocal: function(urlId, data, cb) {
+	createSnapshotFromLocal: function(title,curnumber, data, cb) {
+		number = Backend._saveBoard(data, title, title+'/'+curnumber);
+		cb({
+			url: window.location.origin+window.location.pathname+"?board/"+title+'/'+number,
+			rel:"/board/"+title+'/'+number,
+			urlId:title,
+			snapshot:number
+		})
+		/*
 		Backend._pushCallback('snapshot', cb);
 		Backend._queueMsg('createSnapshotFromLocal', {
 			urlId: urlId,
 			data: data
 		});
+		*/
 	},
 
-	createAnonymousBoard: function(data, title, cb) {
+	createAnonymousBoard: function(data, title, cb) {				// !!!!!!!!!!!!!!!!
+		number = Backend._saveBoard(data, title);
+		cb({
+			url: window.location.origin+window.location.pathname+"?board/"+title+'/'+number,
+			rel:"/board/"+title+'/'+number,
+			urlId:title,
+			snapshot:number
+		})
+		/*
 		var msg = {
 			data: data,
 			title: title
 		};
-
 		Backend._pushCallback('snapshot', cb);
-		Backend._queueMsg('createAnonymousBoard', msg);
+		Backend._queueMsg('createAnonymousBoard', msg);*/
 	},
 	
+	renameBoard: function(data, curtitle, curnumber, title)
+	{
+		number = Backend._saveBoard(data, title, curtitle+'/'+curnumber);
+		Pages.go("/board/"+title+'/'+number)
+		/*
+		Backend._queueMsg('renameBoard', {
+			boardId: boardId,
+			title: title
+		});
+		*/
+	},
+
 	requestProfile: function(name)
 	{
 		Backend._queueMsg('requestProfile', {name: name});
@@ -166,14 +234,6 @@ var Backend = {
 
 	setPermissions: function(permissions) {
 		Backend._queueMsg('setPermissions', permissions);
-	},
-
-	renameBoard: function(boardId, title)
-	{
-		Backend._queueMsg('renameBoard', {
-			boardId: boardId,
-			title: title
-		});
 	},
 
 	deleteBoard: function(boardId)
@@ -220,8 +280,17 @@ var Backend = {
 	},
 
 
-	initBackendSystem: function(){
-		this._socket = io.connect();
+	initBackendSystem: function() {
+		this._socket = {
+			events: [],
+			on: function(event,cb) {
+				if(!!this.events[event]) console.error('backend event',event,'already set')
+				this.events[event] = cb
+			},
+			send: function(event, arg) {
+				return this.events[event](arg)
+			}
+		};
 
 		// socket state events
 		this._socket.on('connect', function() {
@@ -250,14 +319,10 @@ var Backend = {
 			}
 		});
 
-		this._socket.on('reconnect', function() {
-			
-		});
+		this._socket.on('reconnect', function() {		});
 
 		// register custom handlers
-		this._socket.on('_view', function(data){
-			Pages.viewLoaded(data.name, data.view);
-		});
+		this._socket.on('_view', function(data){	Pages.viewLoaded(data.name, data.view);		});
 
 		this._socket.on('serverError', function(data) {
 			if(Config.currentBoardMeta) // board active? just show a small error
@@ -400,61 +465,33 @@ var Backend = {
 			}
 		});
 		
-		this._socket.on('hashRequest', function(id) {
-			Event.send('hashRequest', id);
-		});
+		this._socket.on('hashRequest', function(id) {					Event.send('hashRequest', id);						});
 		
-		this._socket.on('userJoin', function(data) {
-			Event.send('userJoinBoard', data);
-		});
+		this._socket.on('userJoin', function(data) {					Event.send('userJoinBoard', data);					});
 		
-		this._socket.on('userLeave', function(data) {
-			Event.send('userLeaveBoard', data);
-		});	
+		this._socket.on('userLeave', function(data) {					Event.send('userLeaveBoard', data);					});	
 		
-		this._socket.on('foreignMsg', function(data) {
-			Event.send('foreignMsg', data);
-		});
+		this._socket.on('foreignMsg', function(data) {					Event.send('foreignMsg', data);						});
 
-		this._socket.on('userPresence', function(data) {
-			Event.send('userPresenceUpdate', data);
-		});
+		this._socket.on('userPresence', function(data) {				Event.send('userPresenceUpdate', data);				});
 
-		this._socket.on('snapshotResult', function(result) {
-			Backend._popCallback('snapshot')(result);
-		});
+		this._socket.on('snapshotResult', function(result) {			Backend._popCallback('snapshot')(result);			});
 
-		this._socket.on('resetPasswordResult', function(result) {
-			Backend._popCallback('resetPassword')(result);
-		});
+		this._socket.on('resetPasswordResult', function(result) {		Backend._popCallback('resetPassword')(result);		});
 
-		this._socket.on('resetPasswordFinalResult', function(result) {
-			Backend._popCallback('resetPasswordFinal')(result);
-		});
+		this._socket.on('resetPasswordFinalResult', function(result) {	Backend._popCallback('resetPasswordFinal')(result);	});
 
-		this._socket.on('createForkResult', function(result) {
-			Backend._popCallback('fork')(result);
-		});
+		this._socket.on('createForkResult', function(result) {			Backend._popCallback('fork')(result);				});
 
-		this._socket.on('updatePermissions', function(permissions) {
-			Event.send('updatePermissions', permissions);
-		});
+		this._socket.on('updatePermissions', function(permissions) {	Event.send('updatePermissions', permissions);		});
 
-		this._socket.on('updateTitle', function(result) {
-			Event.send('updateBoardTitle', result);
-		});
+		this._socket.on('updateTitle', function(result) {				Event.send('updateBoardTitle', result);				});
 
-		this._socket.on('saveProfileResult', function(result) {
-			Backend._popCallback('saveProfile')(result);
-		});
+		this._socket.on('saveProfileResult', function(result) {			Backend._popCallback('saveProfile')(result);		});
 
-		this._socket.on('verifyMailResult', function(result) {
-			Backend._popCallback('verifyMail')(result);
-		});
+		this._socket.on('verifyMailResult', function(result) {			Backend._popCallback('verifyMail')(result);			});
 
-		this._socket.on('isPassResetHashValidResult', function(result) {
-			Backend._popCallback('isPassResetHashValid')(result);
-		});
+		this._socket.on('isPassResetHashValidResult', function(result) {Backend._popCallback('isPassResetHashValid')(result);});
 	},
 
 	_pushCallback: function(name, cb) {
@@ -509,7 +546,8 @@ var Backend = {
 
 	_sendMsg: function(type, data) // call this if you want to send the message now
 	{
-		this._socket.emit(type, data);
+		console.log('this._socket.emit',type, data)
+		//this._socket.emit(type, data);
 	},
 
 	_getToken: function(){

@@ -1,4 +1,5 @@
 UI.init(function(system) {
+	console.log('UI.init toolbar.js # 1')
 	var lastDoButtonState = null;
 	var toolsImg = new Image();
 	//toolsImg.src = 'https://simulator.io/res/sprite.svg';
@@ -143,7 +144,7 @@ UI.init(function(system) {
 		$('#toolbar .boardTitle h2 span.val1').text(arg.title);
 		$('#toolbar .boardTitle h2 span.val2').text(val2);
 
-		$('#toolbar .boardTitle').toggleClass('titleEditable', !(Config.currentBoardMeta.readonly || !Config.boardServerState));
+		$('#toolbar .boardTitle').toggleClass('titleEditable', true)// !(Config.currentBoardMeta.readonly || !Config.boardServerState));
 
 		MetaData.setPageTitle(arg.title);
 	});
@@ -156,7 +157,7 @@ UI.init(function(system) {
 		if(state == 0)  Event.send('saveText', '&nbsp;');
 		if(state == 1)  Event.send('saveText', 'Saving...');
 		if(state == 2)  Event.send('saveText', 'All changes saved');
-		if(state == 3) Event.send('saveText', 'Unsaved changes. Click <b>Link</b> or <b>Fork</b> to save.');
+		if(state == 3) Event.send('saveText', 'Unsaved changes. Click <b>Link</b> to save.'); //  or <b>Fork</b>
 	});
 
 	$('.boardTitle .val1').click(function() {

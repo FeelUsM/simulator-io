@@ -1,4 +1,5 @@
 UI.init(function(system) {
+	console.log('UI.init toolbox.js # 1')
 	// initially: hide simulator view
 	$('#toolbox .tbSimulator').hide();
 	
@@ -88,26 +89,24 @@ UI.init(function(system) {
 			
 			var jqButton = $('<div></div>').addClass('buttonSub small').appendTo(jqItem);
 			jqButton.css('background-color', '#' + colors[i]);
-			
-			Event.onKey('button', 'color', function(arg){
-				Event.send('setColor', colors[arg.n]);
-			});
 		}
+
+		// ERROR FIX
+		Event.onKey('button', 'color', function(arg){
+			Event.send('setColor', colors[arg.n]);
+		});
 		
-		Event.on('setColor', function(arg) {
-			for(var i = 0; i < colors.length; i++)
-			{
-				$('#optionColor ul.buttonList li').each(function() {
-					if($(this).data('color') == arg)
-					{
-						$(this).addClass('active');
-					}
-					else
-					{
-						$(this).removeClass('active');
-					}
-				});
-			}
+		Event.on('setColor', function(arg) { // ERROR FIX
+			$('#optionColor ul.buttonList li').each(function() {
+				if($(this).data('color') == arg)
+				{
+					$(this).addClass('active');
+				}
+				else
+				{
+					$(this).removeClass('active');
+				}
+			});
 		});
 	})();
 	
@@ -172,7 +171,7 @@ UI.init(function(system) {
 		input.change(update);
 	})();
 
-	// ----------------------------------------------------------------- MUX INPUT SIZE
+	// ----------------------------------------------------------------- TEXT SIZE // ERROR FIX
 	(function() {
 		var input = $('#optionTextSize select[name="textSize"]');
 		var update = function()
@@ -269,7 +268,7 @@ UI.init(function(system) {
 		var syncButtonUpdate = function()
 		{
 			var checked = syncButton.prop('checked');
-			system.simulator.syncTicks = checked;
+			system.simulator.syncTicks = !checked;
 		}
 		
 		syncButton.change(syncButtonUpdate);

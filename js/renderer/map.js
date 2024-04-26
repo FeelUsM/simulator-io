@@ -230,7 +230,7 @@ function MapRenderer(renderer, system, board)
 
 			RenderState.dirtyMapAll = true;
 		}
-		else(removeCount > 0)
+		else if(removeCount > 0) // ERROR FIX
 		{
 			for(var i = 0; i < removeCount; i++)
 			{

@@ -1,4 +1,5 @@
 UI.init(function(system) {
+	console.log('UI.init sections.js # 1')
 	$('.tbSection').each(function(){
 		var section = $(this);
 		var header = section.find('.sectionHeader');

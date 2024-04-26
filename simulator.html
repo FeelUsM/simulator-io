@@ -137,11 +137,6 @@
 				<li class="button noSub" data-key="openLogin">Login</li> </ul> 
 				<ul class="tbItem buttonList register"> 
 				<li class="button noSub" data-key="openRegister">Register</li> </ul> 
-				<ul class="tbItem buttonList workspace"> 
-				<li class="button workspaceButton" data-key="openWorkspace"> 
-				<div class="text">Workspace</div> 
-				<div class="avatar">
-				<img></div> </li> </ul> 
 				<div class="clear"></div> </div> </div> -->
 			<div class="tbRow r2"> 
 				<div class="tbStatic"> 
@@ -165,9 +160,9 @@
 					<li class="divider"></li> </ul> 
 					<div class="clear"></div> </div> 
 				<div class="tbStatic right"> 
-					<div class="tbItem saveTextHint"></div> 
+					<!-- div class="tbItem saveTextHint"></div не используется --> 
 
-					<!--<div class="tbItem saveText"></div> -->
+					<div class="tbItem saveText"></div> <!-- Hint -->
 
 					<div class="tbStatic boardTitle"> 
 					<h2> 
@@ -178,10 +173,17 @@
 					<li class="button openLink iconLink buttonIconText" data-key="openLink"> 
 					<div class="text">Link</div> </li> 
 					<li class="divider teamButtons"></li> 
+
+					<ul class="tbItem buttonList workspace"> 
+					<li class="button workspaceButton" data-key="openWorkspace"> 
+					<div class="text">Workspace</div> 
+					<div class="avatar">
+					<img></div> </li> </ul> 
+
+					<!--
 					<li class="button openFork iconFork buttonIconText" data-key="openFork"> 
 					<div class="text">Fork</div> </li> 
 					<li class="divider registeredUserButtons"></li> 
-					<!--
 					<li class="button openShare iconShare buttonIconText teamButtons" data-key="openShare"> 
 					<div class="text">Team</div> </li> 
 					<li class="divider teamButtons"></li> 
@@ -288,8 +290,8 @@
 				<div class="sectionHeader">Simulation</div> 
 				<div id="actionSimulation" class="sectionContent"> 
 				<div class="row"> 
-				<label class="label" for="simulationSyncTicks">Sync Frame/Ticks</label> 
-				<input class="control" name="syncTicks" type="checkbox" id="simulationSyncTicks" checked="checked"> 
+				<label class="label" for="simulationSyncTicks">SpeedUp (no sync screen)</label> 
+				<input class="control" name="syncTicks" type="checkbox" id="simulationSyncTicks" > <!--checked="checked"-->
 				<div class="clear"></div> </div> </div> </div> 
 				<div class="tbSection"> 
 				<div class="sectionHeader">Clock</div> 
@@ -313,11 +315,11 @@
 				<input class="spin control" name="tickCount" type="number" value="4" min="1"> 
 				<div class="clear"></div> </div> </div> </div> </div> </div> 
 		<div id="board"> </div>  <!--   board    $('#board')[0].empty() //renderer/nativlayer.ls # 68-->
-		<div id="tooltipBar"> 
+		<div id="tooltipBar"> <!-- описание инструмента -->
 			<img class="preview"> 
 			<h4 class="title"></h4> 
 			<p class="desc"></p> </div> 
-		<div id="chatbox"> 
+		<!--div id="chatbox"> 
 			<div class="chatboxPart userList"> 
 			<ul> </ul> </div> 
 			<div class="chatboxPart history scrollArea" data-key="chat"> 
@@ -325,7 +327,8 @@
 			<div class="slider">
 			<div class="innerSlider"></div></div> </div> 
 			<div class="chatboxPart input"> 
-			<textarea></textarea> </div> </div> </li>  </ul> 
+			<textarea></textarea> </div> </div--> 
+	</li>  </ul> 
 <div id="uiLoadOverlay"> 
 	<div class="indicator"></div> </div> 
 <div id="uiFullSizeErrorOverlay"> 
@@ -381,7 +384,7 @@
 		<button class="common1" type="submit">Register</button> </fieldset> </form> 
 		<p class="termsHint">Please read the 
 		<a href="terms-of-use" target="_blank">terms of use</a> first.</p> </div> </div>  -->
-	<div id="uiOverlayShare" class="uiOverlay uiCommonOverlay"> 
+	<!--div id="uiOverlayShare" class="uiOverlay uiCommonOverlay"> 
 		<div class="head"> 
 		<div class="close"></div> 
 		<div class="h2">Share and work with collaborators</div> </div> 
@@ -398,23 +401,26 @@
 		<div class="userSearch"></div> 
 		<button class="common1">Add user</button> </div> 
 		<div class="footerButton"> 
-		<button class="common1">Save</button> </div> </div> </div> 
+		<button class="common1">Save</button> </div> </div> </div--> 
 	<div id="uiOverlayLink" class="uiOverlay uiCommonOverlay"> 
 		<div class="head"> 
 		<div class="close"></div> 
-		<div class="h2">Permalink to snapshot</div> </div> 
+		<div class="h2">Local link to snapshot</div> </div> 
 		<div class="body"> 
-		<p>You can share a snapshot of the current board which is represented by a unique URL.</p> 
-		<p>Snapshots are editable, but can only get saved as new snapshot or as fork.</p> 
+		<!--p>You can share a snapshot of the current board which is represented by a unique URL.</p--> 
+		<p>This URL gets this board ONLY on this machine (this browser).</p> 
+		<!--p>Snapshots are editable, but can only get saved as new snapshot or as fork.</p--> 
+		<p>To permanently save this board open Worksapce.</p> 
 		<div class="create"> 
 		<div class="createButton status"> 
 		<button class="common1">Create new snapshot</button> </div> 
 		<div class="loading status"> 
 		<img src="res/indicator.gif"> </div> 
 		<div class="link status"> 
-		<div>Share this link:</div> 
+		<!--div>Share this link:</div--> 
+		<div>Save this link:</div> 
 		<input readonly="readonly" value=""> 
-		<div>Everyone with the permalink to the snapshot can access it.</div> </div> </div> </div> </div> 
+		<!--div>Everyone with the permalink to the snapshot can access it.</div--> </div> </div> </div> </div> 
 	<div id="uiOverlayBoardName" class="uiOverlay uiCommonOverlay"> 
 		<div class="head"> 
 		<div class="close"></div> 
@@ -424,7 +430,7 @@
 		<input type="text" value="" placeholder="board name" maxlength="128"> </div> 
 		<div class="footerButton"> 
 		<button class="common1">Save</button> </div> </div> </div> 
-	<div id="uiOverlayFork" class="uiOverlay uiCommonOverlay"> 
+	<!--div id="uiOverlayFork" class="uiOverlay uiCommonOverlay"> 
 		<div class="head"> 
 		<div class="close"></div> 
 		<div class="h2">Fork</div> </div> 
@@ -435,7 +441,7 @@
 		<button class="common1">Fork into my workspace</button> </div> 
 		<div class="loading status"> 
 		<img src="res/indicator.gif"> </div> </div> 
-		<p>Changes in the new board will not affect the forked one.</p> </div> </div> 
+		<p>Changes in the new board will not affect the forked one.</p> </div> </div--> 
 	<div id="uiOverlayError" class="uiOverlay uiCommonOverlay"> 
 		<div class="head"> 
 		<div class="h2">Error</div> </div> 
@@ -468,19 +474,32 @@
 	<div class="clear"></div> </div> </footer> 
 <!--
 	цели:
-	описать процесс загрузки
-	настроить backend на localstorage, socket-io - удалить
+	настроить backend на localstorage, 
+		workspace - добавить view
+			модифицировать интерфейс
+			разобраться с превью
+			добавить сохранение/загрузку файлов
 	чтобы ctrl+c / ctrl+v работали с обычным буфером обмена
 	ctrl+a
+	добавить .html&data=base64
 	найти и исправить баги в больших схемах
-	чтобы провода можно было рисовать под метками
-	баги при различных направлениях семисегментного
-	баги при различных направлениях сдвигового
+	чтобы провода можно было рисовать под метками	.textNodeContainer - сделать делегирование
+	генератор диодных матриц
 	выложить на гитхаб
 
-	генератор диодных матриц
+	баги при различных направлениях сдвигового
+	возможность поворачивать семисегментные и диоды
+	возможность отражать все объекты
+	возможность поворачивать и отражать всю схему
+	обводить и скрывать области
+	уменьшить минимальный масштаб
+	чтобы clock считал количество тактов до успокоения схемы и набирал статистику
+		чтобы можно было фиксировать его частоту
 	семисегментный чтобы отображал AbcdEF
-	добавить различных триггеров и проверить их работу
+	добавить триггеры DD, и чтобы D, DD и JK фиксировали состояние гонки на входах
+	добавить диодную матрицу - в режиме экрана и в режиме памяти, и чтобы можно было ctrl+c / ctrl+v его состояния
+	сделать сохранение состояний
+	добавить кнопки, активирующиеся при нажатии на кнопки клавиатуры
 
 	сделать состояния не 01, а 
 	+U красный
@@ -488,6 +507,13 @@
 	z висящий в воздухе
 	u неопределенность - всё что угодно
 	и если на один провод подаётся + - или u, то останов - короткое замыкание
+
+	предложить автору
+	сохранять состояния
+	многопользовательский режим выполнения:
+		каждый симулиует схему сам
+		пользователи обмениваются событиями типа нажатия на кнопки
+		и иногда синхронизируют всё состояние
 -->
 <script>
 function thisLine() {
@@ -532,13 +558,14 @@ function thisLine() {
 <script src="js/lib/jquery-2.1.1.min.js"></script>
 <script src="js/lib/jquery.cookie.js"></script>
 <script src="js/lib/md5.js"></script>
-<script src="js/lib/socket.io-2.3.0.js"></script>
+<!--script src="js/lib/socket.io-2.3.0.js"></script-->
 <script src="js/lib/moment-custom.min.js"></script>
 <script src="js/lib/date.js"></script>
 <script src="js/lib/hammer.min.js"></script>
 <script src="js/ui/mailobfuscator.js"></script>               <!--6   после загрузки: $('#mailPlaceholderAddressBug').attr('href', "mailto:bug@simulator.io");-->
 <script src="js/shared/validation.js"></script>               <!--144 Validation                      = {...simple...}-->
 <script src="js/shared/boardstorage.js"></script>             <!--1383  function BoardStorage(system, board, opt){...}-->
+	<!-- хранилище схемы, методы выделения и редактирования -->
 <script src="js/shared/element.js"></script>                  <!--503 function Element()                {};                 Element.prototype = ...-->
 <script src="js/shared/tooloptions.js"></script>              <!--73  var ToolOptionProvider          = {...simple...}-->
 <script src="js/shared/metadata.js"></script>                 <!--50  var MetaData                    = new (function MetaDataManager() {...simple...}-->
@@ -564,6 +591,7 @@ function thisLine() {
 <script src="js/shared/element/segmentdisplay.js"></script>   <!--212 function ElementSegmentDisplay(arg){...}ElementSegmentDisplay.prototype = ...-->
 <script src="js/shared/defs.js"></script>                     <!--59  var ElementStore = {...simple*...}; var ElementCats = [...simple...]-->
 <script src="js/shared/mapping.js"></script>                  <!--50  var PageMap = [...simple...]; var StaticPageMap = [...simple...]-->
+<!-- конкретные redirection-ы and url-ы для pages.js -->
 <script src="js/controllerbase.js"></script>                  <!--37  function ControllerBase(){}ControllerBase.prototype.=...; var FrontendControllers = {}; 
                                                                     function addController(name,func){simple}-->
 <script src="js/controller/homecontroller.js"></script>       <!--43  function HomeController()     {}   HomeController.prototype      = ...;addController('HomeController',   HomeController);-->
@@ -618,7 +646,7 @@ function thisLine() {
 <script src="js/ui/keyboard.js"></script>                     <!--5   UI.init(function(system) {...})-->
 <script src="js/ui/spinner.js"></script>                      <!--22  UI.init(function(system) {...})-->
 <script src="js/ui/button.js"></script>                       <!--57  var Button = {...simple...}; UI.init(function(system) {...})-->
-<script src="js/ui/usersearch.js"></script>                   <!--125 var UserSearch = {...simple...}; UI.init(function(system) {...}-->
+<!--script src="js/ui/usersearch.js"></script-->                   <!--125 var UserSearch = {...simple...}; UI.init(function(system) {...}-->
 <script src="js/ui/accordion.js"></script>                    <!--37  var Accordion = {...simple...}-->
 <script src="js/ui/sections.js"></script>                     <!--20  UI.init(function(system) {...})-->
 <script src="js/ui/toolbox.js"></script>                      <!--286 UI.init(function(system) {...})-->
@@ -626,18 +654,18 @@ function thisLine() {
 <script src="js/ui/elements.js"></script>                     <!--116 UI.init(function(system) {...})-->
 <script src="js/ui/slider.js"></script>                       <!--100 var ScrollArea = {...simple...}-->
 <script src="js/ui/editorlayout.js"></script>                 <!--46  UI.init(function(system) {...})-->
-<script src="js/ui/chat.js"></script>                         <!--143 UI.init(function(system) {...})-->
+<!--script src="js/ui/chat.js"></script-->                         <!--143 UI.init(function(system) {...})-->
 <script src="js/ui/overlay.js"></script>                      <!--101 var jqOverlayBackground = null;var overlayName = null;var openTime = null;var overlayInitialized = false;
                                                                       function getTimeOpened();function initOverlay();function ensureInitialization();function openOverlay(name);
                                                                       function closeOverlay();Event.on('closeOverlay', function() {...});
                                                                       Event.on('userStatusChange', function() {...}); Event.onKey('keyhit', 27, function() {...})-->
 <script src="js/ui/overlaymessage.js"></script>               <!--41  var messageOnCloseCb = null; function initOverlayMessage(); Event.on('openMessage', function(data) {...})-->
-<script src="js/ui/overlayregister.js"></script>              <!--80  function initOverlayRegister(); Event.onKey('button', 'openRegister', function() {...})-->
-<script src="js/ui/overlaylogin.js"></script>                 <!--44  function initOverlayLogin(); Event.onKey('button', 'openLogin', function() {...})-->
-<script src="js/ui/overlayshare.js"></script>                 <!--223 function initOverlayShare(); Event.onKey('button', 'openShare', function() {...})-->
+<!--script src="js/ui/overlayregister.js"></script-->              <!--80  function initOverlayRegister(); Event.onKey('button', 'openRegister', function() {...})-->
+<!--script src="js/ui/overlaylogin.js"></script-->                 <!--44  function initOverlayLogin(); Event.onKey('button', 'openLogin', function() {...})-->
+<!--script src="js/ui/overlayshare.js"></script-->                 <!--223 function initOverlayShare(); Event.onKey('button', 'openShare', function() {...})-->
 <script src="js/ui/overlaylink.js"></script>                  <!--77  function initOverlayLink(); Event.onKey('button', 'openLink', function() {...})-->
 <script src="js/ui/overlayboardrename.js"></script>           <!--47  function initOverlayBoardRename(); Event.on('openRenameBoard', function(data) {...})-->
-<script src="js/ui/overlayfork.js"></script>                  <!--73  function initOverlayFork(); function loginComplete(); Event.on('openForkOverlay', function() {...})-->
+<!--script src="js/ui/overlayfork.js"></script-->                  <!--73  function initOverlayFork(); function loginComplete(); Event.on('openForkOverlay', function() {...})-->
 <script src="js/ui/overlayerror.js"></script>                 <!--17  function initOverlayError(); Event.on('serverError', function(error) {...})-->
                                                         <!--всего 14165 строк, 104 файла-->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9HNZEV6Z1Z"></script> 
