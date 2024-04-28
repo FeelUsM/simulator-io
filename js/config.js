@@ -2,7 +2,7 @@
 
 var Config = {
 	zoom: 18,
-	minZoom: 6,
+	minZoom: 2,
 	maxZoom: 50,
 	quadSize: 16,
 	mapZoom: 4,
