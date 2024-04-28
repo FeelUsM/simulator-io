@@ -63,8 +63,7 @@
 59  js/shared/element/clock.js         	ElementClock(arg)        { ... }        ElementClock.prototype = ...
 212 js/shared/element/segmentdisplay.js	ElementSegmentDisplay(arg){...}ElementSegmentDisplay.prototype = ...
 
-
-
+530 js/backend.js						Backend							взимодействие с сервером
 37	js/controllerbase.js				ControllerBase					прототип контроллеров
 			.defaultProperties = {}
 			.getProperty(key)
@@ -98,8 +97,6 @@ js/controller/staticcontroller.js     <!--102 function StaticController()   {}  
 js/helper.js                          <!--132 functions... ; jQuery.fn.shake = function(intShakes, intDistance, intDuration) {...}-->
 js/clipboard.js                       <!--37  var Clipboard = new function(){...simple... $(window).bind('storage', function (e) {var original = e.originalEvent;/*???*/})}-->
 	<!-- на самом деле это localStorage.getItem('clipboard') -->
-js/backend.js                         <!--530 var Backend = {...simple...}-->
-	<!-- взимодействие с сервером -->
 js/session.js                         <!--71  var sessionLoginCallback = null; Event.on('userDataOwn', function(profile) {...}); Event.on('registerSuccess', function() {...})
                                                                           Event.on('loginResult', function(result) {...}); functions... ;-->
 js/simulationbase.js                  <!--10  function SimulationBase(){}SimulationBase.prototype. = ...-->

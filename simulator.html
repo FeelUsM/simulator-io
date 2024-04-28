@@ -25,12 +25,12 @@
 	<a href="/features" class="virtual">Features</a>
 	<a href="/plans" class="virtual">Development</a> </nav> </div>
 	<nav class="right"> 
-	<div class="dynamicLinks"> 
+	<!--div class="dynamicLinks"> 
 	<a href="/" class="loginState0 login">Login</a> 
 	<a href="/" class="loginState0 register special">Register</a> 
 	<a href="/user/boards" class="loginState1 workspace virtual"> 
 	<span></span> 
-	<img alt="Profile"> </a> </div> </nav> 
+	<img src="res/avatar.png" alt="Profile"> </a> </div--> </nav> 
 	<div class="mobileButton"> 
 	<div class="line"></div> 
 	<div class="line"></div> 
@@ -39,11 +39,11 @@
 <noscript> <div class="incompatibleHint"> Hi! Apparently JavaScript is deactivated in your browser. Please activate it to use this service. </div> </noscript> 
 <nav class="mobileSidebar"> 
 	<div class="visible"> 
-	<a href="" class="loginState0" data-name="login">Login</a> 
+	<!--a href="" class="loginState0" data-name="login">Login</a> 
 	<a href="" class="loginState0" data-name="register">Register</a> 
 	<a href="/user/boards" class="loginState1 workspace virtual" data-name="workspace"> 
-	<img alt="Workspace"> 
-	<span></span> </a> 
+	<img src="res/avatar.png" alt="Workspace"> 
+	<span></span> </a--> 
 	<hr> 
 	<a href="/samples" class="virtual" data-name="samples">Samples</a> 
 	<a href="/features" class="virtual" data-name="features">Features</a> 
@@ -53,6 +53,88 @@
 	<img src="res/logo/logo_t2.svg" class="logo" alt="simulator.io"> Copyright &copy; 2015, Bastian Born </div> </div> </nav> 
 <div class="clear"></div> 
 <ul class="pages">  
+	<li class="page error404" data-view="error404"> 
+		<section class="commonPage1"> 
+		<div class="inner"> 
+		<h2>Error 404</h2> 
+		<p> Oops... Something went wrong.
+		<br>The page you are looking for cannot be found. </p> </div> </section> </li>  
+	<li class="page user" data-view="user"> 
+		<div class="wrapContent"> 
+			<div class="mailVerificationHint"> Almost done! Please click the 
+				<b>verification link</b> in the mail we sent you to complete the registration,
+				<br> or click 
+				<a href="#">here</a> to resend the mail. </div> 
+			<div class="mobileHint"> Hi! We haven't fully implemented mobile/touch support for the editor yet. Sorry :-( </div> 
+			<div class="columns"> 
+				<!--div class="column0"> 
+					<ul class="pageNav"> 
+					<li>
+					<h4>Account</h4></li> 
+					<li>
+					<a href="#" data-action="profile">Profile</a></li> 
+					<li>
+					<a href="#" data-subpage="editprofile">Settings</a></li> 
+					<li>
+					<a href="#" data-action="logout">Logout</a></li> 
+					<li>
+					<h4>Workspace</h4></li> 
+					<li>
+					<a href="#" data-subpage="boards">Boards</a></li> </ul> </div--> 
+				<div class="column1 subPages"> 
+					<div class="head"> <h1></h1> </div> 
+					<div class="body"> 
+						<ul> 
+							<!--li class="subPage profile"> 
+								<img class="avatarBig"> 
+								<div class="profileInfo"> 
+								<h3 class="profileName"></h3> 
+								<p class="mail">Email: 
+								<span></span></p> 
+								<p class="noInfo">This user doesn't share any futher information with you.</p> </div> 
+								<div class="clear"></div> 
+								<div class="editOwnProfileSection"> 
+								<hr> 
+								<button class="common1 editOwnProfile">Edit</button> </div> </li> 
+							<li class="subPage editprofile" title="Settings"> 
+								<div class="accordion profileView" data-title="Profile"> 
+								<form method="post"> 
+								<fieldset> 
+								<div class="avatarSection"> 
+								<img class="avatarBig" width="100"> 
+								<p> Your avatar is provided by Gravatar. It is based on your email address. We do not store your picture on our servers. </p> 
+								<p> Visit 
+								<a href="http://gravatar.com/" target="_blank">gravatar.com</a> to change it. </p> </div> 
+								<hr> 
+								<div class="row"> 
+								<input type="checkbox" class="showMail" id="editShowMail"> 
+								<label for="editShowMail">Show email address in my public profile</label> </div> 
+								<hr> 
+								<button class="common1 save">Save</button> </fieldset> </form> </div> 
+								<div class="accordion changePassword" data-title="Change password" data-default="closed"> 
+								<form method="post"> 
+								<fieldset> 
+								<div class="row">
+								<label>Old password:</label>
+								<input class="passwordOld" type="password"></div> 
+								<div class="row">
+								<label>New password:</label>
+								<input class="passwordNew" type="password"></div> 
+								<button class="common1">Change</button> </fieldset> </form> </div> </li--> 
+							<li class="subPage boards" title="Boards"> 
+								<div class="boardListToolbar">
+									<button id="addBoardButton" class="common1">Add board</button> 
+									<a id="saveAllBordsToFile"><button class="common1">Save All</button></a>
+									<button id="loadBordsFromFile" class="common1">Load from File</button> 
+								</div> 
+								<div style="padding-bottom:5px">All boards here are saved in localStorage of this browser.</div>
+								<ul class="boards"> </ul> 
+								<div class="hint"> 
+									<div class="hintText"> You don't have any boards yet.
+									<br>Click here to add one. </div> 
+									<img src="res/hintarrow1.png"> </div> </li> </ul> </div> </div> 
+				<div class="clear"></div> </div> 
+			<div class="clear"></div> </div> </li>  
 	<li class="page home" data-view="home">  
 		<section class="bigTeaser"> 
 			<div class="inner"> 
@@ -128,7 +210,7 @@
 		<section class="teaserPrice"> 
 			<div class="inner"> 
 			<p>It's free.</p> </div> </section> </li>  
-	<li class="page editor active" data-view="editor"> 
+	<li class="page editor" data-view="editor"> 
 		<div id="toolbar"> 
 			<!--
 			<div class="tbRow r1"> 
@@ -171,7 +253,7 @@
 
 					<ul class="tbItem buttonList"> 
 					<li class="button openLink iconLink buttonIconText" data-key="openLink"> 
-					<div class="text">Link</div> </li> 
+					<div class="text">Save</div> </li> 
 					<li class="divider teamButtons"></li> 
 
 					<ul class="tbItem buttonList workspace"> 
@@ -474,14 +556,13 @@
 	<div class="clear"></div> </div> </footer> 
 <!--
 	цели:
-	настроить backend на localstorage, 
-		workspace - добавить view
-			модифицировать интерфейс
-			разобраться с превью
-			добавить сохранение/загрузку файлов
+	настроить error 404
+	workspace модифицировать интерфейс
 	чтобы ctrl+c / ctrl+v работали с обычным буфером обмена
 	ctrl+a
-	добавить .html&data=base64
+	добавить .html&data=base64 (чтобы dsts можно было передавать в командной строке) и кнопку share
+	заменить значки фейсбук и гугл на телеграм
+
 	найти и исправить баги в больших схемах
 	чтобы провода можно было рисовать под метками	.textNodeContainer - сделать делегирование
 	генератор диодных матриц
@@ -565,7 +646,6 @@ function thisLine() {
 <script src="js/ui/mailobfuscator.js"></script>               <!--6   после загрузки: $('#mailPlaceholderAddressBug').attr('href', "mailto:bug@simulator.io");-->
 <script src="js/shared/validation.js"></script>               <!--144 Validation                      = {...simple...}-->
 <script src="js/shared/boardstorage.js"></script>             <!--1383  function BoardStorage(system, board, opt){...}-->
-	<!-- хранилище схемы, методы выделения и редактирования -->
 <script src="js/shared/element.js"></script>                  <!--503 function Element()                {};                 Element.prototype = ...-->
 <script src="js/shared/tooloptions.js"></script>              <!--73  var ToolOptionProvider          = {...simple...}-->
 <script src="js/shared/metadata.js"></script>                 <!--50  var MetaData                    = new (function MetaDataManager() {...simple...}-->
@@ -591,7 +671,6 @@ function thisLine() {
 <script src="js/shared/element/segmentdisplay.js"></script>   <!--212 function ElementSegmentDisplay(arg){...}ElementSegmentDisplay.prototype = ...-->
 <script src="js/shared/defs.js"></script>                     <!--59  var ElementStore = {...simple*...}; var ElementCats = [...simple...]-->
 <script src="js/shared/mapping.js"></script>                  <!--50  var PageMap = [...simple...]; var StaticPageMap = [...simple...]-->
-<!-- конкретные redirection-ы and url-ы для pages.js -->
 <script src="js/controllerbase.js"></script>                  <!--37  function ControllerBase(){}ControllerBase.prototype.=...; var FrontendControllers = {}; 
                                                                     function addController(name,func){simple}-->
 <script src="js/controller/homecontroller.js"></script>       <!--43  function HomeController()     {}   HomeController.prototype      = ...;addController('HomeController',   HomeController);-->
@@ -668,10 +747,10 @@ function thisLine() {
 <!--script src="js/ui/overlayfork.js"></script-->                  <!--73  function initOverlayFork(); function loginComplete(); Event.on('openForkOverlay', function() {...})-->
 <script src="js/ui/overlayerror.js"></script>                 <!--17  function initOverlayError(); Event.on('serverError', function(error) {...})-->
                                                         <!--всего 14165 строк, 104 файла-->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9HNZEV6Z1Z"></script> 
+<!--script async src="https://www.googletagmanager.com/gtag/js?id=G-9HNZEV6Z1Z"></script> 
 <script> window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
 		  gtag('config', 'G-9HNZEV6Z1Z');
 		  
-		  function ga(){} // called by url director functions. however, new GA doesnt support it </script> </body> </html>
+		  function ga(){} // called by url director functions. however, new GA doesnt support it </script--> </body> </html>

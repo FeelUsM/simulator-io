@@ -157,7 +157,8 @@ UI.init(function(system) {
 		if(state == 0)  Event.send('saveText', '&nbsp;');
 		if(state == 1)  Event.send('saveText', 'Saving...');
 		if(state == 2)  Event.send('saveText', 'All changes saved');
-		if(state == 3) Event.send('saveText', 'Unsaved changes. Click <b>Link</b> to save.'); //  or <b>Fork</b>
+		if(state == 3)  Event.send('saveText', 'Unsaved changes. Click <b>Link</b> to save.'); //  or <b>Fork</b>
+			 //system.previewMgr.announceChange()
 	});
 
 	$('.boardTitle .val1').click(function() {

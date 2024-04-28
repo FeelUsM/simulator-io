@@ -32,11 +32,16 @@ function PreviewManager(system, board)
 		var buffer = system.renderer.getPreviewBuffer();
 		if(buffer)
 		{
-			Backend.sendPreviewImage(buffer);
+			if(Config.currentBoardMeta) {
+				var title  = Config.currentBoardMeta.urlid
+				var number = Config.currentBoardMeta.snapshot
+				Backend.sendPreviewImage(title,number,buffer);
+			} else
+				console.error("Cannot generate preview image")
 		}
 		else
 		{
-			console.log("ERROR\tCannot generate preview image");
+			console.error("ERROR\tCannot generate preview image");// ERROR FIX
 		}
 	}
 
@@ -70,7 +75,10 @@ function PreviewManager(system, board)
 	setInterval(function() {
 		if(active)
 		{
-			if(announced) that.forcePreviewUpload();
+			if(announced) {
+				that.forcePreviewUpload();
+				//announced = false;
+			}
 		}
 	}, Config.previewInterval * 1000);
 

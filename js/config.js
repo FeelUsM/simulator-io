@@ -10,7 +10,7 @@ var Config = {
 	maxMapEdge: 256,
 	maxPreviewEdge: 140,
 
-	previewInterval: 60 * 2, // 2mins
+	previewInterval: 10 , // 60 * 2, // 2mins
 	
 	versionLogic: 1,
 	versionStorage: 1,

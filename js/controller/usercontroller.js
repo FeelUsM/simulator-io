@@ -16,12 +16,13 @@ UserController.prototype.setup = function()
 {
 	var that = this;
 	var jqUserPage = $('ul.pages li.page.user');
-	var jqPageNav = jqUserPage.find('.pageNav a');
+	//var jqPageNav = jqUserPage.find('.pageNav a');
 	
 	// --------------------------------------------------------------------------- DOM/Event Initialization
 	// init all accordions
-	Accordion.init(jqUserPage.find('.accordion'));
+	//Accordion.init(jqUserPage.find('.accordion'));
 
+	/*
 	// init navigation
 	jqPageNav.click(function() {
 		var subpage = $(this).data('subpage');
@@ -96,9 +97,12 @@ UserController.prototype.setup = function()
 		return false;
 	});
 	
+	*/
 
 	// --------------------------------------------------------------------------- Events
 	Event.on('profileResult', function() {
+		console.error('not implemented')
+		return
 		if(!Config.lastRequestedProfile) console.log("ERROR\tProfile result not set in config");
 
 		that.processProfile(Config.lastRequestedProfile);
@@ -113,26 +117,46 @@ UserController.prototype.setup = function()
 	});
 	
 	$('#addBoardButton').click(function() {
+		Pages.go('/board');
+		/*
 		Event.send('openRenameBoard', {
 			ctx: null,
 			title: '',
 			rename: false
 		});
+		*/
 	});
+	$('#loadBordsFromFile').click(function(){
+		console.log('open dialog "Open File"')
+		var input = document.createElement("input");
+		input.type = "file";
+		input.accept = ".brd";
+		input.onchange = function() {
+			console.log('file selected')
+			var file = input.files[0]
+			var reader = new FileReader ();
+			reader.onload = function (e) {
+				console.log('reading of file is completed')
+				Backend.uploadBoards(JSON.parse(reader.result))
+				setTimeout(function(){
+					Backend._socket.send('boards')
+				},0)
 
+			}
+			reader.readAsText (file);
+		};
+		input.click();
+	})
+	/*
 	$('.mailVerificationHint a').click(function(e) {
 		e.preventDefault();
-
 		$(this).unbind();
-
 		$('.mailVerificationHint').delay(500).fadeOut(500);
-
 		Backend.resendVerifyMail();
-
 		return false;
 	});
-
-	if(Config.lastRequestedProfile) this.processProfile(Config.lastRequestedProfile);
+	*/
+	//if(Config.lastRequestedProfile) this.processProfile(Config.lastRequestedProfile);
 	if(Config.boards) this.updateBoards();
 
 	if(mobileAndTabletcheck())
@@ -165,7 +189,7 @@ UserController.prototype.switch = function(args, url)
 	}
 
 	// handle profile page
-	if(superPage == 'profile') subPage = 'profile';
+	//if(superPage == 'profile') subPage = 'profile';
 
 	// make subpage visible
 	var jqSubPages = $('ul.pages li.page.user li.subPage');
@@ -197,6 +221,7 @@ UserController.prototype.switch = function(args, url)
 		this.updateBoards();
 		LoadingBar.done();
 	}
+	/*
 	else if(superPage == 'profile')
 	{
 		var name;
@@ -215,15 +240,23 @@ UserController.prototype.switch = function(args, url)
 	else
 	{
 		LoadingBar.done();
-	}
+	}*/
+
+	setTimeout(function(){
+		Backend._socket.send('boards')
+	},0)
 }
 
 UserController.prototype.updateBoards = function()
 {
+	jqSaveAll
 	var boardList = $('li.subPage.boards ul.boards');
 	boardList.empty();
 	
 	if(!Config.boards) return;
+	var jqSaveAll = $('#saveAllBordsToFile')
+	jqSaveAll.attr('href','data:application/xml;charset=utf-8,'+JSON.stringify(Config.boards))
+	jqSaveAll.attr('download','all-boards.brd')
 
 	// hint or table?
 	$('li.subPage.boards .hint').toggle(Config.boards.length == 0);
@@ -231,18 +264,18 @@ UserController.prototype.updateBoards = function()
 
 	// sort boards
 	var sortedBoards = Config.boards.sort(function(a, b) {
-		if(a.lastaccess == null && b.lastaccess == null)
+		if(a.time == null && b.time == null)
 		{
 			if(a.created < b.created) return 1;
 			if(a.created > b.created) return -1;
 			return 0;
 		}
 
-		if(a.lastaccess == null && b.lastaccess != null) return -1;
-		if(b.lastaccess == null && a.lastaccess != null) return 1;
+		if(a.time == null && b.time != null) return -1;
+		if(b.time == null && a.time != null) return 1;
 
-		if(a.lastaccess < b.lastaccess) return 1;
-		if(a.lastaccess > b.lastaccess) return -1;
+		if(a.time < b.time) return 1;
+		if(a.time > b.time) return -1;
 		return 0;
 	});
 
@@ -256,13 +289,13 @@ UserController.prototype.updateBoards = function()
 		// get preview data url
 		if(boardObj.previewImage)
 		{
-			previewDataUrl = this.getDataUrlFromArrayBuffer(boardObj.previewImage);
+			previewDataUrl = boardObj.previewImage //this.getDataUrlFromArrayBuffer(boardObj.previewImage);
 		}		
 
 		// get string from last access date
-		if(boardObj.lastaccess)
+		if(boardObj.time)
 		{
-			dateStr = new Date(boardObj.lastaccess).getRelativeDateString(true, true);
+			dateStr = new Date(boardObj.time).getRelativeDateString(true, true);
 		}
 		else
 		{
@@ -271,9 +304,21 @@ UserController.prototype.updateBoards = function()
 
 		var jqRow = $('<li>').attr('title', '');
 		var jqImgWrap  = $('<div>').addClass('imgWrap');
-		var jqDivName  = $('<div>').addClass('name').text(boardObj.title);
-		var jqDivOwner = $('<div>').addClass('owner').text( 'Owner: ' + ((boardObj.ownerId == Config.userId) ? 'You' : boardObj.ownerName) );
-		var jqDivDate  = $('<div>').addClass('date').text( 'last access ' + dateStr);
+		var jqDivName  = $('<div>').addClass('name').text(boardObj.title+'/'+boardObj.snapshot);
+		var jqDivOwner = $('<div>').addClass('owner').text( 'origin: ' + boardObj.parent);
+		if(boardObj.parent===undefined){
+			jqDivOwner.text('The origin')
+			jqDivOwner.attr('style','color:black;font-weight: bold')
+		}else{
+			[oldName,oldSnap] = boardObj.parent.split('/')
+			if(oldName!=boardObj.title || 1+ +oldSnap != +boardObj.snapshot){
+				if(boardObj.snapshot!=1)
+					jqDivOwner.attr('style','color:red;font-weight: bold')
+				else
+					jqDivOwner.attr('style','color:black;font-weight: bold')
+			}
+		}
+		var jqDivDate  = $('<div>').addClass('date').text( 'saved ' + dateStr);
 		var jqDivCtrl  = $('<div>').addClass('ctrl');
 
 		if(previewDataUrl)
@@ -285,8 +330,9 @@ UserController.prototype.updateBoards = function()
 			jqImgWrap.text('No preview');
 		}
 
-		jqRow.data('board-id', boardObj.urlid);
+		jqRow.data('board-id', boardObj.urlId); // ERROR FIX
 		jqRow.data('board-title', boardObj.title);
+		jqRow.data('board-snapshot', boardObj.snapshot);
 		
 		jqRow.append(jqImgWrap);
 		jqRow.append(jqDivName);
@@ -296,45 +342,48 @@ UserController.prototype.updateBoards = function()
 		boardList.append(jqRow);
 
 		// add controls
-		var jqButtonEdit = $('<div>').addClass('edit').appendTo(jqDivCtrl);
-		var jqButtonDelete = $('<div>').addClass('delete').text('\u00d7').appendTo(jqDivCtrl);
+		var jqButtonLink = $('<a>').attr('href','data:application/xml;charset=utf-8,'+JSON.stringify([boardObj]))
+		jqButtonLink.attr('download',boardObj.title+'-'+boardObj.snapshot+'.brd').appendTo(jqDivCtrl)
+		var jqButtonSave = $('<div>').text('\u{1F4BE}').addClass('save').appendTo(jqButtonLink); // diskette
+		var jqButtonDelete = $('<div>').addClass('delete').text('\u{1F5D1}').appendTo(jqDivCtrl); // trash
 
 		// click handler
 		jqRow.click(function() {
 			var boardId = $(this).data('board-id');
-			Event.send('clickBoardRecord', boardId);
+			var boardSnap = $(this).data('board-snapshot');
+			Event.send('clickBoardRecord', boardId+'/'+boardSnap);
 		});
 
-		if(!boardObj.readonly)
-		{
-			jqButtonEdit.click(function() {
-				var jqRow = $(this).closest('li');
+		jqButtonLink.click(function(event) {
+			event.stopPropagation()
+			/*
+			var jqRow = $(this).closest('li');
 
-				Event.send('openRenameBoard', {
-					ctx: jqRow.data('board-id'),
-					title: jqRow.data('board-title'),
-					rename: true
-				});
-				return false;
+			Event.send('openRenameBoard', {
+				ctx: jqRow.data('board-id'),
+				title: jqRow.data('board-title'),
+				rename: true
 			});
-		}
-		else
-		{
-			jqButtonEdit.css('visibility', 'hidden');
-		}
+			return false;*/
+		});
 
-		jqButtonDelete.click(function() {
+		that = this
+		jqButtonDelete.click(function(event) {
+			event.stopPropagation()
 			if(confirm("Do you really want to delete this board?"))
 			{
 				var jqRow = $(this).closest('li');
-				Backend.deleteBoard(jqRow.data('board-id'));
+				Backend.deleteBoard(jqRow.data('board-id'),jqRow.data('board-snapshot'));
+				setTimeout(function(){
+					Backend._socket.send('boards')
+				},0)
 			}
 
 			return false;
 		});
 	}
 }
-
+/*
 UserController.prototype.processProfile = function(profile)
 {
 	var that = this;
@@ -391,7 +440,7 @@ UserController.prototype.processProfile = function(profile)
 
 	LoadingBar.done();
 }
-
+*/
 UserController.prototype.getDataUrlFromArrayBuffer = function(buffer)
 {
 	if(!btoa) return null;

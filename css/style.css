@@ -809,7 +809,7 @@ li.page.home {
           border-radius: 6px; }
   li.page.home section.teaserPerspective {
     min-height: 400px;
-    background-image: url(res/perspective.jpg); }
+    background-image: url(../res/perspective.jpg); }
     li.page.home section.teaserPerspective p {
       color: #fff;
       font-size: 35px;
@@ -1135,10 +1135,11 @@ li.page.user {
           background-size: auto 20px;
           background-position: -200px 0; }
         li.page.user ul.boards li .ctrl div.delete {
-          color: #f00;
-          font-size: 36px;
+          /*color: #f00;*/
+          font-weight : bold;
+          font-size: 24px;
           position: relative;
-          top: -8px; }
+          top: -4px; }
   li.page.user .subPage {
     display: none;
     position: relative; }

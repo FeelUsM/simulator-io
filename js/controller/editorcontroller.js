@@ -128,7 +128,7 @@ EditorController.prototype.leave = function()
 
 	if( logicApp.system.previewMgr.isActive() )
 	{
-		logicApp.system.previewMgr.forcePreviewUpload();
+		//logicApp.system.previewMgr.forcePreviewUpload();
 		logicApp.system.previewMgr.setActive(false);
 	}
 
@@ -162,7 +162,7 @@ EditorController.prototype.boardLoadedComplete = function(result, type) // 0=joi
 
 	if(isAnonymous)
 	{
-		Config.currentBoardMeta.title = "Anonymous board";
+		Config.currentBoardMeta.title = "noname board";
 	}
 
 	MetaData.setPageTitle(result.title);
@@ -250,7 +250,7 @@ EditorController.prototype.boardLoadedComplete = function(result, type) // 0=joi
 	Event.send('editorVisible');
 
 	// start preview manager
-	if( !(isSnapshot || isAnonymous || isReadonly) )
+	if( !(isAnonymous) ) // isSnapshot || isAnonymous || isReadonly
 	{
 		logicApp.system.previewMgr.setActive(true);		
 	}

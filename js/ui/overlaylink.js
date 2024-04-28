@@ -32,7 +32,8 @@ function initOverlayLink()
 		if(!!Config.currentBoardMeta.snapshot)
 		{
 			// switch to page (virtually)
-			Pages.simulateNativeSwitch(Pages.redirectUrl(result.rel), null, null);
+			//Pages.simulateNativeSwitch(Pages.redirectUrl(result.rel), null, null);
+			Pages.go(result.rel);
 		}
 
 		setStatus(2);
@@ -50,14 +51,15 @@ function initOverlayLink()
 		else // nope, it's just a local change
 		{
 			var data = logicApp.system.board.storage.exportAll();
+			var buffer = logicApp.system.renderer.getPreviewBuffer(Config.maxPreviewEdge,true);
 
 			if(Config.currentBoardMeta.snapshot != null) // create a new snapshot by local changes of an existing board
 			{
-				Backend.createSnapshotFromLocal(Config.currentBoardMeta.urlid, Config.currentBoardMeta.snapshot, data, onResult);
+				Backend.createSnapshotFromLocal(Config.currentBoardMeta.urlid, Config.currentBoardMeta.snapshot, data, buffer, onResult);
 			}
 			else // create an anonymous board and the first snapshot for it
 			{
-				Backend.createAnonymousBoard(data, Config.currentBoardMeta.title, onResult);
+				Backend.createAnonymousBoard(Config.currentBoardMeta.title, data, buffer, onResult);
 			}
 		}
 	});

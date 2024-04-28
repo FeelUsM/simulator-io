@@ -24,11 +24,11 @@ var PageMap = [
 	{"url": "?board",                                "controller": 'EditorController',			type: 2, title: "Board"},
 	
 	{"url": "?user/$",  /* /user/boards */           "controller": 'UserController',			type: 1, title: ""},//private 
-	{"url": "?profile",                              "controller": 'UserController',       		type: 1, title: ""},//private
+	/*{"url": "?profile",                              "controller": 'UserController',       		type: 1, title: ""},//private
 	{"url": "?profile/$",                            "controller": 'UserController',        	type: 1, title: ""},//private
 	{"url": "?account/passwordreset",                "controller": 'PassResetController',		type: 2, title: "Reset your password"},
 	{"url": "?account/passwordreset/$/$",            "controller": 'PassResetController',		type: 2, title: "Reset your password"},
-	{"url": "?account/verify/$/$",        	         "controller": 'ActivationController',		type: 2, title: "Verify your Email address"},
+	{"url": "?account/verify/$/$",        	         "controller": 'ActivationController',		type: 2, title: "Verify your Email address"},*/
 ];
 
 // map for static controller, wildcards not allowed here

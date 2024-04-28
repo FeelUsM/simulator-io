@@ -1,7 +1,7 @@
 var Backend = {
 	_socket: null,
 	_currentLoadedBoard: null,
-	_ready: false,
+	_ready: true, // false, //always connected
 	_msgQueue: [], // push new messages here; will be null once the backend is initialized
 
 	_activeCallbacks: {},
@@ -74,7 +74,7 @@ var Backend = {
 		}
 		else
 		{
-			console.log("ERROR\tCannot send transaction");
+			console.error("ERROR\tCannot send transaction"); // ERROR FIX
 		}
 		
 		return 0;
@@ -85,33 +85,64 @@ var Backend = {
 	},
 	
 	leaveBoard: function() {
-		Backend._queueMsg('leaveBoard');
+		//Backend._queueMsg('leaveBoard');
 		Config.boardServerState = null;
 		Config.currentBoardMeta = null;
 	},
 
-	_saveBoard: function(data, title, parent) {
-		// ищу title
-		// вычисляю новый номер
-		var number=1;
+	sendPreviewImage: function(title,number,buffer)
+	{
+		Backend._queueMsg('setPreviewImage', {	buffer: buffer.buffer	});
 		/*
-		for(var i=0; i<localStorage.length; i++){
-			if(title==localStorage.key(i)){
-				number = 1+ +localStorage.getItem(title)
-				break
+		id = title+'/'+number
+		if(localStorage.getItem(id) !== null) {
+			obj = JSON.parse(localStorage.getItem(id))
+			obj.preview = buffer
+			localStorage.setItem(id,JSON.stringify(obj))
+		}
+		else
+			console.error('cannot save preview')*/
+	},
+
+	_updateBoard: function(bd) {
+		"если title/snapshot отсутствует - сохраняем с новым time" 
+		"если title/snapshot присутствует и data совпадает - тихо пропускаем"
+		"если title/snapshot присутствует и data НЕсовпадает - выдаем сообщение и НЕ сохраняем"
+		console.log('try to save',bd)
+		if(localStorage.getItem(bd.title+'/'+bd.snapshot) === null) {
+			bd.time = Date
+			console.log('local save',bd.title,bd.snapshot,bd)
+			localStorage.setItem(bd.title+'/'+bd.snapshot,JSON.stringify(bd))
+			var number = bd.snapshot;
+			if(localStorage.getItem(bd.title) !== null) {
+				number = Math.max(+localStorage.getItem(bd.title),number)
 			}
-		}*/
+			localStorage.setItem(bd.title,number)
+		}
+		else {
+			oldData = JSON.parse(localStorage.getItem(bd.title+'/'+bd.snapshot)).data
+			if(JSON.stringify(bd.data)!=JSON.stringify(oldData))
+				Event.send('openMessage', {title: bd.title+'/'+bd.snapshot, text: bd.title+'/'+bd.snapshot + ' already exist and differ. Skipping.'});
+			else
+				console.log('silent skip saving of '+bd.title+'/'+bd.snapshot)
+		}
+
+	},
+	_saveBoard: function(data, preview, title, parent) {
+		"для данногог titl-а подбирает подходящий snapshot и сохраняет под title/snapshot"
+		var number=1;
 		if(localStorage.getItem(title) !== null) {
 			number = 1+ +localStorage.getItem(title)
 		}
 		// создаю объект и сохраняю
 		var entry = {
-			data     : data,
-			parent   : parent,
 			title    : title,
 			urlId    : title,
 			snapshot : number,
+			parent   : parent,
 			time     : Date(),
+			data     : data,
+			previewImage  : preview,
 		}
 		console.log('local save',title,number,entry)
 		localStorage.setItem(title+'/'+number,JSON.stringify(entry))
@@ -149,8 +180,8 @@ var Backend = {
 		Backend._queueMsg('createFork', {title: title, data: data});
 	},
 
-	createSnapshotFromLocal: function(title,curnumber, data, cb) {
-		number = Backend._saveBoard(data, title, title+'/'+curnumber);
+	createSnapshotFromLocal: function(title, curnumber, data, preview, cb) {
+		number = Backend._saveBoard(data, preview, title, title+'/'+curnumber);
 		cb({
 			url: window.location.origin+window.location.pathname+"?board/"+title+'/'+number,
 			rel:"/board/"+title+'/'+number,
@@ -166,8 +197,8 @@ var Backend = {
 		*/
 	},
 
-	createAnonymousBoard: function(data, title, cb) {				// !!!!!!!!!!!!!!!!
-		number = Backend._saveBoard(data, title);
+	createAnonymousBoard: function(title, data, preview, cb) {
+		number = Backend._saveBoard(data, preview, title);
 		cb({
 			url: window.location.origin+window.location.pathname+"?board/"+title+'/'+number,
 			rel:"/board/"+title+'/'+number,
@@ -183,10 +214,13 @@ var Backend = {
 		Backend._queueMsg('createAnonymousBoard', msg);*/
 	},
 	
-	renameBoard: function(data, curtitle, curnumber, title)
+	renameBoard: function(data, preview, curtitle, curnumber, title)
 	{
-		number = Backend._saveBoard(data, title, curtitle+'/'+curnumber);
-		Pages.go("/board/"+title+'/'+number)
+		// проверка 
+		if(localStorage.getItem(title)!==null) {
+			return 0
+		}
+		return Backend._saveBoard(data, preview, title, curtitle+'/'+curnumber);
 		/*
 		Backend._queueMsg('renameBoard', {
 			boardId: boardId,
@@ -236,24 +270,32 @@ var Backend = {
 		Backend._queueMsg('setPermissions', permissions);
 	},
 
-	deleteBoard: function(boardId)
+	deleteBoard: function(name,snap)
 	{
-		Backend._queueMsg('deleteBoard', {
-			boardId: boardId
-		});
+		localStorage.removeItem(name+'/'+snap)
+		var maxnum = 0;
+		for(var i=0; i<localStorage.length; i++){
+			if(localStorage.key(i).includes('/') && localStorage.key(i).split('/')[0]==name && localStorage.key(i).split('/')[1]>maxnum){
+				maxnum = +(localStorage.key(i).split('/')[1])
+			}
+		}
+		if(maxnum==0)
+			localStorage.removeItem(name)
+		else
+			localStorage.setItem(name,maxnum)
+
+		// Backend._queueMsg('deleteBoard', {		boardId: boardId		});
+	},
+
+	uploadBoards: function(boards){
+		for(const board of boards)
+			this._updateBoard(board)
 	},
 	
 	saveProfile: function(profile, cb)
 	{
 		Backend._queueMsg('saveProfile', profile);
 		Backend._pushCallback('saveProfile', cb);
-	},
-
-	sendPreviewImage: function(buffer)
-	{
-		Backend._queueMsg('setPreviewImage', {
-			buffer: buffer.buffer
-		});
 	},
 
 	verifyMail: function(mail, hash, cb)
@@ -389,7 +431,7 @@ var Backend = {
 				}
 				else
 				{
-					console.log("ERROR\tRegistration failed on server side"); // todo
+					console.error("ERROR\tRegistration failed on server side"); // todo ERROR FIX
 					Event.send('closeOverlay');
 					
 					Event.send('openMessage', {error: true, title: 'Registration', text: 'Registration failed.'});
@@ -416,7 +458,13 @@ var Backend = {
 			Event.send('loadBoardResult', data);
 		});
 		
-		this._socket.on('boards', function(data) {
+		this._socket.on('boards', function() {
+			data = []
+			for(var i=0; i<localStorage.length; i++){
+				if(localStorage.key(i).includes('/')){
+					data.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
+				}
+			}
 			Config.boards = data;
 			Event.send('userBoardsChange');
 			Event.send('loadState', {boardList: false});
@@ -461,7 +509,7 @@ var Backend = {
 			}
 			else
 			{
-				console.log("ERROR\tInvalid transaction result: ", data.result);
+				console.error("ERROR\tInvalid transaction result: ", data.result);  // ERROR FIX
 			}
 		});
 		
@@ -546,7 +594,7 @@ var Backend = {
 
 	_sendMsg: function(type, data) // call this if you want to send the message now
 	{
-		console.log('this._socket.emit',type, data)
+		console.error('this._socket.emit',type, data)
 		//this._socket.emit(type, data);
 	},
 
