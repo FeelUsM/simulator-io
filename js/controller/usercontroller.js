@@ -137,7 +137,12 @@ UserController.prototype.setup = function()
 			var reader = new FileReader ();
 			reader.onload = function (e) {
 				console.log('reading of file is completed')
-				Backend.uploadBoards(JSON.parse(reader.result))
+				try{
+					Backend.uploadBoards(JSON.parse(reader.result))
+				}
+				catch(error){
+					Event.send('openMessage', {title: 'Bad File', text: error.message});
+				}
 				setTimeout(function(){
 					Backend._socket.send('boards')
 				},0)
@@ -255,9 +260,13 @@ UserController.prototype.updateBoards = function()
 	boardList.empty();
 	
 	if(!Config.boards) return;
+
 	var jqSaveAll = $('#saveAllBordsToFile')
 	jqSaveAll.attr('href','data:application/xml;charset=utf-8,'+JSON.stringify(Config.boards))
 	jqSaveAll.attr('download','all-boards.brd')
+
+	$('#boardsSize').text(Math.round(Config.boardsSize/1024)+' kB')
+	$('#boardsFreeSpace').text(Math.round(5000-Config.boardsSize/1024)+' kB')
 
 	// hint or table?
 	$('li.subPage.boards .hint').toggle(Config.boards.length == 0);

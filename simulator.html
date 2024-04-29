@@ -127,7 +127,7 @@
 									<a id="saveAllBordsToFile"><button class="common1">Save All</button></a>
 									<button id="loadBordsFromFile" class="common1">Load from File</button> 
 								</div> 
-								<div style="padding-bottom:5px">All boards here are saved in localStorage of this browser.</div>
+								<div style="padding-bottom:5px">All boards here are saved in localStorage of this browser. <br> It size is <span id="boardsSize"></span>, free space approximately is <span id="boardsFreeSpace"></span>.</div>
 								<ul class="boards"> </ul> 
 								<div class="hint"> 
 									<div class="hintText"> You don't have any boards yet.
@@ -647,10 +647,6 @@
 	<div class="clear"></div> </div> </footer> 
 <!--
 	цели:
-	localStorage
-		добавить префикс
-		добавить защиту при загрузке файлов
-		добавить вычисление свободного места
 	загрузить view samples
 		разобраться с чтением файлов и сделать добавление примеров в workspace
 

@@ -95,10 +95,10 @@ var Backend = {
 		Backend._queueMsg('setPreviewImage', {	buffer: buffer.buffer	});
 		/*
 		id = title+'/'+number
-		if(localStorage.getItem(id) !== null) {
-			obj = JSON.parse(localStorage.getItem(id))
+		if(localStorage.getItem('board_'+id) !== null) {
+			obj = JSON.parse(localStorage.getItem('board_'+id))
 			obj.preview = buffer
-			localStorage.setItem(id,JSON.stringify(obj))
+			localStorage.setItem('board_'+id,JSON.stringify(obj))
 		}
 		else
 			console.error('cannot save preview')*/
@@ -109,18 +109,19 @@ var Backend = {
 		"если title/snapshot присутствует и data совпадает - тихо пропускаем"
 		"если title/snapshot присутствует и data НЕсовпадает - выдаем сообщение и НЕ сохраняем"
 		console.log('try to save',bd)
-		if(localStorage.getItem(bd.title+'/'+bd.snapshot) === null) {
+		bd.data // check that data is available
+		if(localStorage.getItem('board_'+bd.title+'/'+bd.snapshot) === null) {
 			bd.time = Date()
 			console.log('local save',bd.title,bd.snapshot,bd)
-			localStorage.setItem(bd.title+'/'+bd.snapshot,JSON.stringify(bd))
+			localStorage.setItem('board_'+bd.title+'/'+bd.snapshot,JSON.stringify(bd))
 			var number = bd.snapshot;
-			if(localStorage.getItem(bd.title) !== null) {
-				number = Math.max(+localStorage.getItem(bd.title),number)
+			if(localStorage.getItem('board_'+bd.title) !== null) {
+				number = Math.max(+localStorage.getItem('board_'+bd.title),number)
 			}
-			localStorage.setItem(bd.title,number)
+			localStorage.setItem('board_'+bd.title,number)
 		}
 		else {
-			oldData = JSON.parse(localStorage.getItem(bd.title+'/'+bd.snapshot)).data
+			oldData = JSON.parse(localStorage.getItem('board_'+bd.title+'/'+bd.snapshot)).data
 			if(JSON.stringify(bd.data)!=JSON.stringify(oldData))
 				Event.send('openMessage', {title: bd.title+'/'+bd.snapshot, text: bd.title+'/'+bd.snapshot + ' already exist and differ. Skipping.'});
 			else
@@ -131,8 +132,8 @@ var Backend = {
 	_saveBoard: function(data, preview, title, parent) {
 		"для данногог titl-а подбирает подходящий snapshot и сохраняет под title/snapshot"
 		var number=1;
-		if(localStorage.getItem(title) !== null) {
-			number = 1+ +localStorage.getItem(title)
+		if(localStorage.getItem('board_'+title) !== null) {
+			number = 1+ +localStorage.getItem('board_'+title)
 		}
 		// создаю объект и сохраняю
 		var entry = {
@@ -145,8 +146,8 @@ var Backend = {
 			previewImage  : preview,
 		}
 		console.log('local save',title,number,entry)
-		localStorage.setItem(title+'/'+number,JSON.stringify(entry))
-		localStorage.setItem(title,number)
+		localStorage.setItem('board_'+title+'/'+number,JSON.stringify(entry))
+		localStorage.setItem('board_'+title,number)
 		return number;
 	},
 
@@ -157,11 +158,11 @@ var Backend = {
 		});*/
 		Config.boardServerState = null;
 		Config.currentBoardMeta = null;
-		if(localStorage.getItem(urlId) === null) {
+		if(localStorage.getItem('board_'+urlId) === null) {
 			console.error('cannot find board',urlId)
 			data = null
 		} else {
-			data = JSON.parse(localStorage.getItem(urlId+"/"+snapshot))
+			data = JSON.parse(localStorage.getItem('board_'+urlId+"/"+snapshot))
 			console.log('load',urlId+"/"+snapshot)
 		}
 		that = this
@@ -217,7 +218,7 @@ var Backend = {
 	renameBoard: function(data, preview, curtitle, curnumber, title)
 	{
 		// проверка 
-		if(localStorage.getItem(title)!==null) {
+		if(localStorage.getItem('board_'+title)!==null) {
 			return 0
 		}
 		return Backend._saveBoard(data, preview, title, curtitle+'/'+curnumber);
@@ -272,7 +273,7 @@ var Backend = {
 
 	deleteBoard: function(name,snap)
 	{
-		localStorage.removeItem(name+'/'+snap)
+		localStorage.removeItem('board_'+name+'/'+snap)
 		var maxnum = 0;
 		for(var i=0; i<localStorage.length; i++){
 			if(localStorage.key(i).includes('/') && localStorage.key(i).split('/')[0]==name && localStorage.key(i).split('/')[1]>maxnum){
@@ -280,9 +281,9 @@ var Backend = {
 			}
 		}
 		if(maxnum==0)
-			localStorage.removeItem(name)
+			localStorage.removeItem('board_'+name)
 		else
-			localStorage.setItem(name,maxnum)
+			localStorage.setItem('board_'+name,maxnum)
 
 		// Backend._queueMsg('deleteBoard', {		boardId: boardId		});
 	},
@@ -335,6 +336,22 @@ var Backend = {
 		};
 
 		// socket state events
+		this._socket.on('boards', function() {
+			data = []
+			size = 0
+			for(var i=0; i<localStorage.length; i++){
+				size+= localStorage.key(i).length*2+1
+				size+= localStorage.getItem(localStorage.key(i)).length*2
+				if(localStorage.key(i).startsWith('board_') && localStorage.key(i).includes('/')){
+					data.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
+				}
+			}
+			Config.boards = data;
+			Config.boardsSize = size
+			Event.send('userBoardsChange');
+			Event.send('loadState', {boardList: false});
+		});
+		
 		this._socket.on('connect', function() {
 			// hello msg to server
 			Backend._sendMsg('hello', {vl: Config.versionLogic, vs: Config.versionStorage});
@@ -456,18 +473,6 @@ var Backend = {
 			Backend._currentLoadedBoard = data;
 
 			Event.send('loadBoardResult', data);
-		});
-		
-		this._socket.on('boards', function() {
-			data = []
-			for(var i=0; i<localStorage.length; i++){
-				if(localStorage.key(i).includes('/')){
-					data.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
-				}
-			}
-			Config.boards = data;
-			Event.send('userBoardsChange');
-			Event.send('loadState', {boardList: false});
 		});
 		
 		this._socket.on('profile', function(data) {
