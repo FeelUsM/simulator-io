@@ -314,7 +314,7 @@ UserController.prototype.updateBoards = function()
 		}
 		else
 		{
-			dateStr = 'Never accessed yet';
+			dateStr = 'at unknown time';
 		}
 
 		var jqRow = $('<li>').attr('title', '');

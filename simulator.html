@@ -421,13 +421,22 @@
 			<div class="column1"> 
 				<div class="body"> 
 					<h1>Logic Circuit Samples</h1> 
+					<script>
+						function downloadAndSave(qwe) {
+							const url = "https://raw.githubusercontent.com/FeelUsM/simulator-io/master/res/sprite.svg"
+							fetch(url).then(r => r.text()).then( function(r){
+								console.log(r)
+							})
+						}
+					</script>
 					<div class="sample"> 
 						<h2 id="sample1" class="anchor">#1 - Basic Gates</h2> 
 						<img src="res/samples/sample1.png" alt="Preview"> 
 						<div class="desc"> 
 						<p> Shows the usage of basic gates like AND, OR, XOR and NOT.
 						<br> Also uses switches for input and LEDs for output. Click on a switch (square with "0") to toggle. </p> 
-						<a class="virtual open" href="/board/jBA0DN5HQz/3">Add to workspace</a> </div> 
+						<a class="open" onclick="downloadAndSave(encodeURI('samples/1 Basic Gates.brd'))">Add to workspace</a> </div> 
+						<!-- href="samples/1 Basic Gates.brd" -->
 						<div class="clear"></div> </div> 
 					<div class="sample"> 
 						<h2 id="sample2" class="anchor">#2 - Half Adder</h2> 

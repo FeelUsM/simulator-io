@@ -108,11 +108,11 @@ var Backend = {
 		"если title/snapshot отсутствует - сохраняем с новым time" 
 		"если title/snapshot присутствует и data совпадает - тихо пропускаем"
 		"если title/snapshot присутствует и data НЕсовпадает - выдаем сообщение и НЕ сохраняем"
-		console.log('try to save',bd)
+		//console.log('try to save',bd)
 		bd.data // check that data is available
 		if(localStorage.getItem('board_'+bd.title+'/'+bd.snapshot) === null) {
 			bd.time = Date()
-			console.log('local save',bd.title,bd.snapshot,bd)
+			//console.log('local save',bd.title,bd.snapshot,bd)
 			localStorage.setItem('board_'+bd.title+'/'+bd.snapshot,JSON.stringify(bd))
 			var number = bd.snapshot;
 			if(localStorage.getItem('board_'+bd.title) !== null) {
