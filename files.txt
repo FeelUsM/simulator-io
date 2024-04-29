@@ -129,7 +129,7 @@ js/renderer/draw_diodes.js            <!--36  function drawDiodes(board, diodes,
 		7	elements.js
 50  js/ui/mainnav.js					showMainNav()					скрывает показывает хедер-футер
 										updateProfileMeta
-177	js/ui/loading.js					LoadingBar .on('loadState')		$('#mainLoadingBar') - почему-то не виден		$('#uiLoadOverlay')
+177	js/ui/loading.js					LoadingBar .on('loadState')		$('#mainLoadingBar') - зелёная полоска вверху		$('#uiLoadOverlay')
 81  js/ui/mobilesidebar.js				var setSidebar, toggleSidebar, jqMobileSidebar	
 5	js/ui/keyboard.js													событие 'keyhit' при нажатии на кнопки клавиатуры
 22	js/ui/spinner.js													ограничивает значение в $('input[type=number]')

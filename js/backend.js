@@ -110,7 +110,7 @@ var Backend = {
 		"если title/snapshot присутствует и data НЕсовпадает - выдаем сообщение и НЕ сохраняем"
 		console.log('try to save',bd)
 		if(localStorage.getItem(bd.title+'/'+bd.snapshot) === null) {
-			bd.time = Date
+			bd.time = Date()
 			console.log('local save',bd.title,bd.snapshot,bd)
 			localStorage.setItem(bd.title+'/'+bd.snapshot,JSON.stringify(bd))
 			var number = bd.snapshot;

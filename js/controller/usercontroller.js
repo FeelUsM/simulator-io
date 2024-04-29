@@ -172,7 +172,7 @@ UserController.prototype.switch = function(args, url)
 	var urlParts = url.split('/');
 	if(urlParts.length < 2) return false;
 	
-	var superPage = urlParts[1];
+	var superPage = urlParts[0].slice(1);// '?user/boards' -> 'user'
 	var subPage = args[0];
 
 	// check for evil characters
@@ -236,11 +236,12 @@ UserController.prototype.switch = function(args, url)
 
 		this.requestedProfileName = name;
 		Backend.requestProfile(this.requestedProfileName);
-	}
+	}*/
 	else
 	{
+		console.error('user pages: ',superPage,subPage)
 		LoadingBar.done();
-	}*/
+	}
 
 	setTimeout(function(){
 		Backend._socket.send('boards')

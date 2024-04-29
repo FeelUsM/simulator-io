@@ -410,7 +410,98 @@
 			<div class="innerSlider"></div></div> </div> 
 			<div class="chatboxPart input"> 
 			<textarea></textarea> </div> </div--> 
-	</li>  </ul> 
+	</li>
+<li class="page samples" data-view="samples"> 
+	<div class="wrapContent staticPage staticTwoColumn pageSamples"> 
+		<div class="columns"> 
+			<div class="column0"> 
+				<nav> 
+				<ul></ul> </nav> 
+				<div class="clear"></div> </div> 
+			<div class="column1"> 
+				<div class="body"> 
+					<h1>Logic Circuit Samples</h1> 
+					<div class="sample"> 
+						<h2 id="sample1" class="anchor">#1 - Basic Gates</h2> 
+						<img src="res/samples/sample1.png" alt="Preview"> 
+						<div class="desc"> 
+						<p> Shows the usage of basic gates like AND, OR, XOR and NOT.
+						<br> Also uses switches for input and LEDs for output. Click on a switch (square with "0") to toggle. </p> 
+						<a class="virtual open" href="/board/jBA0DN5HQz/3">Open sample</a> </div> 
+						<div class="clear"></div> </div> 
+					<div class="sample"> 
+						<h2 id="sample2" class="anchor">#2 - Half Adder</h2> 
+						<img src="res/samples/sample2.png" alt="Preview"> 
+						<div class="desc"> 
+						<p> A half adder adds two bits. The output bit "s" is the sum, "c" is the carry.
+						<br> You can either build a half adder using two basic gates or you just use the half adder element. </p> 
+						<a class="virtual open" href="/board/A0MeGe4pvm/1">Open sample</a> </div> 
+						<div class="clear"></div> </div> 
+					<div class="sample"> 
+						<h2 id="sample3" class="anchor">#3 - Full Adder</h2> 
+						<img src="res/samples/sample3.png" alt="Preview"> 
+						<div class="desc"> 
+						<p> The full adder does the same as the half adder, but can add three bits.
+						<br> In case all three input connectors are set to HIGH (1) the sum and carry output would also be HIGH (1).
+						<br> You can build a full adder using two half adders and an OR gate. Or just use the full adder element. </p> 
+						<a class="virtual open" href="/board/CZ0EsxYPgm/1">Open sample</a> </div> 
+						<div class="clear"></div> </div> 
+					<div class="sample"> 
+						<h2 id="sample4" class="anchor">#4 - D-Latch</h2> 
+						<img src="res/samples/sample4.png" alt="Preview"> 
+						<div class="desc"> 
+						<p> A D-Latch can (like other latches/flip-flops) hold a state. It can save a single bit.
+						<br> D-Latches have one input connector for data and one clock connector. On falling edge the new value gets stored. In simulation mode you can emit clock signals using the clock controls on the left side. </p> 
+						<a class="virtual open" href="/board/UtyNctfqc6/1">Open sample</a> </div> 
+						<div class="clear"></div> </div> 
+					<div class="sample"> 
+						<h2 id="sample5" class="anchor">#5 - 4-Bit Register</h2> 
+						<img src="res/samples/sample5.png" alt="Preview"> 
+						<div class="desc"> 
+						<p> You can build a simple 4-bit register using 4 d-latches. In this sample all latches are controlled by the same clock signal. </p> 
+						<a class="virtual open" href="/board/ueB4QsoQGV/1">Open sample</a> </div> 
+						<div class="clear"></div> </div> 
+					<div class="sample"> 
+						<h2 id="sample6" class="anchor">#6 - 4-Bit Counter</h2> 
+						<img src="res/samples/sample6.png" alt="Preview"> 
+						<div class="desc"> 
+						<p> A binary counter increases its output value by one on each clock tick. In this sample 4 d-latches are used.
+						<br> Only the first latch is connected to the clock, the other ones are using the output of the previous latch as clock signal. </p> 
+						<a class="virtual open" href="/board/lrBpIXomS7/1">Open sample</a> </div> 
+						<div class="clear"></div> </div> 
+					<div class="sample"> 
+						<h2 id="sample7" class="anchor">#7 - Diode Matrix / Traffic Light</h2> 
+						<img src="res/samples/sample7.png" alt="Preview"> 
+						<div class="desc"> 
+						<p> In this sample a diode matrix is used to map from 4 different traffic light phases (red, red-yellow, green, yellow) to the proper light.
+						<br> A diode only let signals pass from horizontal to vertical wires. </p> 
+						<a class="virtual open" href="/board/RofPwTjw50/2">Open sample</a> </div> 
+						<div class="clear"></div> </div> 
+					<div class="sample"> 
+						<h2 id="sample8" class="anchor">#8 - 4-Bit Adder</h2> 
+						<img src="res/samples/sample8.png" alt="Preview"> 
+						<div class="desc"> 
+						<p> Adds two 4-Bit numbers. All carry bits are passed to the next full adder. The last carry bit (integer overflow) is the shown next to the output. </p> 
+						<a class="virtual open" href="/board/JIxRlrtGhm/1">Open sample</a> </div> 
+						<div class="clear"></div> </div> 
+					<div class="sample"> 
+						<h2 id="sample9" class="anchor">#9 - 4-Bit Adder (serial)</h2> 
+						<img src="res/samples/sample9.png" alt="Preview"> 
+						<div class="desc"> 
+						<p> Like the previous sample, but serial implementation. A 2-bit counter with multiplexer selects the correct input bits. Afterward both bits gets added to the previous carry bit and the result is saved in a shifting register. </p> 
+						<a class="virtual open" href="/board/RmzcDqecX4/1">Open sample</a> </div> 
+						<div class="clear"></div> </div> 
+					<div class="sample"> 
+						<h2 id="sample10" class="anchor">#10 - 4-Bit CPU</h2> 
+						<img src="res/samples/sample10.png" alt="Preview"> 
+						<div class="desc"> 
+						<p> A simple 4-bit CPU with 12 instructions. You can find a manual on the board. The initial program stored in the ROM (which is a diode matrix) just counts upwards. To start the CPU generate a continuous clock signal. If the simulation is too slow, just deactivate the frame/logic tick synchronization. </p> 
+						<a class="virtual open" href="/board/AWZpw7Fy3I/2">Open sample</a> </div> 
+						<div class="clear"></div> </div> </div> 
+				<div class="clear"></div> </div> 
+			<div class="clear"></div> </div> 
+		<div class="clear"></div> </div> </li>  
+</ul> 
 <div id="uiLoadOverlay"> 
 	<div class="indicator"></div> </div> 
 <div id="uiFullSizeErrorOverlay"> 
@@ -556,21 +647,34 @@
 	<div class="clear"></div> </div> </footer> 
 <!--
 	цели:
+	localStorage
+		добавить префикс
+		добавить защиту при загрузке файлов
+		добавить вычисление свободного места
 	загрузить view samples
-		скачать samples и сохранить в файлы
+		разобраться с чтением файлов и сделать добавление примеров в workspace
+
+	сделать многоязыковую систему
 
 	найти и исправить баги в больших схемах
+		в loading сделать фон почти прозрачным, а вместо крутилки список загружаемых тэгов
 
 	чтобы провода можно было рисовать под метками	.textNodeContainer - сделать делегирование
 	генератор диодных матриц
 	выложить на гитхаб
 
 		workspace модифицировать интерфейс
+		сделать проверку корректности данных
+		сделать компактное хранение данных
+		сделать чтобы отдельные элементы были на отдельных строках - чтобы гит правильно идентифицировал различия
+
 		настроить error 404 и загрузить другие view
 		добавить .html&data=base64 (чтобы data можно было передавать в командной строке) и кнопку share
-		заменить значки фейсбук и гугл на телеграм
+
 		чтобы ctrl+c / ctrl+v работали с обычным буфером обмена
 		ctrl+a
+
+		заменить значки фейсбук и гугл на телеграм
 
 	баги при различных направлениях сдвигового
 	возможность поворачивать семисегментные и диоды
@@ -679,8 +783,8 @@ function thisLine() {
 <script src="js/controller/homecontroller.js"></script>       <!--43  function HomeController()     {}   HomeController.prototype      = ...;addController('HomeController',   HomeController);-->
 <script src="js/controller/usercontroller.js"></script>       <!--413 function UserController()     {...}UserController.prototype      = ...;addController('UserController',   UserController);-->
 <script src="js/controller/editorcontroller.js"></script>     <!--259 function EditorController()   {...}EditorController.prototype    = ...;addController('EditorController', EditorController);-->
-<script src="js/controller/passresetcontroller.js"></script>  <!--122 function PassResetController(){...}PassResetController.prototype = ...;addController('PassResetController', ...);-->
-<script src="js/controller/activationcontroller.js"></script> <!--52  function ActivationController()   {}ActivationController.prototype  =...;addController('ActivationController',...);-->
+<!--script src="js/controller/passresetcontroller.js"></script-->  <!--122 function PassResetController(){...}PassResetController.prototype = ...;addController('PassResetController', ...);-->
+<!--script src="js/controller/activationcontroller.js"></script--> <!--52  function ActivationController()   {}ActivationController.prototype  =...;addController('ActivationController',...);-->
 <script src="js/controller/error404controller.js"></script>   <!--24  function Error404Controller() {} Error404Controller.prototype  = ...;addController('Error404Controller', Error404Controller);-->
 <script src="js/controller/staticcontroller.js"></script>     <!--102 function StaticController()   {}   StaticController.prototype    = ...;addController('StaticController', StaticController);-->
 <script src="js/helper.js"></script>                          <!--132 functions... ; jQuery.fn.shake = function(intShakes, intDistance, intDuration) {...}-->
