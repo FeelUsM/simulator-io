@@ -123,9 +123,9 @@
 								<button class="common1">Change</button> </fieldset> </form> </div> </li--> 
 							<li class="subPage boards" title="Boards"> 
 								<div class="boardListToolbar">
-									<button id="addBoardButton" class="common1">Add board</button> 
-									<a id="saveAllBordsToFile"><button class="common1">Save All</button></a>
+									<button id="saveAllBordsToFile" class="common1">Save All</button>
 									<button id="loadBordsFromFile" class="common1">Load from File</button> 
+									<button id="addBoardButton" class="common1">Add board</button> 
 								</div> 
 								<div style="padding-bottom:5px">All boards here are saved in localStorage of this browser. <br> It size is <span id="boardsSize"></span>, free space approximately is <span id="boardsFreeSpace"></span>.</div>
 								<ul class="boards"> </ul> 
@@ -427,7 +427,7 @@
 						<div class="desc"> 
 						<p> Shows the usage of basic gates like AND, OR, XOR and NOT.
 						<br> Also uses switches for input and LEDs for output. Click on a switch (square with "0") to toggle. </p> 
-						<a class="virtual open" href="/board/jBA0DN5HQz/3">Open sample</a> </div> 
+						<a class="virtual open" href="/board/jBA0DN5HQz/3">Add to workspace</a> </div> 
 						<div class="clear"></div> </div> 
 					<div class="sample"> 
 						<h2 id="sample2" class="anchor">#2 - Half Adder</h2> 
@@ -789,7 +789,7 @@ function thisLine() {
 <script src="js/event.js"></script>                           <!--31  var Event = {...simple... , on: function(event, cb){...simple...}-->
 <script src="js/config.js"></script>                          <!--75  var Config = {...simple...}-->
 <script src="js/backend.js"></script>                         <!--530 var Backend = {...simple...}-->
-<script src="js/session.js"></script>                         <!--71  var sessionLoginCallback = null; Event.on('userDataOwn', function(profile) {...}); Event.on('registerSuccess', function() {...})
+<!--script src="js/session.js"></script-->                         <!--71  var sessionLoginCallback = null; Event.on('userDataOwn', function(profile) {...}); Event.on('registerSuccess', function() {...})
                                                                           Event.on('loginResult', function(result) {...}); functions... ;-->
 <script src="js/transaction.js"></script>                     <!--765 var EventTypes = {...simple...}; functions... ; -->
 <script src="js/input.js"></script>                           <!--155 function Input(system){...}-->

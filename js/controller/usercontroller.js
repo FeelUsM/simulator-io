@@ -14,6 +14,7 @@ UserController.prototype.getView = function()
 
 UserController.prototype.setup = function()
 {
+	UI.ensure() // ERROR FIX
 	var that = this;
 	var jqUserPage = $('ul.pages li.page.user');
 	//var jqPageNav = jqUserPage.find('.pageNav a');
@@ -143,6 +144,7 @@ UserController.prototype.setup = function()
 				catch(error){
 					Event.send('openMessage', {title: 'Bad File', text: error.message});
 				}
+				Event.send('loadState', {boardList: true});
 				setTimeout(function(){
 					Backend._socket.send('boards')
 				},0)
@@ -248,6 +250,7 @@ UserController.prototype.switch = function(args, url)
 		LoadingBar.done();
 	}
 
+	Event.send('loadState', {boardList: true});
 	setTimeout(function(){
 		Backend._socket.send('boards')
 	},0)
@@ -255,18 +258,20 @@ UserController.prototype.switch = function(args, url)
 
 UserController.prototype.updateBoards = function()
 {
-	jqSaveAll
 	var boardList = $('li.subPage.boards ul.boards');
 	boardList.empty();
 	
 	if(!Config.boards) return;
 
-	var jqSaveAll = $('#saveAllBordsToFile')
-	jqSaveAll.attr('href','data:application/xml;charset=utf-8,'+JSON.stringify(Config.boards))
-	jqSaveAll.attr('download','all-boards.brd')
+	$('#saveAllBordsToFile').click(function(){
+		var a = document.createElement("a");
+		a.href = 'data:application/xml;charset=utf-8,'+JSON.stringify(Config.boards)
+		a.download = 'all-boards.brd'
+		a.click()
+	})
 
 	$('#boardsSize').text(Math.round(Config.boardsSize/1024)+' kB')
-	$('#boardsFreeSpace').text(Math.round(5000-Config.boardsSize/1024)+' kB')
+	$('#boardsFreeSpace').text(Math.round(10*1024-Config.boardsSize/1024)+' kB')
 
 	// hint or table?
 	$('li.subPage.boards .hint').toggle(Config.boards.length == 0);
@@ -352,9 +357,8 @@ UserController.prototype.updateBoards = function()
 		boardList.append(jqRow);
 
 		// add controls
-		var jqButtonLink = $('<a>').attr('href','data:application/xml;charset=utf-8,'+JSON.stringify([boardObj]))
-		jqButtonLink.attr('download',boardObj.title+'-'+boardObj.snapshot+'.brd').appendTo(jqDivCtrl)
-		var jqButtonSave = $('<div>').text('\u{1F4BE}').addClass('save').appendTo(jqButtonLink); // diskette
+		
+		var jqButtonSave = $('<div>').text('\u{1F4BE}').addClass('save').appendTo(jqDivCtrl); // diskette
 		var jqButtonDelete = $('<div>').addClass('delete').text('\u{1F5D1}').appendTo(jqDivCtrl); // trash
 
 		// click handler
@@ -364,18 +368,24 @@ UserController.prototype.updateBoards = function()
 			Event.send('clickBoardRecord', boardId+'/'+boardSnap);
 		});
 
-		jqButtonLink.click(function(event) {
-			event.stopPropagation()
-			/*
-			var jqRow = $(this).closest('li');
+		(function(boardObj) {
+			jqButtonSave.click(function(event) {
+				event.stopPropagation()
+				var a = document.createElement("a");
+				a.href = 'data:application/xml;charset=utf-8,'+JSON.stringify([boardObj])
+				a.download = boardObj.title+'-'+boardObj.snapshot+'.brd'
+				a.click()
+				/*
+				var jqRow = $(this).closest('li');
 
-			Event.send('openRenameBoard', {
-				ctx: jqRow.data('board-id'),
-				title: jqRow.data('board-title'),
-				rename: true
+				Event.send('openRenameBoard', {
+					ctx: jqRow.data('board-id'),
+					title: jqRow.data('board-title'),
+					rename: true
+				});
+				return false;*/
 			});
-			return false;*/
-		});
+		})(boardObj)
 
 		that = this
 		jqButtonDelete.click(function(event) {
