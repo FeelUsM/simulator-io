@@ -129,7 +129,7 @@ function BoardStorage(system, board, opt)
 			this.diodesGlo.length != 0 ||
 			this.textsGlo.length != 0)
 		{
-			console.log("ERROR\tBoard is not empty");
+			console.error("ERROR\tBoard is not empty");
 			return;
 		}
 
@@ -313,7 +313,7 @@ function BoardStorage(system, board, opt)
 	// -----------------------------------------------------------------------------------------------------------------
 	this.pushWire = function(wire)
 	{
-		if(system && system.getMode() != 0) console.log("ERROR\tNot in build mode");
+		if(system && system.getMode() != 0) console.error("ERROR\tNot in build mode");
 	
 		var id = -1;
 	
@@ -328,7 +328,7 @@ function BoardStorage(system, board, opt)
 		}
 
 		var d = this.getWireDirection(wire);
-		if(wire.geo[0][d] > wire.geo[1][d]) console.log("ERROR\tPoints in wrong order");
+		if(wire.geo[0][d] > wire.geo[1][d]) console.error("ERROR\tPoints in wrong order");
 		
 		// create obj
 		var wireObj = {
@@ -380,7 +380,7 @@ function BoardStorage(system, board, opt)
 	
 	this.popWire = function(id)
 	{
-		if(system && system.getMode() != 0) console.log("ERROR\t Not in build mode");
+		if(system && system.getMode() != 0) console.error("ERROR\t Not in build mode");
 	
 		var found = false;
 		var wire = null;
@@ -415,7 +415,7 @@ function BoardStorage(system, board, opt)
 		
 		if(!found)
 		{
-			console.log("ERROR\tCannot delete wire with id ", id);
+			console.error("ERROR\tCannot delete wire with id ", id);
 			return false;
 		}
 		
@@ -437,7 +437,7 @@ function BoardStorage(system, board, opt)
 		
 		if(!found)
 		{
-			console.log("ERROR\tInconsistent wire data. Cannot find wire in global table: ", id);
+			console.error("ERROR\tInconsistent wire data. Cannot find wire in global table: ", id);
 			return false;
 		}
 		
@@ -451,7 +451,7 @@ function BoardStorage(system, board, opt)
 				
 				if(wire.group != null)
 				{
-					console.log("ERROR\tCancel group failed. Group is still set.");
+					console.error("ERROR\tCancel group failed. Group is still set.");
 				}
 			}
 			
@@ -473,12 +473,12 @@ function BoardStorage(system, board, opt)
 	
 	this.pushElement = function(element)
 	{
-		if(system && system.getMode() != 0) console.log("ERROR\tNot in build mode");
+		if(system && system.getMode() != 0) console.error("ERROR\tNot in build mode");
 	
 		var id = -1;
 		
 		// check elementId
-		if(!element.elementId) console.log("ERROR\tElement ID not set");
+		if(!element.elementId) console.error("ERROR\tElement ID not set");
 		
 		// get id
 		if(element.id == undefined)
@@ -572,7 +572,7 @@ function BoardStorage(system, board, opt)
 	
 	this.popElement = function(id)
 	{
-		if(system && system.getMode() != 0) console.log("ERROR\t Not in build mode");
+		if(system && system.getMode() != 0) console.error("ERROR\t Not in build mode");
 	
 		var element = null;
 		
@@ -589,7 +589,7 @@ function BoardStorage(system, board, opt)
 		// everything okay?
 		if(element == null)
 		{
-			console.log("ERROR\tCannot delete element", id);
+			console.error("ERROR\tCannot delete element", id);
 			return;
 		}
 		
@@ -662,7 +662,7 @@ function BoardStorage(system, board, opt)
 			if(con.group != null)
 			{
 				var idx = con.group.connectors.indexOf(con);
-				if(idx == -1) console.log("ERROR\tCannot find connector in group");
+				if(idx == -1) console.error("ERROR\tCannot find connector in group");
 				con.group.connectors.splice(idx, 1);
 				con.group = null;
 			}
@@ -707,7 +707,7 @@ function BoardStorage(system, board, opt)
 	{
 		if(system) // client only
 		{
-			if(system.getMode() != 0) console.log("ERROR\t Not in build mode");
+			if(system.getMode() != 0) console.error("ERROR\t Not in build mode");
 		}
 
 		if(diode.id == undefined)
@@ -764,7 +764,7 @@ function BoardStorage(system, board, opt)
 	
 	this.popDiode = function(diode)
 	{
-		if(system && system.getMode() != 0) console.log("ERROR\t Not in build mode");
+		if(system && system.getMode() != 0) console.error("ERROR\t Not in build mode");
 
 		var qx = ~~(diode.geo[0] / opt.quadSize), qy = ~~(diode.geo[1] / opt.quadSize);
 		var quad = this.getQuad(qx, qy);
@@ -774,7 +774,7 @@ function BoardStorage(system, board, opt)
 		
 		if(idxQuad == -1 || idxGlo == -1)
 		{
-			console.log("ERROR\tCannot find diode:", idxQuad, idxGlo);
+			console.error("ERROR\tCannot find diode:", idxQuad, idxGlo);
 		}
 		
 		// delete
@@ -808,7 +808,7 @@ function BoardStorage(system, board, opt)
 					var idx = group.diodes.indexOf(diode);
 					group.diodes.splice(idx, 1);
 				
-					if(idx == -1) console.log("ERROR\tCannot delete diode from group");
+					if(idx == -1) console.error("ERROR\tCannot delete diode from group");
 				}
 			}
 			diode.groupHor = null;
@@ -827,7 +827,7 @@ function BoardStorage(system, board, opt)
 	{
 		if(system) // client only
 		{
-			if(system.getMode() != 0) console.log("ERROR\t Not in build mode");
+			if(system.getMode() != 0) console.error("ERROR\t Not in build mode");
 		}
 
 		if(text.id == undefined)
@@ -864,7 +864,7 @@ function BoardStorage(system, board, opt)
 	{
 		if(system) // client only
 		{
-			if(system.getMode() != 0) console.log("ERROR\t Not in build mode");
+			if(system.getMode() != 0) console.error("ERROR\t Not in build mode");
 		}
 
 		var qx = ~~(text.geo[0] / opt.quadSize), qy = ~~(text.geo[1] / opt.quadSize);
@@ -878,13 +878,13 @@ function BoardStorage(system, board, opt)
 		// pop
 		{
 			var idx = quad.texts.indexOf(text);
-			if(idx == -1) console.log("ERROR\tCannot delete text 1");
+			if(idx == -1) console.error("ERROR\tCannot delete text 1");
 			quad.texts.splice(idx, 1);
 		}
 
 		{
 			var idx = this.textsGlo.indexOf(text);
-			if(idx == -1) console.log("ERROR\tCannot delete text 2");
+			if(idx == -1) console.error("ERROR\tCannot delete text 2");
 			this.textsGlo.splice(idx, 1);
 		}
 
@@ -980,7 +980,7 @@ function BoardStorage(system, board, opt)
 			return;
 		}
 	
-		if(system.getMode() != 0) console.log("ERROR\t Not in build mode");
+		if(system.getMode() != 0) console.error("ERROR\t Not in build mode");
 	
 		// new group object
 		var newGroup = {
@@ -1008,17 +1008,17 @@ function BoardStorage(system, board, opt)
 			return;
 		}
 
-		if(system.getMode() != 0) console.log("ERROR\t Not in build mode");
+		if(system.getMode() != 0) console.error("ERROR\t Not in build mode");
 	
 		if(group.wires.length > 0)
 		{
-			console.log("ERROR\tGroup.wires is not empty. Cannot delete.");
+			console.error("ERROR\tGroup.wires is not empty. Cannot delete.");
 			return;
 		}
 		
 		if(group.connectors.length > 0)
 		{
-			console.log("ERROR\tGroup.connectors is not empty. Cannot delete.");
+			console.error("ERROR\tGroup.connectors is not empty. Cannot delete.");
 			return;
 		}
 		
@@ -1036,7 +1036,7 @@ function BoardStorage(system, board, opt)
 		var idx = this.groupsGlo.indexOf(group);
 		if(idx == -1)
 		{
-			console.log("ERROR\tGroup is unknown.");
+			console.error("ERROR\tGroup is unknown.");
 		}
 		
 		this.groupsGlo.splice(idx, 1);
@@ -1047,7 +1047,7 @@ function BoardStorage(system, board, opt)
 	{
 		if(this.isSelected(obj))
 		{
-			console.log("ERROR\tCannot select object twice");
+			console.error("ERROR\tCannot select object twice");
 			return;
 		}
 
@@ -1064,7 +1064,7 @@ function BoardStorage(system, board, opt)
 		var idx = this.selectedGlo.indexOf(obj);
 		if(idx == -1)
 		{
-			console.log("ERROR\tCannot unselect not-selected object");
+			console.error("ERROR\tCannot unselect not-selected object");
 			return;
 		}
 
@@ -1278,7 +1278,7 @@ function BoardStorage(system, board, opt)
 				}
 				else if(group != wires[i].group)
 				{
-					console.log("ERROR\tMore than one group on one point.");
+					console.error("ERROR\tMore than one group on one point.");
 				}
 			}
 		}
@@ -1326,7 +1326,7 @@ function BoardStorage(system, board, opt)
 		
 		if(sameX == sameY)
 		{
-			console.log("ERROR\tInvalid wire: ", wire);
+			console.error("ERROR\tInvalid wire: ", wire);
 			return -1;
 		}
 		
@@ -1355,7 +1355,7 @@ function BoardStorage(system, board, opt)
 		}
 		else
 		{
-			console.log("ERROR\tSelected unknown entity: ", obj, new Error().stack);
+			console.error("ERROR\tSelected unknown entity: ", obj, new Error().stack);
 		}
 
 		return -1;

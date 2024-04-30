@@ -15,7 +15,7 @@ function UserProvider(system, board)
 			if(that.users[i].token == token) return that.users[i];
 		}
 		
-		console.log("ERROR\tCannot find user by token: ", token);
+		console.error("ERROR\tCannot find user by token: ", token);
 		
 		return null;
 	}
@@ -57,7 +57,7 @@ function UserProvider(system, board)
 			}
 		}
 		
-		if(!found) console.log("ERROR\tCannot delete old user");
+		if(!found) console.error("ERROR\tCannot delete old user");
 		
 		Event.send('updateUserList');
 	});

@@ -113,7 +113,7 @@ function BoardEventManager(system, board)
 				
 				if(con == null || con == event.n)
 				{
-					console.log("ERROR\tCannot toggle connector", con);
+					console.error("ERROR\tCannot toggle connector", con);
 					return;
 				}
 				

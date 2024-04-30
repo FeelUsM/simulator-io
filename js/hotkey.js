@@ -90,7 +90,7 @@ var Hotkey = new function(){
 		for(var i = 0; i < parts.length; i++)
 		{
 			var translated = parts[i].trim();
-			if(!translated) console.log("ERROR\tUnknown key: " + parts[i]);
+			if(!translated) console.error("ERROR\tUnknown key: " + parts[i]);
 			
 			obj.keys.push(translated);
 		}

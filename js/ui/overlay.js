@@ -60,7 +60,7 @@ function openOverlay(name)
 
 	if(overlayName != null)
 	{
-		console.log("ERROR\tOverlay already open");
+		console.error("ERROR\tOverlay already open");
 	}
 
 	overlayName = name;

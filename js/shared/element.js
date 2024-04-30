@@ -8,13 +8,13 @@ Element.prototype.init = function(size, connectors, arg, sides)
 {
 	if(size == undefined || size == null)
 	{
-		console.log("ERROR\tElement size not specified");
+		console.error("ERROR\tElement size not specified");
 		return;
 	}
 	
 	if(connectors == undefined || connectors == null)
 	{
-		console.log("ERROR\tElement connectors are not specified");
+		console.error("ERROR\tElement connectors are not specified");
 		return;
 	}
 
@@ -62,7 +62,7 @@ Element.prototype.setPower = function(simulator, i, v)
 
 	if(con.type != 1)
 	{
-		console.log("ERROR\tThis is not an output connector");
+		console.error("ERROR\tThis is not an output connector");
 		return;
 	}
 	
@@ -83,7 +83,7 @@ Element.prototype.getPower = function(i)
 	var con = this.connectors[i];
 	if(con.type != 0)
 	{
-		console.log("ERROR\tThis is not an input connector");
+		console.error("ERROR\tThis is not an input connector");
 		return;
 	}
 	
@@ -121,8 +121,8 @@ Element.prototype.getConnectorStats = function()
 
 Element.prototype.setRot = function(dir)
 {
-	if(dir < 0 || dir > 3) console.log("ERROR\tInvalid rotation");
-	if(this.dir != -1) console.log("ERROR\tAlready rotated");
+	if(dir < 0 || dir > 3) console.error("ERROR\tInvalid rotation");
+	if(this.dir != -1) console.error("ERROR\tAlready rotated");
 		
 	this.dir = dir;
 	var mirror = false;
@@ -201,7 +201,7 @@ Element.prototype.exportArgs = function()
 		}
 		else
 		{
-			console.log("ERROR\tOption not found", options[i]);
+			console.error("ERROR\tOption not found", options[i]);
 		}
 	}
 	
@@ -268,7 +268,7 @@ Element.prototype.getBoxCenter = function(offsetX, offsetY)
 {
 	if(this.metricsBox == null)
 	{
-		console.log("ERROR\tBox metrics not calculated yet");
+		console.error("ERROR\tBox metrics not calculated yet");
 		return;
 	}
 	
@@ -302,7 +302,7 @@ Element.prototype.getHighlightColor = function(highlight)
 		case 2: return Config.colInvalidSelection;
 	}
 
-	console.log("ERROR\tInvalid highlight level");
+	console.error("ERROR\tInvalid highlight level");
 }
 
 Element.prototype.drawConnectors = function(ctx, x, y, s, renderType, highlight)
@@ -377,7 +377,7 @@ Element.prototype.drawConnectors = function(ctx, x, y, s, renderType, highlight)
 			if(con.dir == 1) ctx.textAlign = 'end';
 			if(con.dir == 3) ctx.textAlign = 'start';
 						
-			//if(con.text.length > 1) console.log("ERROR\tConnector text too long.");
+			//if(con.text.length > 1) console.error("ERROR\tConnector text too long.");
 			
 			ctx.fillText(con.text, textPos[0], textPos[1]);
 		}

@@ -13,7 +13,7 @@ UI.init(function(system) {
 		var jqCanvas = $('<canvas>');
 		var maxInnerSize = Math.max(mod.size[0], mod.size[1]) * zoom;
 		var maxOuterSize = jqItem.innerWidth();
-		if(maxOuterSize != jqItem.height()) console.log("ERROR\tOuter size must be equal");
+		if(maxOuterSize != jqItem.height()) console.error("ERROR\tOuter size must be equal");
 		
 		var scale = maxOuterSize / maxInnerSize;
 		if(scale > 1 && scale < 1.5) scale = 1;

@@ -6,7 +6,7 @@ function ElementDecoder(arg)
 
 	if(bits < 3 || bits > 5)
 	{
-		console.log("ERROR\tInvalid decoder bits: ", bits);
+		console.error("ERROR\tInvalid decoder bits: ", bits);
 		return;	
 	}
 

@@ -535,7 +535,7 @@ function Tool(system, board)
 				{
 					if(this.selectMoveCur[0] != 0 || this.selectMoveCur[1] != 0)
 					{
-						console.log("ERROR\tInvalid selection move value");
+						console.error("ERROR\tInvalid selection move value");
 					}
 				}
 				else

@@ -22,7 +22,7 @@ function Simulator(system, board)
 	}
 	
 	Event.on('setMode', function(newMode) {
-		//if(mode == newMode) console.log("ERROR\tAlready in mode: ", newMode);
+		//if(mode == newMode) console.error("ERROR\tAlready in mode: ", newMode);
 		mode = newMode;
 		if(mode == 0) that.goBuild();
 		if(mode == 1) that.goSimulator();
@@ -63,12 +63,12 @@ function Simulator(system, board)
 		for(var i = 0; i < board.storage.groupsGlo.length; i++)
 		{
 			var group = board.storage.groupsGlo[i];
-			if(group.powerCount > 0) console.log("ERROR\tGroup has still power");
+			if(group.powerCount > 0) console.error("ERROR\tGroup has still power");
 		}
 		for(var i = 0; i < board.storage.connectorsGlo.length; i++)
 		{
 			var con = board.storage.connectorsGlo[i];
-			if(con.power) console.log("ERROR\tConnector has still power");
+			if(con.power) console.error("ERROR\tConnector has still power");
 		}
 		for(var i = 0; i < board.storage.elementsGlo.length; i++)
 		{
@@ -212,7 +212,7 @@ function Simulator(system, board)
 	
 	this.singleTick = function()
 	{
-		if(mode != 1) console.log("ERROR\tLogic tick without simulation");
+		if(mode != 1) console.error("ERROR\tLogic tick without simulation");
 		
 		if(dirtyElements.length == 0)
 		{

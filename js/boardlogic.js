@@ -86,7 +86,7 @@ function BoardLogic(system, board)
 				return this.deleteText(arg);
 				
 			default:
-				console.log("ERROR\tUnknown command: " + cmd);
+				console.error("ERROR\tUnknown command: " + cmd);
 		}
 	}
 	
@@ -103,7 +103,7 @@ function BoardLogic(system, board)
 	{
 		if(typeof arg.geo == 'undefined')
 		{
-			console.log("ERROR\tWire doesn't have geo information");
+			console.error("ERROR\tWire doesn't have geo information");
 			return false;
 		}
 	
@@ -240,7 +240,7 @@ function BoardLogic(system, board)
 				count++;
 			}
 			
-			if(count >= 50) console.log("ERROR\tToo many repair cycles!");
+			if(count >= 50) console.error("ERROR\tToo many repair cycles!");
 		}
 		
 		{ // split wires
@@ -283,7 +283,7 @@ function BoardLogic(system, board)
 	{
 		if(typeof arg.geo == 'undefined')
 		{
-			console.log("ERROR\tWire doesn't have geo information");
+			console.error("ERROR\tWire doesn't have geo information");
 			return;
 		}
 		
@@ -379,7 +379,7 @@ function BoardLogic(system, board)
 			
 			if(!!wires0 && !!wires1)
 			{
-				if(connector != null) console.log("ERROR\tConnector is on wire");
+				if(connector != null) console.error("ERROR\tConnector is on wire");
 				
 				if(wires0.length == 1 && wires1.length == 1) // yes, that are our wires to split!
 				{
@@ -451,7 +451,7 @@ function BoardLogic(system, board)
 		
 				if(!!wires0 && !!wires1)
 				{
-					if(connector != null) console.log("ERROR\tConnector is on wire");
+					if(connector != null) console.error("ERROR\tConnector is on wire");
 				
 					// yes, that are our wires to split!
 					if(wires0.length == 1 && wires1.length == 1)
@@ -540,7 +540,7 @@ function BoardLogic(system, board)
 				case 4:
 					continue; // do not connect to middle connectors
 				default:
-					console.log("ERROR\tUnknown direction");
+					console.error("ERROR\tUnknown direction");
 			}
 			
 			// find second connector
@@ -571,7 +571,7 @@ function BoardLogic(system, board)
 		
 		if(line != p[1 - d])
 		{
-			console.log("ERROR\tCannot split wire on that line ", p);
+			console.error("ERROR\tCannot split wire on that line ", p);
 			return null;
 		}
 		
@@ -589,7 +589,7 @@ function BoardLogic(system, board)
 		}
 		else
 		{
-			console.log("ERROR\tPoint is no intersection of wire ", wire, p, d, line);
+			console.error("ERROR\tPoint is no intersection of wire ", wire, p, d, line);
 			return null;
 		}
 	}
@@ -600,7 +600,7 @@ function BoardLogic(system, board)
 	{
 		if(idA == idB)
 		{
-			console.log("ERROR\tCannot combine wire with same id ", idA);
+			console.error("ERROR\tCannot combine wire with same id ", idA);
 			return;
 		}
 	
@@ -628,7 +628,7 @@ function BoardLogic(system, board)
 			
 			if(endpointOfA == -1)
 			{
-				console.log("ERROR\tCannot combine bith wires, because they don't share any endpoint");
+				console.error("ERROR\tCannot combine bith wires, because they don't share any endpoint");
 			}
 			else
 			{
@@ -655,7 +655,7 @@ function BoardLogic(system, board)
 		}
 		else
 		{
-			console.log("ERROR\tCannot combine wires with different directions: ", idA, idB);
+			console.error("ERROR\tCannot combine wires with different directions: ", idA, idB);
 		}
 		
 		return null;
@@ -745,7 +745,7 @@ function BoardLogic(system, board)
 			else
 			{
 				board.event.processStorageEvent(7, diode);
-				//console.log("ERROR\tFound diode with not enough wires");
+				//console.error("ERROR\tFound diode with not enough wires");
 			}
 		}
 	}
@@ -879,7 +879,7 @@ function BoardLogic(system, board)
 				}
 				else
 				{
-					console.log("ERROR\tFound wire without valid group");
+					console.error("ERROR\tFound wire without valid group");
 				}
 			}	
 		}

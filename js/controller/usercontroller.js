@@ -104,7 +104,7 @@ UserController.prototype.setup = function()
 	Event.on('profileResult', function() {
 		console.error('not implemented')
 		return
-		if(!Config.lastRequestedProfile) console.log("ERROR\tProfile result not set in config");
+		if(!Config.lastRequestedProfile) console.error("ERROR\tProfile result not set in config");
 
 		that.processProfile(Config.lastRequestedProfile);
 	});

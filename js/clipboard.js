@@ -4,12 +4,12 @@ var Clipboard = new function(){
 
 	/*this.registerPaste = function(cb)
 	{
-		if(cbPaste != null) console.log("ERROR\tDouble register paste handler");
+		if(cbPaste != null) console.error("ERROR\tDouble register paste handler");
 	}*/
 
 	this.registerCutDelete = function(cb)
 	{
-		if(cbCutDelete != null) console.log("ERROR\tDouble register cutdelete handler");
+		if(cbCutDelete != null) console.error("ERROR\tDouble register cutdelete handler");
 	}
 
 	this.init = function()

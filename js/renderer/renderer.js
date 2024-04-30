@@ -246,7 +246,7 @@ function Renderer(system, board)
 		}
 		else
 		{
-			console.log("ERROR\tInvalid data url header");
+			console.error("ERROR\tInvalid data url header");
 		}
 
 		return null;
@@ -536,7 +536,7 @@ function Renderer(system, board)
 		}
 		else
 		{
-			console.log("ERROR\tCannot delete change overlay quad");
+			console.error("ERROR\tCannot delete change overlay quad");
 		}
 	}
 

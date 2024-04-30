@@ -550,7 +550,7 @@ var Backend = {
 	_pushCallback: function(name, cb) {
 		if(!!Backend._activeCallbacks[name])
 		{
-			console.log("ERROR\tDouble push of a callback: ", name);
+			console.error("ERROR\tDouble push of a callback: ", name);
 		}
 
 		Backend._activeCallbacks[name] = cb;
@@ -559,7 +559,7 @@ var Backend = {
 	_popCallback: function(name) {
 		if(!Backend._activeCallbacks[name])
 		{
-			console.log("ERROR\tCannot pop callback: ", name);
+			console.error("ERROR\tCannot pop callback: ", name);
 			return null;
 		}
 

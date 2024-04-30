@@ -25,7 +25,7 @@ function ElementSegmentDisplay(arg)
 			break;
 
 		default:
-			console.log("ERROR\tInvalid segment display type: ", arg.segmentDisplay);
+			console.error("ERROR\tInvalid segment display type: ", arg.segmentDisplay);
 			return;
 	}
 

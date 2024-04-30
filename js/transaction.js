@@ -156,7 +156,7 @@ function Transaction(board, type, id, foreign)
 	// add serverId to transaction (after foreign or confirm call)
 	this.addServerId = function(id)
 	{
-		if(this.serverId != -1) console.log("ERROR\tServerID already set");
+		if(this.serverId != -1) console.error("ERROR\tServerID already set");
 		this.serverId = id;
 	}
 	
@@ -211,7 +211,7 @@ function TransactionManager(system, board)
 	{
 		if(this.currentTransaction)
 		{
-			console.log("ERROR\tCannot start transaction, commit or rollback the current one first.");
+			console.error("ERROR\tCannot start transaction, commit or rollback the current one first.");
 			console.log("From: ", new Error().stack);
 			console.log("Existing: ", this.currentTransaction.dbgStack);
 			return;
@@ -255,7 +255,7 @@ function TransactionManager(system, board)
 	
 		if(!this.currentTransaction)
 		{
-			console.log("ERROR\tNo running transaction.");
+			console.error("ERROR\tNo running transaction.");
 			return;
 		}
 		
@@ -307,12 +307,12 @@ function TransactionManager(system, board)
 			}
 			else
 			{
-				console.log("ERROR\tOverwrite type isn't set on commit of null-transaction", new Error().stack);
+				console.error("ERROR\tOverwrite type isn't set on commit of null-transaction", new Error().stack);
 			}
 		}
 		else
 		{
-			if(overwriteType != null) console.log("ERROR\tCannot set final type if first type wasn't a null transaction");
+			if(overwriteType != null) console.error("ERROR\tCannot set final type if first type wasn't a null transaction");
 		}
 		
 		return transaction;
@@ -328,7 +328,7 @@ function TransactionManager(system, board)
 			var stackItem = stackPending.pop();
 			var originalType = stackItem.type;
 			this.start(3, stackItem.id);
-			if(stackItem.serverId != -1) console.log("ERROR\tInverted transaction already got a server ID");
+			if(stackItem.serverId != -1) console.error("ERROR\tInverted transaction already got a server ID");
 			stackItem.undo();
 			undoTransactions.push(this.commit(originalType));
 		}
@@ -356,14 +356,14 @@ function TransactionManager(system, board)
 		// error handling (pending locals shouldn't be true if the pending stack is empty)
 		if(stackPending.length == 0 && pendingLocals == true)
 		{
-			console.log("ERROR\tInvalid pending locals state");
+			console.error("ERROR\tInvalid pending locals state");
 			return;
 		}
 		
 		// error handling (you cannot have a confirm/reject if you pending stack is empty)
 		if(stackPending.length == 0 && (action == 1 || action == 2))
 		{
-			console.log("ERROR\tInvalid pending locals state");
+			console.error("ERROR\tInvalid pending locals state");
 			return;
 		}
 
@@ -387,7 +387,7 @@ function TransactionManager(system, board)
 				break;
 		}
 
-		console.log("ERROR\tUnkown transaction state", new Error().stack);
+		console.error("ERROR\tUnkown transaction state", new Error().stack);
 	}
 	
 	this.handleTransactionActionForeign = function(transaction)
@@ -420,7 +420,7 @@ function TransactionManager(system, board)
 			var transaction2 = stackPending.pop();
 			if(transaction != transaction2)
 			{
-				console.log("ERROR\tConfirm/reject in wrong order", transaction, transaction2);
+				console.error("ERROR\tConfirm/reject in wrong order", transaction, transaction2);
 				return;
 			}
 			
@@ -433,7 +433,7 @@ function TransactionManager(system, board)
 			var transaction2 = stackPending.shift();
 			if(transaction != transaction2)
 			{
-				console.log("ERROR\tConfirm/reject in wrong order", transaction, transaction2);
+				console.error("ERROR\tConfirm/reject in wrong order", transaction, transaction2);
 				return;
 			}
 			
@@ -459,7 +459,7 @@ function TransactionManager(system, board)
 			var transaction2 = stackPending.pop();
 			if(transaction != transaction2)
 			{
-				console.log("ERROR\tConfirm/reject in wrong order", transaction, transaction2);
+				console.error("ERROR\tConfirm/reject in wrong order", transaction, transaction2);
 				return;
 			}
 
@@ -476,7 +476,7 @@ function TransactionManager(system, board)
 
 			if(transaction != transaction2)
 			{
-				console.log("ERROR\tConfirm/reject in wrong order", transaction, transaction2);
+				console.error("ERROR\tConfirm/reject in wrong order", transaction, transaction2);
 				return;
 			}
 			
@@ -499,7 +499,7 @@ function TransactionManager(system, board)
 				break;
 				
 			default:
-				console.log("ERROR\tUnkown transaction type");
+				console.error("ERROR\tUnkown transaction type");
 		}
 		
 		this.updateDoButtons();
@@ -553,7 +553,7 @@ function TransactionManager(system, board)
 	{
 		if(stackPending.length > 0)
 		{
-			console.log("ERROR\tCannot put undo on non-empty stackPending");
+			console.error("ERROR\tCannot put undo on non-empty stackPending");
 			return;
 		}
 	
@@ -564,7 +564,7 @@ function TransactionManager(system, board)
 	{
 		if(stackPending.length > 0)
 		{
-			console.log("ERROR\tCannot put redo on non-empty stackPending");
+			console.error("ERROR\tCannot put redo on non-empty stackPending");
 			return;
 		}
 	
@@ -576,13 +576,13 @@ function TransactionManager(system, board)
 	{
 		if(!this.currentTransaction)
 		{
-			console.log("ERROR\tNo running transaction.");
+			console.error("ERROR\tNo running transaction.");
 			return;
 		}
 		
 		if(lock.length != 4)
 		{
-			console.log("ERROR\tInvalid lock area");
+			console.error("ERROR\tInvalid lock area");
 			return;
 		}
 
@@ -618,7 +618,7 @@ function TransactionManager(system, board)
 		}
 		else
 		{
-			console.log("ERROR\tInvalid hash request ", stackProcessed);
+			console.error("ERROR\tInvalid hash request ", stackProcessed);
 		}
 
 		if(stackPending.length > 0) this.invertPendingStack();
@@ -655,7 +655,7 @@ function TransactionManager(system, board)
 		
 		if(processedIdx == -1)
 		{
-			console.log("ERROR\tCannot find transaction in processed");
+			console.error("ERROR\tCannot find transaction in processed");
 			this.updateDoButtons();
 			this.updateSavingText();
 			return;

@@ -7,7 +7,7 @@ function ElementDemux(arg)
 
 	if(this.bits < 2 || this.bits > 5)
 	{
-		console.log("ERROR\tInvalid demuxer bits: ", this.bits);
+		console.error("ERROR\tInvalid demuxer bits: ", this.bits);
 		return;	
 	}
 

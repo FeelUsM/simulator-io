@@ -142,7 +142,7 @@ EditorController.prototype.boardLoadedComplete = function(result, type) // 0=joi
 	var isReadonly = false;
 
 	// update board server state
-	if(Config.boardServerState != null || Config.currentBoardMeta != null) console.log("ERROR\tThere is already a board remote state");
+	if(Config.boardServerState != null || Config.currentBoardMeta != null) console.error("ERROR\tThere is already a board remote state");
 
 	if(type == 0)
 	{

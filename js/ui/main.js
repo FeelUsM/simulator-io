@@ -44,7 +44,7 @@ var UI = {
 			}
 			else
 			{
-				console.log("ERROR\tSystem object not prepared");
+				console.error("ERROR\tSystem object not prepared");
 			}
 		}
 	}

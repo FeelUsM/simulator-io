@@ -17,7 +17,7 @@ AndGate.prototype = Object.create(Gate.prototype);
 
 AndGate.prototype.logicOperator = function(input)
 {
-	if(input.length < 2) console.log("ERROR\tGate with less than two inputs.");
+	if(input.length < 2) console.error("ERROR\tGate with less than two inputs.");
 	
 	var result = true;
 	
