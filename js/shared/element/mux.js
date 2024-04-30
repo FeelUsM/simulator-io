@@ -7,7 +7,7 @@ function ElementMux(arg)
 
 	if(this.bits < 2 || this.bits > 5)
 	{
-		console.log("ERROR\tInvalid muxer bits: ", this.bits);
+		console.error("ERROR\tInvalid muxer bits: ", this.bits);
 		return;	
 	}
 
@@ -41,8 +41,11 @@ function ElementMux(arg)
 	this.label = "MUX";
 
 	// UI
-	this.name = "Multiplexer";
-	this.description = "Selects an input signal for output by a given address.";
+	this.name = {en:"Multiplexer",ru:"Мультиплексор"};
+	this.description = {
+		en:"Selects an input signal for output by a given address.",
+		ru:"По заданному адресу выбирает, какой входной коннектор будет подключён ко выходному."	
+	};
 }
 
 ElementMux.prototype = Object.create(Element.prototype);

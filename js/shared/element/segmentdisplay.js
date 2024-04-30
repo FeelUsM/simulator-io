@@ -48,8 +48,11 @@ function ElementSegmentDisplay(arg)
 	this.init([size, size + 1], connectors, arg);
 	
 	// UI
-	this.name = "Segment Display";
-	this.description = "Converts a binary number to decimal one and displays the digits. In segment mode you can control every single segment of the display.";
+	this.name = {en:"Segment Display",ru:"7-сегментный дисплей"};
+	this.description = {
+		en:"Converts a binary number to decimal one and displays the digits. In segment mode you can control every single segment of the display.",
+		ru:"Преобразует двоичное число в десятичное и отображает его цифры. В сегментном режиме вы можете управлять каждым отдельным сегментом."
+	};
 
 	this.onReset();
 }

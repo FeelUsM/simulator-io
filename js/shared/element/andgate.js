@@ -6,8 +6,11 @@ function AndGate(arg)
 	
 	this.label = "&";
 
-	this.name = "AND Gate";
-	this.description = "Output is only HIGH (1) if all inputs are HIGH (1).";
+	this.name = {en:"AND Gate",ru:"И (AND)"};
+	this.description = {
+		en:"Output is only HIGH (1) if all inputs are HIGH (1).",
+		ru:"Выдаёт единицу (1, HIGH) только если все входы равны единице (1, HIGH).",
+	};
 }
 
 AndGate.prototype = Object.create(Gate.prototype);

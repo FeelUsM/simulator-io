@@ -41,8 +41,11 @@ function ElementDemux(arg)
 	this.label = "DEMUX";
 
 	// UI
-	this.name = "Demultiplexer";
-	this.description = "Selects an output connector by a given address.";
+	this.name = {en:"Demultiplexer",ru:"Демультиплексор"};
+	this.description = {
+		en:"Selects an output connector by a given address.",
+		ru:"По заданному адресу выбирает, какой выходной коннектор будет подключён ко входному."
+	};
 }
 
 ElementDemux.prototype = Object.create(Element.prototype);

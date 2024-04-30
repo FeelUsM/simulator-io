@@ -6,8 +6,11 @@ function XorGate(arg)
 	
 	this.label = "=1";
 
-	this.name = "XOR Gate";
-	this.description = "Output is only HIGH (1) if an even count of inputs is HIGH (1).";
+	this.name = {en:"XOR Gate",ru:"Исключающее ИЛИ (XOR)"};
+	this.description = {
+		en:"Output is only HIGH (1) if an even count of inputs is HIGH (1).",
+		ru:"Выдаёт единицу (1, HIGH) только если нечётное количество входов равны единице (1, HIGH).",
+	};
 }
 
 XorGate.prototype = Object.create(Gate.prototype);

@@ -37,5 +37,5 @@ Gate.prototype.onTick = function(simulator)
 
 Gate.prototype.logicOperator = function(n)
 {
-	console.log("ERROR\tGate logic not implemented");
+	console.error("ERROR\tGate logic not implemented");
 }

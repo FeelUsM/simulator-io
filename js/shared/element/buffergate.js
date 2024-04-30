@@ -11,8 +11,11 @@ function BufferGate(arg)
 	// constructor
 	this.init([3,1], connectors, arg);
 
-	this.name = "Buffer Gate";
-	this.description = "Output is equal to input, but delayed 1 simulation tick. Can help to avoid hazards.";
+	this.name = {en:"Buffer Gate",ru:"Повторитель"};
+	this.description = {
+		en:"Output is equal to input, but delayed 1 simulation tick. Can help to avoid hazards.",
+		ru:"Выход равен входу, но с задержкой в один такт симуляции."
+	};
 }
 
 BufferGate.prototype = Object.create(Element.prototype);

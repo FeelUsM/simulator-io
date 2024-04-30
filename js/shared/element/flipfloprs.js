@@ -19,8 +19,11 @@ function ElementFlipFlopRS(arg)
 	// ui
 	this.label = "RS";
 
-	this.name = "RS flip-flop";
-	this.description = "Can hold a state. Set S to HIGH (1) to set or R to reset.";
+	this.name = {en:"RS flip-flop",ru:"RS-триггер"};
+	this.description = {
+		en:"Can hold a state. Set S to HIGH (1) to set or R to reset.",
+		ru:"Может сохранять состояние. Высокий (1) сигнал на S приводит к установке (set), высокий (1) сигнал на R приводит к сбросу (reset) выходного состояния."
+	};
 }
 
 ElementFlipFlopRS.prototype = Object.create(Element.prototype);

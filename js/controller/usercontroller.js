@@ -212,11 +212,11 @@ UserController.prototype.switch = function(args, url)
 	}
 
 	// make title visible
-	var title = jqSubPage.attr('title') || '';
+	var title = jqSubPage.lang_text()//.attr('title') || '';
 	var jqHead = $('ul.pages li.page.user .column1 .head');
-	jqHead.toggle(title != '');
-	jqHead.find('h1').text(title);
-	MetaData.setPageTitle(title);
+	jqHead.toggle(!!title['en'])//(title != '');
+	jqHead.find('h1').lang_text(title);
+	MetaData.setPageTitle(lang_text(title));
 	
 	// update main navi
 	updateProfileMeta();

@@ -75,7 +75,7 @@ UI.init(function(system) {
 		var jqLine = $('<div></div>').addClass('lineLabel').appendTo(jqArea);
 		var jqList = $('<ul></ul>').addClass('areaItems').appendTo(jqArea);
 		$('<div></div>').addClass('clear').appendTo(jqArea);
-		$('<span></span>').text(name).appendTo(jqLine);
+		$('<span></span>').lang_text(name).appendTo(jqLine);
 		
 		for(var i = 0; i < elements.length; i++)
 		{

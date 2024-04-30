@@ -13,8 +13,11 @@ function ElementSwitch(arg)
 	// constructor
 	this.init([1,1], connectors, arg);
 
-	this.name = "Switch";
-	this.description = "Basic input element. Output connector is in the middle of the element. In simulation mode click on it to toggle the output.";
+	this.name = {en:"Switch",ru:"переключатель"};
+	this.description = {
+		en:"Basic input element. Output connector is in the middle of the element. In simulation mode click on it to toggle the output.",
+		ru:"Базовый элемент ввода. Крепление провода находится в центре элемента. При клике по нему в режиме симуляции переключает своё состояние."
+	};
 }
 
 ElementSwitch.prototype = Object.create(Element.prototype);

@@ -39,8 +39,11 @@ function ElementDecoder(arg)
 	this.init([4, height], connectors, arg);
 	
 	// UI
-	this.name = "Decoder";
-	this.description = "Binary 1-of-n decoder. Input address specifies the HIGH (1) output bit.";
+	this.name = {en:"Decoder",ru:"Дешифратор"};
+	this.description = {
+		en:"Binary 1-of-n decoder. Input address specifies the HIGH (1) output bit.",
+		ru:"Адрес на входе задаёт номер выходного бита, который будет установлен в единицу (1, HIGH). Остальные биты будут установлены в 0 (LOW)."
+	};
 }
 
 ElementDecoder.prototype = Object.create(Element.prototype);

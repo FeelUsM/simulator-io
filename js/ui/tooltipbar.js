@@ -3,8 +3,8 @@ var Tooltip = new (function() {
 
 	function setActive(name, description, imageCb)
 	{
-		jqTooltip.find('.title').text(name);
-		jqTooltip.find('.desc').text(description);
+		jqTooltip.find('.title').lang_text(name);
+		jqTooltip.find('.desc').lang_text(description);
 
 		var imgResult = null;
 		if(imageCb)

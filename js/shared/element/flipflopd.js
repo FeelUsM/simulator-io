@@ -21,8 +21,11 @@ function ElementFlipFlopD(arg)
 	// UI
 	this.label = "FF";
 
-	this.name = "D latch";
-	this.description = "Can hold a state. Sets Q to D only on falling edge.";
+	this.name = {en:"D latch",ru:"D-триггер"};
+	this.description = {
+		en:"Can hold a state. Sets Q to D only on falling edge.",
+		ru:"Может сохранять состояние. Обновляет выходы D и Q по заднему фрону (спаду) синхроимпульса"
+	};
 }
 
 ElementFlipFlopD.prototype = Object.create(Element.prototype);

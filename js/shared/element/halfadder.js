@@ -16,8 +16,11 @@ function ElementHalfAdder(arg)
 	// ui
 	this.label = "HA";
 
-	this.name = "Half adder";
-	this.description = "Adds two one-bit numbers.";
+	this.name = {en:"Half adder",ru:"Полусумматор"};
+	this.description = {
+		en:"Adds two one-bit numbers.",
+		ru:"Складывает два одно-битных числа"
+	};
 }
 
 ElementHalfAdder.prototype = Object.create(Element.prototype);

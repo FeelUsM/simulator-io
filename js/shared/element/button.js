@@ -13,8 +13,11 @@ function ElementButton(arg)
 	// constructor
 	this.init([1,1], connectors, arg);
 
-	this.name = "Button";
-	this.description = "Basic input element. Output connector is in the middle of the element. In simulation mode click on it to emit a single pulse.";
+	this.name = {en:"Button",ru:"Кнопка"};
+	this.description = {
+		en:"Basic input element. Output connector is in the middle of the element. In simulation mode click on it to emit a single pulse.",
+		ru:"Базовый элемент ввода. Крепление провода находится в центре элемента. При клике по нему в режиме симуляции выдаёт один короткий импульс."
+	};
 }
 
 ElementButton.prototype = Object.create(Element.prototype);

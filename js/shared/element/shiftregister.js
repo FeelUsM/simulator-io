@@ -39,8 +39,11 @@ function ElementShiftRegister(arg)
 	this.init([width + 1, 3], connectors, arg);
 	
 	// UI
-	this.name = "Shifting Register";
-	this.description = "Shifts all bits by one and stores current input on falling edge. Output is always the last bit of a row.";
+	this.name = {en:"Shifting Register",ru:"Сдвиговый регистр"};
+	this.description = {
+		en:"Shifts all bits by one and stores current input on falling edge. Output is always the last bit of a row.",
+		ru:"Сдвигает все биты на один и записывает входной сигнал в освободившуюся ячейку. Вывод всегда равен последнему биту строки."
+	};
 
 	this.onReset();
 }

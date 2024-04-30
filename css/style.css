@@ -396,7 +396,7 @@ body .mainNav {
     body .mainNav .wrap nav.right {
       float: right; }
       body .mainNav .wrap nav.right a {
-        display: none;
+        /*display: none;*/
         /* set to block on userStatusChange event */
         float: left;
         padding: 10px;

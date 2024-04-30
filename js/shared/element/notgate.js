@@ -11,8 +11,11 @@ function NotGate(arg)
 	// constructor
 	this.init([3,1], connectors, arg);
 
-	this.name = "NOT Gate";
-	this.description = "Output is inverted to input.";
+	this.name = {en:"NOT Gate",ru:"НЕ (NOT)"};
+	this.description = {
+		en:"Output is inverted to input.",
+		ru:"Выдает инвертированный входной сигнал."
+	};
 }
 
 NotGate.prototype = Object.create(Element.prototype);

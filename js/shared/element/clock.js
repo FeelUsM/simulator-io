@@ -19,8 +19,11 @@ function ElementClock(arg)
 	// ui
 	this.label = "CLK";
 
-	this.name = "Clock";
-	this.description = "Generates a clock signal. You can control the clocks during an active simulation. Signal edges wait until simulation gets inactive.";
+	this.name = {en:"Clock",ru:"Тактовый генератор"};
+	this.description = {
+		en:"Generates a clock signal. You can control the clocks during an active simulation. Signal edges wait until simulation gets inactive.",
+		ru:"Генерует тактовый сигнал. Вы можете управлять им в режиме симуляции. Фронты сигнала ждут пока сигналы на схеме не прекратят меняться."
+	};
 }
 
 ElementClock.prototype = Object.create(Element.prototype);

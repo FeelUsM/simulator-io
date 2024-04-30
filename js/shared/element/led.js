@@ -11,8 +11,11 @@ function ElementLed(arg)
 	this.color = arg.color || '00aa00';
 	this.init([1,1], connectors, arg);
 
-	this.name = "LED";
-	this.description = "Basic output element. Input connector is in the middle of the element. Lights up if input is HIGH (1).";
+	this.name = {en:"LED",ru:"светодиод"};
+	this.description = {
+		en:"Basic output element. Input connector is in the middle of the element. Lights up if input is HIGH (1).",
+		ru:"Базовый элемент вывода. Крепление провода находится в центре элемента. Загорается, когда входной сигнал равен единице (ВЫСОКИЙ)."
+	};
 }
 
 ElementLed.prototype = Object.create(Element.prototype);

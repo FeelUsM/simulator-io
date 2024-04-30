@@ -33,7 +33,7 @@ UI.init(function(system) {
 		var button = Button.find("run");
 		button.toggleClass('iconRun', mode == 0);
 		button.toggleClass('iconEdit', mode == 1);
-		button.find('.text').text(mode == 0 ? "RUN" : "EDIT");
+		button.find('.text').lang_text(mode == 0 ? {en:"RUN",ru:"ПУСК"} : {en:"EDIT",ru:"РЕДАКТИРОВАТЬ"});
 
 		$('.tbBuild').toggle(mode == 0);
 		$('.tbSimulator').toggle(mode == 1);

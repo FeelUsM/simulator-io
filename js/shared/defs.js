@@ -32,27 +32,27 @@ var ElementStore = {
 
 var ElementCats = [
 	{
-		label: 'GATES',
+		label: {en:'GATES',ru:"ВЕНТИЛИ"},
 		elements: ['and', 'or', 'xor', 'not', 'buffer']
 	},
 	{
-		label: 'BASIC',
+		label: {en:'BASIC',ru:"БАЗОВЫЕ"},
 		elements: ['switch', 'button', 'led', 'clock']
 	},
 	{
-		label: 'ADDER',
+		label: {en:'ADDER',ru:'СУММАТОРЫ'},
 		elements: ['halfadder', 'fulladder']
 	},
 	{
-		label: 'MEMORY',
-		elements: ['ffd', 'ffrs', 'ffjk', 'shiftregister']
+		label: {en:'MEMORY',ru:'ПАМЯТЬ'},
+		elements: ['ffrs', 'ffd', 'ffjk', 'shiftregister']
 	},
 	{
-		label: 'CODE CONVERTER',
-		elements: ['decoder', 'mux', 'demux']
+		label: {en:'CODE CONVERTER',ru:'ПРЕОБРАЗОВАТЕЛИ КОДОВ'},
+		elements: ['decoder', 'demux', 'mux']
 	},
 	{
-		label: 'ADVANCED OUTPUT',
+		label: {en:'ADVANCED OUTPUT',ru:'ПРОДВИНУТЫЙ ВЫВОД'},
 		elements: ['segmentdisplay']
 	}
 

@@ -17,8 +17,11 @@ function ElementFullAdder(arg)
 	// ui
 	this.label = "FA";
 
-	this.name = "Full adder";
-	this.description = "Adds three one-bit numbers.";
+	this.name = {en:"Full adder",ru:"Полный сумматор"};
+	this.description = {
+		en:"Adds three one-bit numbers.",
+		ru:"Складывает три одно-битных числа."
+	};
 }
 
 ElementFullAdder.prototype = Object.create(Element.prototype);

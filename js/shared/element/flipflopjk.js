@@ -22,8 +22,11 @@ function ElementFlipFlopJK(arg)
 	// UI
 	this.label = "JK";
 
-	this.name = "JK flip-flop";
-	this.description = "Can hold a state. Triggers on falling edge. Set J to HIGH (1) to set or K to reset. If both inputs are HIGH (1) output toggles.";
+	this.name = {en:"JK flip-flop",ru:"JK-триггер"};
+	this.description = {
+		en:"Can hold a state. Triggers on falling edge. Set J to HIGH (1) to set or K to reset. If both inputs are HIGH (1) output toggles.",
+		ru:"Может сохранять состояние. Обновляется по заднему фронту (спаду) синхроимпульса. Высокий (1) J приводит к установке, высокий (1) K приводит к сбросу состояния. Если оба входа равны единицам (1), состояние инвертируется."
+	};
 }
 
 ElementFlipFlopJK.prototype = Object.create(Element.prototype);

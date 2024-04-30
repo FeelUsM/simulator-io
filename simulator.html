@@ -1,5 +1,5 @@
 <!doctype html> 
-<html lang="en"> 
+<html> 
 <head> 
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400italic,400,700" rel="stylesheet" type="text/css"> 
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -18,19 +18,25 @@
 <header class="mainNav"> 
 	<div class="wrap"> 
 	<div class="left"> 
-	<a href="/" class="virtual"> 
+	<a href="https://simulator.io/" target="_blank"> 
 	<img src="res/logo/logo_t2.svg" class="logo" alt="simulator.io"> </a> 
 	<nav class="staticLinks"> 
-	<a href="/samples" class="virtual">Samples</a>
+	<a href="/" class="virtual" style="font-size:28px">simulator <span style="font-weight:bold;color:#0a0; background-color:#333">html</span></a> 
+	<a href="/samples" class="virtual translatable" data-en="Samples" data-ru="Примеры">Samples</a>
 	<a href="/features" class="virtual">Features</a>
 	<a href="/plans" class="virtual">Development</a> </nav> </div>
 	<nav class="right"> 
-	<!--div class="dynamicLinks"> 
-	<a href="/" class="loginState0 login">Login</a> 
-	<a href="/" class="loginState0 register special">Register</a> 
-	<a href="/user/boards" class="loginState1 workspace virtual"> 
-	<span></span> 
-	<img src="res/avatar.png" alt="Profile"> </a> </div--> </nav> 
+		<div class="dynamicLinks"> 
+		<!--a href="/" class="loginState0 login">Login</a> 
+		<a href="/" class="loginState0 register special">Register</a--> 
+		<a href="/user/boards" class="virtual"> 
+		<span class="translatable" data-en="workspace" data-ru="мои схемы">workspace</span> 
+		<!--img src="res/avatar.png" alt="Profile"--> </a> </div> 
+		<select id="navLangSelect" style="background-color:#555; color:white; margin:16px; height:35px; font-weight: bold; font-size:16px; border-radius:4px">
+			<option value="en">en</option>
+			<option value="ru">ru</option>
+		</select>
+	</nav>
 	<div class="mobileButton"> 
 	<div class="line"></div> 
 	<div class="line"></div> 
@@ -61,10 +67,10 @@
 		<br>The page you are looking for cannot be found. </p> </div> </section> </li>  
 	<li class="page user" data-view="user"> 
 		<div class="wrapContent"> 
-			<div class="mailVerificationHint"> Almost done! Please click the 
+			<!--div class="mailVerificationHint"> Almost done! Please click the 
 				<b>verification link</b> in the mail we sent you to complete the registration,
 				<br> or click 
-				<a href="#">here</a> to resend the mail. </div> 
+				<a href="#">here</a> to resend the mail. </div--> 
 			<div class="mobileHint"> Hi! We haven't fully implemented mobile/touch support for the editor yet. Sorry :-( </div> 
 			<div class="columns"> 
 				<!--div class="column0"> 
@@ -121,16 +127,19 @@
 								<label>New password:</label>
 								<input class="passwordNew" type="password"></div> 
 								<button class="common1">Change</button> </fieldset> </form> </div> </li--> 
-							<li class="subPage boards" title="Boards"> 
+							<li class="subPage boards titletranslatable" data-en="Boards" data-ru="Схемы" title="Boards"> 
 								<div class="boardListToolbar">
-									<button id="saveAllBordsToFile" class="common1">Save All</button>
-									<button id="loadBordsFromFile" class="common1">Load from File</button> 
-									<button id="addBoardButton" class="common1">Add board</button> 
+									<button id="saveAllBordsToFile" class="common1 translatable" data-en="Save All" data-ru="Скачать всё">Download All</button>
+									<button id="loadBordsFromFile" class="common1 translatable" data-en="Load from File" data-ru="Загрузить из файла">Load from File</button> 
+									<button id="addBoardButton" class="common1 translatable" data-en="Add board" data-ru="Добавить схему">Add board</button> 
 								</div> 
-								<div style="padding-bottom:5px">All boards here are saved in localStorage of this browser. <br> It size is <span id="boardsSize"></span>, free space approximately is <span id="boardsFreeSpace"></span>.</div>
+								<div style="padding-bottom:5px" class="translatable" 
+								data-en='All boards here are saved in localStorage of this browser. <br> It size is <span id="boardsSize"></span>, free space approximately is <span id="boardsFreeSpace"></span>.' 
+								data-ru='Все схемы здесь сохранены в localStorage этого браузера. <br> Их размер <span id="boardsSize"></span>, свободного места примерно <span id="boardsFreeSpace"></span>.'>All boards here are saved in localStorage of this browser. <br> It size is <span id="boardsSize"></span>, free space approximately is <span id="boardsFreeSpace"></span>.</div>
 								<ul class="boards"> </ul> 
 								<div class="hint"> 
-									<div class="hintText"> You don't have any boards yet.
+									<div class="hintText translatable" data-en=" You don't have any boards yet. <br>Click here to add one. "
+									data-ru=" У вас пока нет ни одной схемы. <br>Кликни сюда чтобы добавить. "> You don't have any boards yet.
 									<br>Click here to add one. </div> 
 									<img src="res/hintarrow1.png"> </div> </li> </ul> </div> </div> 
 				<div class="clear"></div> </div> 
@@ -138,25 +147,27 @@
 	<li class="page home" data-view="home">  
 		<section class="bigTeaser"> 
 			<div class="inner"> 
-			<h1>Build and simulate logic circuits.</h1> 
+			<h1 class="translatable" data-en="Build and simulate logic circuits." data-ru="Собирай и симулируй логические схемы">Build and simulate logic circuits.</h1> 
 			<div class="left"> 
 			<img src="res/headexample.png" alt="Logic Circuit"> </div> 
 			<div class="right"> 
-			<button class="common1">Create new logic circuit</button> </div> 
+			<button class="common1 translatable" data-en="Create new logic circuit" data-ru="Создать логическую схему">Create new logic circuit</button> </div> 
 			<div class="clear"></div> </div> </section> 
 		<section class="oneLiner"> 
-			<h2>Web-based logic circuit simulator for people who want to build a computer from scratch.</h2> </section> 
+			<h2 class="translatable" data-en="Web-based logic circuit simulator for people who want to build a computer from scratch."
+			data-ru="Браузерный симулятор логических схем для тех, кто хочет построить компьютер с нуля."
+			>Web-based logic circuit simulator for people who want to build a computer from scratch.</h2> </section> 
 		<section class="smallTeasers"> 
 			<div class="inner"> 
 			<ul class="features"> 
 			<li> 
 			<img src="res/computers23.svg" alt="Build"> 
-			<h3>Build</h3> 
-			<p>Design logic circuits online</p> </li> 
+			<h3 class="translatable" data-en="Build" data-ru="Собирай">Build</h3> 
+			<p class="translatable" data-en="Design logic circuits online" data-ru="Разработай логическую схему">Design logic circuits online</p> </li> 
 			<li> 
 			<img src="res/rocket78.svg" alt="Simulate"> 
-			<h3>Simulate</h3> 
-			<p>Test your logic circuit in real-time</p> </li> 
+			<h3 class="translatable" data-en="Simulate" data-ru="Запускай">Simulate</h3> 
+			<p class="translatable" data-en="Test your logic circuit in real-time" data-ru="Протестируй схему в реальном времени">Test your logic circuit in real-time</p> </li> 
 			<!--
 			<li> 
 			<img src="res/team2.svg" alt="Collaborate"> 
@@ -165,20 +176,23 @@
 			--> </ul> 
 			<div class="clear"></div> </div> </section> 
 		<section class="oneLiner2"> 
-			<h2>simulator.io is an online CAD tool for logic circuits. Easiest way to learn how to build logic circuits.</h2> </section> 
+			<h2 class="translatable" data-en="simulator.html is an online CAD tool for logic circuits. Easiest way to learn how to build logic circuits."
+			data-ru="simulator.html это онлайн САПР (CAD) для логических схем. Простейший путь изучения логических схем."
+			>simulator.html is an online CAD tool for logic circuits. Easiest way to learn how to build logic circuits.</h2> </section> 
 		<section class="editorPreview"> 
 			<div class="inner"> 
 			<div class="column column1"> 
-			<h3>Easy To Use</h3> 
-			<h4>Place</h4> 
-			<p> Select an element. Place it on the board. </p> 
-			<h4>Connect</h4> 
-			<p> Use the Wire Tool to connect your elements. </p> 
-			<h4>Test your circuit</h4> 
-			<p> Click RUN to start the simulation. </p> 
-			<h4>Share and collaborate</h4> 
-			<p> Collaborate with your team in real-time or share a snapshot of your work. </p> 
-			<p class="samples"> Check out our 
+			<h3 class="translatable" data-en="Easy To Use" data-ru="Просто использовать">Easy To Use</h3> 
+			<h4 class="translatable" data-en="Place" data-ru="Размести">Place</h4> 
+			<p class="translatable" data-en=" Select an element. Place it on the board. " data-ru=" Выбери элемент. Размести его на плате. "> Select an element. Place it on the board. </p> 
+			<h4 class="translatable" data-en="Connect" data-ru="Соедини">Connect</h4> 
+			<p class="translatable" data-en=" Use the Wire Tool to connect your elements. " data-ru=" Используй инструмент Провода чтобы соединить элементы. "> Use the Wire Tool to connect your elements. </p> 
+			<h4 class="translatable" data-en="Test your circuit" data-ru="Протестируй">Test your circuit</h4> 
+			<p class="translatable" data-en=" Click RUN to start the simulation. " data-ru=" Нажми ПУСК чтобы начать симуляцию. "> Click RUN to start the simulation. </p> 
+			<!--h4>Share and collaborate</h4> 
+			<p> Collaborate with your team in real-time or share a snapshot of your work. </p--> 
+			<p class="samples translatable" data-en=" Check out our	<a href='/samples' class='virtual'>sample circuits</a> "
+				 data-ru=" Изучи	<a href='/samples' class='virtual'>примеры схем</a> "> Check out our 
 			<a href="/samples" class="virtual">sample circuits</a> </p> </div> 
 			<div class="column column2"> 
 			<div class="browser"> 
@@ -192,7 +206,8 @@
 			<div class="clear"></div> </div> </section> 
 		<section class="teaserPerspective"> 
 			<div class="inner"> 
-			<p>Design everything on 
+			<p class="translatable" data-en="Design everything on <b>logic level</b> <br>from a simple <b>light switch</b> to a <b>complex CPU</b>."
+				data-ru="Разрабатывай всё на <b>логическом уровне</b> <br>от простого <b>переключателя</b> до <b>целого CPU</b>.">Design everything on 
 			<b>logic level</b>
 			<br>from a simple 
 			<b>light switch</b> to a 
@@ -224,7 +239,7 @@
 				<div class="tbStatic"> 
 					<ul class="buttonList"> 
 					<li class="button iconRun buttonIconText" data-key="run"> 
-					<div class="text">RUN</div> </li> 
+					<div class="text translatable" data-en="RUN" data-ru="ПУСК">RUN</div> </li> 
 					<li class="divider"></li> </ul> 
 					<div class="clear"></div> </div> 
 				<div class="tbStatic tbBuild"> 
@@ -238,7 +253,7 @@
 				<div class="tbStatic tbSimulator"> 
 					<ul class="buttonList"> 
 					<li class="button iconReset buttonIconText" data-key="reset"> 
-					<div class="text">RESET</div> </li> 
+					<div class="text translatable" data-en="RESET" data-ru="СБРОС">RESET</div> </li> 
 					<li class="divider"></li> </ul> 
 					<div class="clear"></div> </div> 
 				<div class="tbStatic right"> 
@@ -253,12 +268,12 @@
 
 					<ul class="tbItem buttonList"> 
 					<li class="button openLink iconLink buttonIconText" data-key="openLink"> 
-					<div class="text">Save</div> </li> 
+					<div class="text translatable" data-en="Save" data-ru="Сохранить">Save</div> </li> 
 					<li class="divider teamButtons"></li> 
 
 					<ul class="tbItem buttonList workspace"> 
 					<li class="button workspaceButton" data-key="openWorkspace"> 
-					<div class="text">Workspace</div> 
+					<div class="text translatable" data-en="Workspace" data-ru="Мои схемы">Workspace</div> 
 					<div class="avatar">
 					<img></div> </li> </ul> 
 
@@ -273,12 +288,19 @@
 					<div class="text">Chat</div> </li>-->
 					</ul> 
 
-					<div class="tbStatic editorLogo"> 
+					<!--div class="tbStatic editorLogo"> 
 					<a href="https://simulator.io/" target="_blank"> 
-					<img src="res/logo/logo_t3.svg" alt="simulator.io" width="75" style="background-color: orange;"> </a> </div>
+					<img src="res/logo/logo_t3.svg" alt="simulator.io" width="75" style="background-color: orange;"> </a> </div-->
 
 					<div class="tbStatic"> 
-					<h2 style="color: #fff; line-height:43px"><a href="/" class="virtual" style="color:green; font-weight: bold; text-decoration: none">HTML</a></h2>
+					<h2 style="color: #fff; line-height:43px"><a href="/" class="virtual" style="color:#fff/*#0a0*/; font-weight: bold; text-decoration: none">simulator.html</a></h2>
+					</div>
+
+					<div class="tbStatic"> 
+					<select id="boardLangSelect" style="background-color:#222; color:white; margin:4px; height:35px; color:#0a0; font-weight: bold; font-size:16px">
+						<option value="en">en</option>
+						<option value="ru">ru</option>
+					</select>
 					</div>
 
 					<div class="clear"></div> </div> 
@@ -299,14 +321,14 @@
 					</div>					
 				</div>
 				<div class="tbSection options"> 
-					<div class="sectionHeader">Options</div> 
+					<div class="sectionHeader translatable" data-en="Options" data-ru="Опции">Options</div> 
 					<div class="sectionContent" style="min-height: 115px;"> 
 						<div id="optionNone"> 
 							<div class="row"> 
-							<label class="label">No options available for this tool/element</label> </div> </div> 
+							<label class="label translatable" data-en="No options available for this tool/element" data-ru="Нет опций доступных для этого инструмента/элемента">No options available for this tool/element</label> </div> </div> 
 						<div id="optionDirection"> 
 							<div class="row"> 
-							<label class="label">Direction</label> 
+							<label class="label translatable" data-en="Direction" data-ru="Направление">Direction</label> 
 							<ul class="control buttonList buttonsDir"> 
 							<li class="button iconDir" data-key="dir" data-n="0"></li> 
 							<li class="button iconDir" data-key="dir" data-n="1"></li> 
@@ -315,51 +337,51 @@
 							<div class="clear"></div> </div> </div> 
 						<div id="optionColor"> 
 							<div class="row"> 
-							<label class="label">Color</label> 
+							<label class="label translatable" data-en="Color" data-ru="Цвет">Color</label> 
 							<ul class="control buttonList buttonsColor"> </ul> 
 							<div class="clear"></div> </div> </div> 
 						<div id="optionSelect"> 
 							<div class="row"> 
-							<label class="label">Action</label> 
+							<label class="label translatable" data-en="Action" data-ru="Действие">Action</label> 
 							<ul class="buttonList control"> 
 							<li> 
-							<div name="selectionDelete" class="button noSub" data-key="deleteselection">Delete</div> </li> </ul> </div> </div> 
+							<div name="selectionDelete" class="button noSub translatable" data-key="deleteselection" data-en="Delete" data-ru="Удалять/удалить">Delete</div> </li> </ul> </div> </div> 
 						<div id="optionGateInSize"> 
 							<div class="row"> 
-							<label class="label">Input count</label> 
+							<label class="label translatable" data-en="Input count" data-ru="Количество входов">Input count</label> 
 							<input class="spin control" name="gateInputSize" type="number" value="2" min="2" max="32"> 
 							<div class="clear"></div> </div> </div> 
 						<div id="optionShiftRegisterSize"> 
 							<div class="row"> 
-							<label class="label">Size</label> 
+							<label class="label translatable" data-en="Size" data-ru="Размер">Size</label> 
 							<input class="spin control" name="shiftRegisterSize" type="number" value="4" min="2" max="32"> 
 							<div class="clear"></div> </div> </div> 
 						<div id="optionDecoderInputSize"> 
 							<div class="row"> 
-							<label class="label">Input count</label> 
+							<label class="label translatable" data-en="Input count" data-ru="Количество входов">Input count</label> 
 							<input class="spin control" name="decoderInputSize" type="number" value="3" min="3" max="5"> 
 							<div class="clear"></div> </div> </div> 
 						<div id="optionMuxInputSize"> 
 							<div class="row"> 
-							<label class="label">Input count</label> 
+							<label class="label translatable" data-en="Input count" data-ru="Количество входов">Input count</label> 
 							<input class="spin control" name="muxInputSize" type="number" value="2" min="2" max="5"> 
 							<div class="clear"></div> </div> </div> 
 						<div id="optionTextSize"> 
 							<div class="row"> 
-							<label class="label">Text size</label> 
+							<label class="label translatable" data-en="Text size" data-ru="Размер текста">Text size</label> 
 							<select class="control" name="textSize"> 
-							<option value="1">Big</option> 
-							<option value="2">Small</option> </select> 
+							<option value="1" class="translatable" data-en="Big" data-ru="Большой">Big</option> 
+							<option value="2" class="translatable" data-en="Small" data-ru="Поменьше">Small</option> </select> 
 							<div class="clear"></div> </div> </div> 
 						<div id="optionSegmentDisplay"> 
 							<div class="row"> 
-							<label class="label">Display Type</label> 
+							<label class="label translatable" data-en="Display Type" data-ru="Тип">Display Type</label> 
 							<select class="control" name="segmentDisplay"> 
-							<option value="b4">Binary, 4 bit</option> 
-							<option value="s1">Segment, 1 digit</option> </select> 
+							<option value="b4" class="translatable" data-en="Binary, 4 bit" data-ru="Двоичное число, 4 бита">Binary, 4 bit</option> 
+							<option value="s1" class="translatable" data-en="Segment, 1 digit" data-ru="Сегменты, одна цифра">Segment, 1 digit</option> </select> 
 							<div class="clear"></div> </div> </div> </div> </div> 
 				<div class="tbSection elements"> 
-					<div class="sectionHeader">Elements</div> 
+					<div class="sectionHeader translatable" data-en="Elements" data-ru="Элементы">Elements</div> 
 					<div class="sectionContent"> 
 					<div class="elementSelection scrollArea" data-key="elementSelection"> 
 					<div class="content"></div> 
@@ -369,31 +391,31 @@
 			</div> 
 			<div class="tbSimulator"> 
 				<div class="tbSection"> 
-				<div class="sectionHeader">Simulation</div> 
+				<div class="sectionHeader translatable" data-en="Simulation" data-ru="Симуляция">Simulation</div> 
 				<div id="actionSimulation" class="sectionContent"> 
 				<div class="row"> 
-				<label class="label" for="simulationSyncTicks">SpeedUp (no sync screen)</label> 
+				<label class="label translatable" for="simulationSyncTicks" data-en="SpeedUp (no sync screen)" data-ru="Ускорить (не синхр. экран)">SpeedUp (no sync screen)</label> 
 				<input class="control" name="syncTicks" type="checkbox" id="simulationSyncTicks" > <!--checked="checked"-->
 				<div class="clear"></div> </div> </div> </div> 
 				<div class="tbSection"> 
-				<div class="sectionHeader">Clock</div> 
+				<div class="sectionHeader translatable" data-en="Clock" data-ru="Тактовый генератор (часы)">Clock</div> 
 				<div id="actionClock" class="sectionContent"> 
 				<div class="row noClock"> 
-				<label class="label">No clock placed</label> </div> 
+				<label class="label translatable" data-en="No clock placed" data-ru="Часы не размещены">No clock placed</label> </div> 
 				<div class="row clock"> 
-				<label class="label">Generate</label> 
+				<label class="label translatable" data-en="Generate" data-ru="Генерировать">Generate</label> 
 				<ul class="control buttonList buttonsSignal"> 
 				<li class="button iconSignal1" data-key="signal1"></li> 
 				<li class="button iconSignalN" data-key="signalN"></li> 
 				<li class="button iconSignalStable" data-key="signalStable"></li> </ul> 
 				<div class="clear"></div> </div> 
 				<div class="row clock"> 
-				<label class="label">Stop</label> 
+				<label class="label translatable" data-en="Stop" data-ru="Стоп">Stop</label> 
 				<ul class="control buttonList buttonsStop"> 
 				<li class="button iconSignalStop" data-key="signalStop"></li> </ul> 
 				<div class="clear"></div> </div> 
 				<div class="row clock"> 
-				<label class="label">Ticks (n)</label> 
+				<label class="label translatable" data-en="Ticks (n)" data-ru="Тики (n)">Ticks (n)</label> 
 				<input class="spin control" name="tickCount" type="number" value="4" min="1"> 
 				<div class="clear"></div> </div> </div> </div> </div> </div> 
 		<div id="board"> </div>  <!--   board    $('#board')[0].empty() //renderer/nativlayer.ls # 68-->
@@ -420,7 +442,7 @@
 				<div class="clear"></div> </div> 
 			<div class="column1"> 
 				<div class="body"> 
-					<h1>Logic Circuit Samples</h1> 
+					<h1 class="translatable" data-en="Logic Circuit Samples" data-ru="Примеры логических схем">Logic Circuit Samples</h1> 
 					<script>
 						function loadOpen(data) {
 							//fetch(url).then(r => r.text()).then( function(r){
@@ -433,30 +455,44 @@
 						}
 					</script>
 					<div class="sample"> 
-						<h2 id="sample1" class="anchor">#1 - Basic Gates</h2> 
+						<h2 id="sample1" class="anchor translatable" data-en="#1 - Basic Gates" data-ru="#1 - Базовые вентили (Basic Gates)">#1 - Basic Gates</h2> 
 						<img src="res/samples/sample1.png" alt="Preview"> 
 						<div class="desc"> 
-						<p> Shows the usage of basic gates like AND, OR, XOR and NOT.
+						<p class="translatable" data-en=' Shows the usage of basic gates like AND, OR, XOR and NOT.
+						<br> Also uses switches for input and LEDs for output. Click on a switch (square with "0") to toggle. '
+						data-ru=' Показывает использование базовых вентилей, таких как И (AND), ИЛИ (OR), Исключающее ИЛИ (XOR) и НЕ (NOT).
+						<br> Использует переключатели для ввода и светодиоды для вывода. Кликните на переключатель (квадратик с "0") чтобы его переключить. '
+						> Shows the usage of basic gates like AND, OR, XOR and NOT.
 						<br> Also uses switches for input and LEDs for output. Click on a switch (square with "0") to toggle. </p> 
-						<a class="open" onclick="loadOpen(global_samples_1__Basic_Gates_brd)">Open sample</a> </div> 
+						<a class="open translatable" onclick="loadOpen(global_samples_1__Basic_Gates_brd)" data-en="Open sample" data-ru="Открыть пример">Open sample</a> </div> 
 						<!-- href="samples/1 Basic Gates.brd" -->
 						<div class="clear"></div> </div> 
 					<div class="sample"> 
-						<h2 id="sample2" class="anchor">#2 - Half Adder</h2> 
+						<h2 id="sample2" class="anchor translatable" data-en="#2 - Half Adder" data-ru="#2 - Полусумматор (Half Adder)">#2 - Half Adder</h2> 
 						<img src="res/samples/sample2.png" alt="Preview"> 
 						<div class="desc"> 
-						<p> A half adder adds two bits. The output bit "s" is the sum, "c" is the carry.
+						<p class="translatable" data-en=' A half adder adds two bits. The output bit "s" is the sum, "c" is the carry.
+						<br> You can either build a half adder using two basic gates or you just use the half adder element. '
+						data-ru=' Полусумматор складывает два бита. Выходной бит "s" это сумма, "c" это перенос (carry).
+						<br> Вы также можете собрать полусумматор используя два базовых вентиля или просто используйте элемент "полусумматор". '
+						> A half adder adds two bits. The output bit "s" is the sum, "c" is the carry.
 						<br> You can either build a half adder using two basic gates or you just use the half adder element. </p> 
-						<a class="open" onclick="loadOpen(global_samples_2__half_adder_brd)">Open sample</a> </div> 
+						<a class="open translatable" onclick="loadOpen(global_samples_2__half_adder_brd)" data-en="Open sample" data-ru="Открыть пример">Open sample</a> </div> 
 						<div class="clear"></div> </div>  
 					<div class="sample"> 
-						<h2 id="sample3" class="anchor">#3 - Full Adder</h2> 
+						<h2 id="sample3" class="anchor translatable" data-en="#3 - Full Adder" data-ru="#3 - Полный сумматор (Full Adder)">#3 - Full Adder</h2> 
 						<img src="res/samples/sample3.png" alt="Preview"> 
 						<div class="desc"> 
-						<p> The full adder does the same as the half adder, but can add three bits.
+						<p class="translatable" data-en=' The full adder does the same as the half adder, but can add three bits.
+						<br> In case all three input connectors are set to HIGH (1) the sum and carry output would also be HIGH (1).
+						<br> You can build a full adder using two half adders and an OR gate. Or just use the full adder element. '
+						data-ru=' Полный сумматор делает то же что и полусумматор, только с тремя битами.
+						<br> В случа когда все три входа установлены в ВЫСОКИЙ уровень (1) сумма и перенос на выходе также будут установлены в ВЫСОКИЙ уровень (1).
+						<br> Вы можете собрать полный сумматор используя два полусумматора и элемент ИЛИ. Или просто используйте элемент "полный сумматор". '
+						> The full adder does the same as the half adder, but can add three bits.
 						<br> In case all three input connectors are set to HIGH (1) the sum and carry output would also be HIGH (1).
 						<br> You can build a full adder using two half adders and an OR gate. Or just use the full adder element. </p> 
-						<a class="open" onclick="loadOpen(global_samples_3__full_adder_brd)">Open sample</a> </div> 
+						<a class="open translatable" onclick="loadOpen(global_samples_3__full_adder_brd)">Open sample</a> </div> 
 						<div class="clear"></div> </div> 
 					<div class="sample"> 
 						<h2 id="sample4" class="anchor">#4 - D-Latch</h2> 
@@ -464,14 +500,14 @@
 						<div class="desc"> 
 						<p> A D-Latch can (like other latches/flip-flops) hold a state. It can save a single bit.
 						<br> D-Latches have one input connector for data and one clock connector. On falling edge the new value gets stored. In simulation mode you can emit clock signals using the clock controls on the left side. </p> 
-						<a class="open" onclick="loadOpen(global_samples_4__D_latch_brd)">Open sample</a> </div> 
+						<a class="open translatable" onclick="loadOpen(global_samples_4__D_latch_brd)" data-en="Open sample" data-ru="Открыть пример">Open sample</a> </div> 
 						<div class="clear"></div> </div> 
 					<div class="sample"> 
 						<h2 id="sample5" class="anchor">#5 - 4-Bit Register</h2> 
 						<img src="res/samples/sample5.png" alt="Preview"> 
 						<div class="desc"> 
 						<p> You can build a simple 4-bit register using 4 d-latches. In this sample all latches are controlled by the same clock signal. </p> 
-						<a class="open" onclick="loadOpen(global_samples_5__4_bit_register_brd)">Open sample</a> </div> 
+						<a class="open translatable" onclick="loadOpen(global_samples_5__4_bit_register_brd)" data-en="Open sample" data-ru="Открыть пример">Open sample</a> </div> 
 						<div class="clear"></div> </div> 
 					<div class="sample"> 
 						<h2 id="sample6" class="anchor">#6 - 4-Bit Counter</h2> 
@@ -479,7 +515,7 @@
 						<div class="desc"> 
 						<p> A binary counter increases its output value by one on each clock tick. In this sample 4 d-latches are used.
 						<br> Only the first latch is connected to the clock, the other ones are using the output of the previous latch as clock signal. </p> 
-						<a class="open" onclick="loadOpen(global_samples_6__4_bit_counter_brd)">Open sample</a> </div> 
+						<a class="open translatable" onclick="loadOpen(global_samples_6__4_bit_counter_brd)" data-en="Open sample" data-ru="Открыть пример">Open sample</a> </div> 
 						<div class="clear"></div> </div> 
 					<div class="sample"> 
 						<h2 id="sample7" class="anchor">#7 - Diode Matrix / Traffic Light</h2> 
@@ -487,28 +523,28 @@
 						<div class="desc"> 
 						<p> In this sample a diode matrix is used to map from 4 different traffic light phases (red, red-yellow, green, yellow) to the proper light.
 						<br> A diode only let signals pass from horizontal to vertical wires. </p> 
-						<a class="open" onclick="loadOpen(global_samples_7__diode_matrix___traffic_light_brd)">Open sample</a> </div> 
+						<a class="open translatable" onclick="loadOpen(global_samples_7__diode_matrix___traffic_light_brd)" data-en="Open sample" data-ru="Открыть пример">Open sample</a> </div> 
 						<div class="clear"></div> </div> 
 					<div class="sample"> 
 						<h2 id="sample8" class="anchor">#8 - 4-Bit Adder</h2> 
 						<img src="res/samples/sample8.png" alt="Preview"> 
 						<div class="desc"> 
 						<p> Adds two 4-Bit numbers. All carry bits are passed to the next full adder. The last carry bit (integer overflow) is the shown next to the output. </p> 
-						<a class="open" onclick="loadOpen(global_samples_8__4_bit_adder_brd)">Open sample</a> </div> 
+						<a class="open translatable" onclick="loadOpen(global_samples_8__4_bit_adder_brd)" data-en="Open sample" data-ru="Открыть пример">Open sample</a> </div> 
 						<div class="clear"></div> </div> 
 					<div class="sample"> 
 						<h2 id="sample9" class="anchor">#9 - 4-Bit Adder (serial)</h2> 
 						<img src="res/samples/sample9.png" alt="Preview"> 
 						<div class="desc"> 
 						<p> Like the previous sample, but serial implementation. A 2-bit counter with multiplexer selects the correct input bits. Afterward both bits gets added to the previous carry bit and the result is saved in a shifting register. </p> 
-						<a class="open" onclick="loadOpen(global_samples_9__4_bit_adder__serial__brd)">Open sample</a> </div> 
+						<a class="open translatable" onclick="loadOpen(global_samples_9__4_bit_adder__serial__brd)" data-en="Open sample" data-ru="Открыть пример">Open sample</a> </div> 
 						<div class="clear"></div> </div> 
 					<div class="sample"> 
 						<h2 id="sample10" class="anchor">#10 - 4-Bit CPU</h2> 
 						<img src="res/samples/sample10.png" alt="Preview"> 
 						<div class="desc"> 
 						<p> A simple 4-bit CPU with 12 instructions. You can find a manual on the board. The initial program stored in the ROM (which is a diode matrix) just counts upwards. To start the CPU generate a continuous clock signal. If the simulation is too slow, just deactivate the frame/logic tick synchronization. </p> 
-						<a class="open" onclick="loadOpen(global_samples_10__4_bit_CPU_brd)">Open sample</a> </div> 
+						<a class="open translatable" onclick="loadOpen(global_samples_10__4_bit_CPU_brd)" data-en="Open sample" data-ru="Открыть пример">Open sample</a> </div> 
 						<div class="clear"></div> </div> </div> 
 				<div class="clear"></div> </div> 
 			<div class="clear"></div> </div> 
@@ -659,9 +695,6 @@
 	<div class="clear"></div> </div> </footer> 
 <!--
 	цели:
-	загрузить view samples
-		разобраться с чтением файлов и сделать добавление примеров в workspace
-
 	сделать многоязыковую систему
 
 	найти и исправить баги в больших схемах
@@ -671,13 +704,14 @@
 	генератор диодных матриц
 	выложить на гитхаб
 
-		workspace модифицировать интерфейс
-		сделать проверку корректности данных
+		workspace объединять борды в группы по имени и лишние борды сворачивать
+		сделать проверку корректности загружаемых данных
 		сделать компактное хранение данных
 		сделать чтобы отдельные элементы были на отдельных строках - чтобы гит правильно идентифицировал различия
 
 		настроить error 404 и загрузить другие view
 		добавить .html&data=base64 (чтобы data можно было передавать в командной строке) и кнопку share
+		настроить simulateNativeSwitch - даёт возможность сохранять transaction
 
 		чтобы ctrl+c / ctrl+v работали с обычным буфером обмена
 		ctrl+a
@@ -769,6 +803,7 @@ function thisLine() {
 <script src="js/lib/moment-custom.min.js"></script>
 <script src="js/lib/date.js"></script>						  <!-- используется только в usercontroller.js -->
 <script src="js/lib/hammer.min.js"></script>				  <!-- используется только в mobilesidebar.js -->
+<script src="js/language.js"></script>
 <script src="js/ui/mailobfuscator.js"></script>               <!--6   после загрузки: $('#mailPlaceholderAddressBug').attr('href', "mailto:bug@simulator.io");-->
 <script src="js/shared/validation.js"></script>               <!--144 Validation                      = {...simple...}-->
 <script src="js/shared/boardstorage.js"></script>             <!--1383  function BoardStorage(system, board, opt){...}-->
