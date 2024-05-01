@@ -1,13 +1,13 @@
 var MetaData = new (function MetaDataManager() {
 	var that = this;
 	var currentSiteTitle = '';
-	var sloganLong = 'simulator.io - Build and simulate logic circuits';
-	var sloganShort = 'simulator.io';
+	var sloganLong = {en:'simulator.html - Build and simulate logic circuits',ru:'simulator.html - Собери и протестируй логическую схему'};
+	var sloganShort = 'simulator.html';
 	var notificationCount = 0;
 
 	this.setPageTitle = function(title) {
 		currentSiteTitle = title;
-		updateTitle();
+		this.updateTitle();
 	};
 
 	this.setNotifications = function(count)
@@ -15,7 +15,7 @@ var MetaData = new (function MetaDataManager() {
 		notificationCount = count;
 		if(notificationCount < 0) notificationCount = 0;
 
-		updateTitle();
+		this.updateTitle();
 	}
 
 	this.getMetaTitle = function(ignoreNotifications)
@@ -29,22 +29,22 @@ var MetaData = new (function MetaDataManager() {
 		}
 		else
 		{
-			title = sloganShort + ' | ' + currentSiteTitle;
+			title = lang_cat(sloganShort , ' | ' , currentSiteTitle);
 		}
 
 		if(!ignoreNotifications && notificationCount > 0)
 		{
-			title = '(' + notificationCount + ') ' + title;
+			title = lang_cat('(' , notificationCount , ') ' , title);
 		}
 
 		return title;
 	}
 
-	function updateTitle()
+	this.updateTitle = function()
 	{
 		if(typeof module == 'undefined')
 		{
-			document.title = that.getMetaTitle(false);
+			document.title = lang_text(that.getMetaTitle(false));
 		}
 	}
 });

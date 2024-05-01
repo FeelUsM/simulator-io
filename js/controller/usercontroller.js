@@ -216,7 +216,7 @@ UserController.prototype.switch = function(args, url)
 	var jqHead = $('ul.pages li.page.user .column1 .head');
 	jqHead.toggle(!!title['en'])//(title != '');
 	jqHead.find('h1').lang_text(title);
-	MetaData.setPageTitle(lang_text(title));
+	MetaData.setPageTitle(title);
 	
 	// update main navi
 	updateProfileMeta();
@@ -314,15 +314,15 @@ UserController.prototype.updateBoards = function()
 		}
 		else
 		{
-			dateStr = 'at unknown time';
+			dateStr = {en:'at unknown time',ru:'неизвестно когда'};
 		}
 
 		var jqRow = $('<li>').attr('title', '');
 		var jqImgWrap  = $('<div>').addClass('imgWrap');
 		var jqDivName  = $('<div>').addClass('name').text(boardObj.title+'/'+boardObj.snapshot);
-		var jqDivOwner = $('<div>').addClass('owner').text( 'origin: ' + boardObj.parent);
+		var jqDivOwner = $('<div>').addClass('owner').lang_text( lang_cat({en:'origin: ',ru:'исходный: '} , boardObj.parent));
 		if(boardObj.parent===undefined){
-			jqDivOwner.text('The origin')
+			jqDivOwner.lang_text({en:'The origin',ru:'Исходный'})
 			jqDivOwner.attr('style','color:black;font-weight: bold')
 		}else{
 			[oldName,oldSnap] = boardObj.parent.split('/')
@@ -333,7 +333,7 @@ UserController.prototype.updateBoards = function()
 					jqDivOwner.attr('style','color:black;font-weight: bold')
 			}
 		}
-		var jqDivDate  = $('<div>').addClass('date').text( 'saved ' + dateStr);
+		var jqDivDate  = $('<div>').addClass('date').lang_text( lang_cat({en:'saved ',ru:'сохранено '} , dateStr));
 		var jqDivCtrl  = $('<div>').addClass('ctrl');
 
 		if(previewDataUrl)

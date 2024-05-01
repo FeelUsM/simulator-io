@@ -1,4 +1,5 @@
 var siteLanguage = 'en' // default language
+const allLanguages = ['en', 'ru']
 if(localStorage.getItem('language')===null) {
 	localStorage.setItem('language',siteLanguage)
 }
@@ -39,14 +40,17 @@ $(function() {
 		console.log('select language',siteLanguage)
 		renderLang()
 		$('#navLangSelect,#boardLangSelect').val(siteLanguage)
+		MetaData.updateTitle()
 	})
 })
-
+function isStringable(obj) {
+	return typeof obj == "string" || typeof obj == "number"
+}
 jQuery.fn.lang_text = function(obj){
 	if(obj===undefined){
 		obj = {}
 		var cnt = 0
-		for(key of ['en', 'ru'])  // All registered languages
+		for(key of allLanguages)  // All registered languages
 			if(this.data(key)!==null) {
 				obj[key] = this.data(key)
 				cnt++
@@ -55,7 +59,7 @@ jQuery.fn.lang_text = function(obj){
 			return {'en':this.text()}
 		return obj
 	}	
-	if(typeof obj === "string")
+	if(isStringable(obj))
 		return this.text(obj)
 	this.addClass('translatable')
 	for(key in obj)
@@ -67,12 +71,43 @@ jQuery.fn.lang_text = function(obj){
 }
 
 function lang_text(obj) {
-	if(obj[siteLanguage]!==null)
+	if(isStringable(obj))
+		return obj
+	else if(obj[siteLanguage]!==null)
 		return obj[siteLanguage]
 	else if(obj['en']!==null) {
 		console.warn('object',obj,'has no language',siteLanguage)
 		return obj['en']
 	}
-	else
+	else {
 		console.error('object',obj,'has neither language',siteLanguage,'nor','en')
+		return undefined
+	}
+}
+
+function lang_cat() {
+	var result = {}
+	for(key of allLanguages) {
+		result[key]=''
+	}
+	for(var arg of arguments){
+		if(isStringable(arg))
+			for(key of allLanguages) {
+				result[key]+=arg
+			}
+		else
+			for(key of allLanguages) {
+				if(arg[key]!==null)
+					result[key]+=arg[key]
+				else if(arg['en']!==null) {
+					console.warn('object',arg,'has no language',key)
+					result[key]+=arg['en']
+				}
+				else {
+					console.error('object',arg,'has neither language',key,'nor','en')
+					result[key]+=undefined
+				}
+			}
+	}
+	return result
 }

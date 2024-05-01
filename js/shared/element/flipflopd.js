@@ -19,7 +19,7 @@ function ElementFlipFlopD(arg)
 	this.init([5,3], connectors, arg);
 	
 	// UI
-	this.label = "FF";
+	this.label = "DD";
 
 	this.name = {en:"D latch",ru:"D-триггер"};
 	this.description = {

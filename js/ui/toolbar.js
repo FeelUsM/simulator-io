@@ -142,8 +142,8 @@ UI.init(function(system) {
 			val2 = '(readonly)';
 		}
 
-		$('#toolbar .boardTitle h2 span.val1').text(arg.title);
-		$('#toolbar .boardTitle h2 span.val2').text(val2);
+		$('#toolbar .boardTitle h2 span.val1').lang_text(arg.title);
+		$('#toolbar .boardTitle h2 span.val2').lang_text(val2);
 
 		$('#toolbar .boardTitle').toggleClass('titleEditable', true)// !(Config.currentBoardMeta.readonly || !Config.boardServerState));
 
@@ -190,11 +190,19 @@ UI.init(function(system) {
 		Button.setEnabled("undo", lastDoButtonState.undo);
 		Button.setEnabled("redo", lastDoButtonState.redo);
 	}
+	function parse(str){
+		try {
+			return JSON.parse(str)
+		}
+		catch(e) {
+			return str
+		}
+	}
 
 	function initToolTip(key)
 	{
 		var jq = Button.find(key);
-		Tooltip.register(jq, jq.data('title'), jq.data('desc'), function(imgSize) {
+		Tooltip.register(jq, parse(jq.data('title')), parse(jq.data('desc')), function(imgSize) {
 			if( !(toolsImg.width > 0) ) return null;
 
 			var originalSize = toolsImg.height;

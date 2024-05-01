@@ -371,7 +371,7 @@ var Pages = (new function() {
 		{
 			history.pushState({
 				virtualPost: virtualPost
-			}, title, url);
+			}, lang_text(title), url);
 		}
 	}
 

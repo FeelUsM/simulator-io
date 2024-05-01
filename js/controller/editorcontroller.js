@@ -85,6 +85,7 @@ EditorController.prototype.switch = function(args, url, virtualPost)
 	{
 		setTimeout(function() {
 			Event.send('loadBoardResult', {
+				title: 'noname board',
 				data: { // board data
 					s: false // not initialized yet
 				}
