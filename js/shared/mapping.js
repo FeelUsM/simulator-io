@@ -7,6 +7,7 @@
 var PageMap = [
 	/* special pages */
 	{"url": "error404",                              "controller": 'Error404Controller',		type: 2, title: "Page not found"},
+	{"url": "?error404",                             "controller": 'Error404Controller',		type: 2, title: "Page not found"},
 
 	/* main pages */ // $ превращается в аргументы of ...
 	{"url": "?",                                     "controller": 'HomeController',			type: 2, title: ""},

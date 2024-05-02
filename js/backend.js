@@ -159,7 +159,7 @@ var Backend = {
 		Config.boardServerState = null;
 		Config.currentBoardMeta = null;
 		if(localStorage.getItem('board_'+urlId) === null) {
-			console.error('cannot find board',urlId)
+			console.warn('cannot find board',urlId)
 			data = null
 		} else {
 			data = JSON.parse(localStorage.getItem('board_'+urlId+"/"+snapshot))

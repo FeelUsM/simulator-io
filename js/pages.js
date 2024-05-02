@@ -28,7 +28,7 @@ var Pages = (new function() {
 		// args = то что соответсвует '$' из PageMap
 		// ctrl = compiledMap[i]
 		// currentPage = PageMap[i]
-		console.log("go ctrl",ctrl," - ",args)
+		console.log("go",url,"ctrl:",ctrl," - ",args)
 
 		if(ctrl != null)
 		{
@@ -56,7 +56,7 @@ var Pages = (new function() {
 				{
 					var ctrlInstance = new func();
 					instance = loadedControllers[ctrlName] = ctrlInstance;
-					console.log("load controller:",instance)
+					//console.log("load controller:",instance)
 				}
 				//else	console.log("controller not found",ctrlName)
 			}
@@ -140,7 +140,8 @@ var Pages = (new function() {
 		}
 		else
 		{
-			console.error("ERROR\tCannot find controller to URL: ", url);
+			console.warn("ERROR\tCannot find controller to URL: ", url);
+			this.go('error404')
 		}
 	}
 
@@ -367,11 +368,17 @@ var Pages = (new function() {
 		$('body').scrollTop(0);
   		$('body').scrollLeft(0);
 
-		if(history.pushState && !url.includes("://") && !url.includes(".html")) // only set if supported and not for special pages (like 404 pages without leading slash)
+		if(history.pushState && !url.includes("://") && !url.includes(".html") && url!='error404') // only set if supported and not for special pages (like 404 pages without leading slash)
 		{
-			history.pushState({
-				virtualPost: virtualPost
-			}, lang_text(title), url);
+			try{
+				history.pushState({
+					virtualPost: virtualPost
+				}, lang_text(title), url);
+			}
+			catch(e){
+				console.error('go to url',url)
+				console.error('cause',e)
+			}
 		}
 	}
 
