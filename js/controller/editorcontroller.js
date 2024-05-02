@@ -225,8 +225,8 @@ EditorController.prototype.boardLoadedComplete = function(result, type) // 0=joi
 		}
 
 		Event.send('setBoardTitle', {
-			title: Config.currentBoardMeta.title,
-			snapshot: snapshotValue
+			title:    Config.currentBoardMeta.title,
+			snapshot: Config.currentBoardMeta.snapshot   //snapshotValue
 		});
 	}
 

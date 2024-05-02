@@ -133,22 +133,23 @@ UI.init(function(system) {
 	});
 
 	Event.on('setBoardTitle', function(arg) {
-		var val2 = '';
+		var realTitle = arg.title;
 		if(!!arg.snapshot)
 		{
-			val2 = arg.snapshot;
+			realTitle += ('/'+arg.snapshot);
 		}
+		/*
 		else if( Config.currentBoardMeta.readonly )
 		{
-			val2 = '(readonly)';
-		}
+			realTitle = '(readonly)';
+		}*/
 
-		$('#toolbar .boardTitle h2 span.val1').lang_text(arg.title);
+		$('#toolbar .boardTitle h2 span.val1').lang_text(realTitle);
 		//$('#toolbar .boardTitle h2 span.val2').lang_text(val2);
 
 		$('#toolbar .boardTitle').toggleClass('titleEditable', true)// !(Config.currentBoardMeta.readonly || !Config.boardServerState));
 
-		MetaData.setPageTitle(arg.title);
+		MetaData.setPageTitle(realTitle);
 	});
 
 	Event.on('saveText', function(txt) {
