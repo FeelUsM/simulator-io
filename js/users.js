@@ -36,16 +36,16 @@ function UserProvider(system, board)
 		
 		return 'ffffff';
 	}
-
+/*
 	Event.on('userJoinBoard', function(data) {
 		that.users.push(data);
 
-		Event.send('userJoinChat', data);
-		Event.send('updateUserList');		
+		Event.send('userJoinChat', data); // NO EVENT LISTENER
+		Event.send('updateUserList'); // NO EVENT LISTENER		
 	});
 	
 	Event.on('userLeaveBoard', function(data) {
-		Event.send('userLeaveChat', data);
+		Event.send('userLeaveChat', data); // NO EVENT LISTENER
 	
 		var found = false;
 		for(var i = 0; i < that.users.length; i++)
@@ -59,6 +59,7 @@ function UserProvider(system, board)
 		
 		if(!found) console.error("ERROR\tCannot delete old user");
 		
-		Event.send('updateUserList');
+		Event.send('updateUserList'); // NO EVENT LISTENER
 	});
+	*/
 }

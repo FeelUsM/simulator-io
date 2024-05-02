@@ -236,7 +236,7 @@ EditorController.prototype.boardLoadedComplete = function(result, type) // 0=joi
 	Event.send('loadState', {board: false});
 
 	// user list (chat)
-	Event.send('updateUserList');
+	// Event.send('updateUserList'); // NO EVENT LISTENER
 
 	// update editor UI (scrollbars)
 	Event.send('updateEditorUI');

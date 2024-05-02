@@ -41,6 +41,7 @@
 155 js/input.js							Input							события мышки вызывают Event-ы
 73	js/shared/tooloptions.js			ToolOptionProvider .setVisibleOptions .getOptionByName		какие у нас вообще есть опции для инструментов
 820 js/tool.js							Tool							выбор инструментов для редактирования
+--------
 503 js/shared/element.js               	Element()                {};                 Element.prototype = ...
 41  js/shared/element/gate.js          	Gate()                   {};                    Gate.prototype = ...
 27  js/shared/element/andgate.js       	AndGate(arg)             { ... }             AndGate.prototype = ...
@@ -125,18 +126,21 @@ js/renderer/draw_diodes.js            <!--36  function drawDiodes(board, diodes,
 		5	toolbox.js
 		6	toolbar.js
 		7	elements.js
+81  js/ui/mobilesidebar.js				var setSidebar, toggleSidebar, jqMobileSidebar	
 50  js/ui/mainnav.js					showMainNav()					скрывает показывает хедер-футер
 										updateProfileMeta
 177	js/ui/loading.js					LoadingBar .on('loadState')		$('#mainLoadingBar') - зелёная полоска вверху		$('#uiLoadOverlay')
-81  js/ui/mobilesidebar.js				var setSidebar, toggleSidebar, jqMobileSidebar	
 5	js/ui/keyboard.js													событие 'keyhit' при нажатии на кнопки клавиатуры
 22	js/ui/spinner.js													ограничивает значение в $('input[type=number]')
 57	js/ui/button.js														развешивает иконки и события 'button' на кнопки
 20	js/ui/sections.js													делает сворачивание секций
-286	js/ui/toolbox.js													кнопки в левой колонке
 100	js/ui/slider.js						ScrollArea						.scrollArea - маленькая область с полосой прокрутки
+
+286	js/ui/toolbox.js													кнопки в левой колонке
+116	js/ui/elements.js													элементы в окошке/панельке с элементами
 43  js/ui/tooltipbar.js					Tooltip							отображение описания инструмента внизу экрана
 222	js/ui/toolbar.js													кнопки в верхней полосе (события на них) + инициализация tooltip
+-------
 101	js/ui/overlay.js													открытие, закрытие и инициализация оверлеев
 41	js/ui/overlaymessage.js				.on('openMessage')				сообщение
 77	js/ui/overlaylink.js				.onKey('button', 'openLink')	snapshot	1 кнопка create
@@ -144,7 +148,6 @@ js/renderer/draw_diodes.js            <!--36  function drawDiodes(board, diodes,
 73	js/ui/overlayfork.js				.on('openForkOverlay')			логика форка
 17	js/ui/overlayerror.js				.on('serverError')				по нажатию на кнопку - перезагрузка страницы
 46	js/ui/editorlayout.js												обработка изменений размеров окна и подокон
-116	js/ui/elements.js													элементы в окошке/панельке с элементами
 
 
 

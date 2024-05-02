@@ -31,7 +31,7 @@ var ScrollArea = {
 			this.update = function()
 			{
 				var content = scrollArea.find('.content');
-				scrollHeight = content.outerHeight(true) - scrollArea.height();
+				scrollHeight = content.outerHeight(true) - scrollArea.height();  // сколько высоты контента не помещается в окно
 
 				// adjust
 				if(pos > scrollHeight) pos = scrollHeight;

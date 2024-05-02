@@ -5,7 +5,7 @@ UI.init(function(system) {
 	//toolsImg.src = 'https://simulator.io/res/sprite.svg';
 	//toolsImg.src = 'https://raw.githubusercontent.com/FeelUsM/simulator-io/master/res/sprite.svg';
 	//toolsImg.crossOrigin="anonymous"
-	toolsImg.src = global_sprite_svg
+	toolsImg.src = 'data:image/svg+xml,'+encodeURIComponent(global_sprite_svg)
 
 	Event.onKey('button', 'run', function() {
 		if(Config.currentBoardMeta.readonly) // is readonly?
@@ -22,6 +22,7 @@ UI.init(function(system) {
 			var mode = system.getMode();
 			mode = 1 - mode; // new mode
 			Event.send('setMode', mode);
+			ScrollArea.init(ScrollArea.find('elementSelection')).update(); // обновить скролл бары после того как всё отрисовалось
 		}
 	});
 
@@ -143,7 +144,7 @@ UI.init(function(system) {
 		}
 
 		$('#toolbar .boardTitle h2 span.val1').lang_text(arg.title);
-		$('#toolbar .boardTitle h2 span.val2').lang_text(val2);
+		//$('#toolbar .boardTitle h2 span.val2').lang_text(val2);
 
 		$('#toolbar .boardTitle').toggleClass('titleEditable', true)// !(Config.currentBoardMeta.readonly || !Config.boardServerState));
 
@@ -151,14 +152,14 @@ UI.init(function(system) {
 	});
 
 	Event.on('saveText', function(txt) {
-		$('div.saveText').html(txt);
+		$('div.saveText').lang_text(txt);
 	});
 
 	Event.on('saveState', function(state) {
 		if(state == 0)  Event.send('saveText', '&nbsp;');
-		if(state == 1)  Event.send('saveText', 'Saving...');
-		if(state == 2)  Event.send('saveText', 'All changes saved');
-		if(state == 3)  Event.send('saveText', 'Unsaved changes. Click <b>Link</b> to save.'); //  or <b>Fork</b>
+		if(state == 1)  Event.send('saveText', {en:'Saving...',ru:'Сохраняю...'});
+		if(state == 2)  Event.send('saveText', {en:'Saved',ru:'Сохранено'}); // All changes saved
+		if(state == 3)  Event.send('saveText', {en:'Unsaved',ru:'Не сохранено'}); //   changes. Click <b>Link</b> to save or <b>Fork</b>
 			 //system.previewMgr.announceChange()
 	});
 

@@ -32,7 +32,7 @@ UI.init(function(system) {
 		system.renderer.resizeRenderPanel([boardX, boardY], [boardWidth, boardHeight]);
 
 		// update sub layouts
-		Event.send('updateSubLayouts');
+		// Event.send('updateSubLayouts'); // NO EVENT LISTENER
 	}
 
 	Event.on('windowResize', handler);

@@ -53,6 +53,7 @@ UI.init(function(system) {
 				ToolOptionProvider.setVisibleOptions(["textsize"]);
 				break;
 		}
+		scrollAreaElements.update();
 	});
 	
 	// ----------------------------------------------------------------- OPTIONS

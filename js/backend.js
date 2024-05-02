@@ -111,7 +111,7 @@ var Backend = {
 		//console.log('try to save',bd)
 		bd.data // check that data is available
 		if(localStorage.getItem('board_'+bd.title+'/'+bd.snapshot) === null) {
-			bd.time = Date()
+			bd.time = new Date().toISOString() 
 			//console.log('local save',bd.title,bd.snapshot,bd)
 			localStorage.setItem('board_'+bd.title+'/'+bd.snapshot,JSON.stringify(bd))
 			var number = bd.snapshot;
@@ -141,7 +141,7 @@ var Backend = {
 			urlId    : title,
 			snapshot : number,
 			parent   : parent,
-			time     : Date(),
+			time     : new Date().toISOString() ,
 			data     : data,
 			previewImage  : preview,
 		}
@@ -352,6 +352,13 @@ var Backend = {
 			Event.send('loadState', {boardList: false});
 		});
 		
+		this._socket.on('loadBoardResult', function(data) {
+			Backend._currentLoadedBoard = data;
+
+			Event.send('loadBoardResult', data);
+		});
+		
+/*		
 		this._socket.on('connect', function() {
 			// hello msg to server
 			Backend._sendMsg('hello', {vl: Config.versionLogic, vs: Config.versionStorage});
@@ -364,7 +371,7 @@ var Backend = {
 			}
 			else // no token found?
 			{
-				Event.send('userStatusChange');
+				Event.send('userStatusChange'); // COMMENTED
 				Backend._postInitBackend();				
 			}
 		});
@@ -374,7 +381,7 @@ var Backend = {
 
 			if(Config.boardServerState) // live board? -> full size error
 			{
-				Event.send('fullSizeError', "Lost connection to server.");
+				Event.send('fullSizeError', "Lost connection to server."); // COMMENTED
 			}
 		});
 
@@ -386,16 +393,16 @@ var Backend = {
 		this._socket.on('serverError', function(data) {
 			if(Config.currentBoardMeta) // board active? just show a small error
 			{
-				Event.send('serverError', data);
+				Event.send('serverError', data); // COMMENTED
 			}
 			else // change to full size error
 			{
-				Event.send('fullSizeError', data);
+				Event.send('fullSizeError', data); // COMMENTED
 			}
 		});
 		
 		this._socket.on('authResult', function(data) {
-			Event.send('loadState', {login: false});
+			Event.send('loadState', {login: false}); // COMMENTED
 
 			if(data != null && !!data.token)
 			{
@@ -404,8 +411,8 @@ var Backend = {
 				Config.userName = data.name;
 				Config.userMail = data.mail;
 				
-				Event.send('loginResult', true);
-				Event.send('userStatusChange');
+				Event.send('loginResult', true); // COMMENTED
+				Event.send('userStatusChange'); // COMMENTED
 			}
 			else
 			{
@@ -414,7 +421,7 @@ var Backend = {
 				Config.userMail = '';
 				Config.boards = null;
 				
-				Event.send('loginResult', false);
+				Event.send('loginResult', false); // COMMENTED
 			}
 
 			if(!Backend.isReady())
@@ -428,15 +435,15 @@ var Backend = {
 			Config.userName = null;
 			Config.userMail = null;
 			Config.profile = null;
-			Event.send('logoutComplete');
-			Event.send('userStatusChange');
+			Event.send('logoutComplete'); // COMMENTED
+			Event.send('userStatusChange'); // COMMENTED
 		});
 		
 		this._socket.on('registerResult', function(data) {
 			if(data.success)
 			{
-				Event.send('closeOverlay');
-				Event.send('registerSuccess');
+				Event.send('closeOverlay'); // COMMENTED
+				Event.send('registerSuccess'); // COMMENTED
 			}
 			else
 			{
@@ -444,14 +451,14 @@ var Backend = {
 				{
 					if(!!data.invalid.name) Validation.AddUnusable('Nick', data.invalid.name);
 					if(!!data.invalid.mail) Validation.AddUnusable('Mail', data.invalid.mail);
-					Event.send('validationUpdated');
+					Event.send('validationUpdated'); // COMMENTED
 				}
 				else
 				{
 					console.error("ERROR\tRegistration failed on server side"); // todo ERROR FIX
-					Event.send('closeOverlay');
+					Event.send('closeOverlay'); // COMMENTED
 					
-					Event.send('openMessage', {error: true, title: 'Registration', text: 'Registration failed.'});
+					Event.send('openMessage', {error: true, title: 'Registration', text: 'Registration failed.'}); // COMMENTED
 				}
 			}
 		});
@@ -466,51 +473,45 @@ var Backend = {
 				Backend._currentLoadedBoard = null;
 			}
 
-			Event.send('joinBoardResult', data);
+			Event.send('joinBoardResult', data); // COMMENTED
 		});
 
-		this._socket.on('loadBoardResult', function(data) {
-			Backend._currentLoadedBoard = data;
-
-			Event.send('loadBoardResult', data);
-		});
-		
 		this._socket.on('profile', function(data) {
 			Config.lastRequestedProfile = data;
 			
-			Event.send('profileResult', data);
+			Event.send('profileResult', data); // COMMENTED
 
 			if(data && data.uid == Config.userId)
 			{
 				Config.profile = data;
-				Event.send('userDataOwn', data);
+				Event.send('userDataOwn', data); // COMMENTED
 			}			
 		});
 		
 		this._socket.on('changePasswordResult', function(success) {
 			if(success)
 			{
-				Event.send('openMessage', {title: 'Password changed', text: 'Your password was successfully changed'});
+				Event.send('openMessage', {title: 'Password changed', text: 'Your password was successfully changed'}); // COMMENTED
 			}
 			else
 			{
-				Event.send('openMessage', {error: true, title: 'Error', text: 'Failed to change password.'});
+				Event.send('openMessage', {error: true, title: 'Error', text: 'Failed to change password.'}); // COMMENTED
 			}
 		});
 		
 		this._socket.on('transaction', function(data) {
 			Backend._socket.emit('confirmTransaction', data.id);
-			Event.send('foreignTransaction', data);
+			Event.send('foreignTransaction', data); // COMMENTED
 		});
 		
 		this._socket.on('transactionResult', function(data) {
 			if(data.result == 'reject')
 			{
-				Event.send('rejectTransaction', data);
+				Event.send('rejectTransaction', data); // COMMENTED
 			}
 			else if(data.result == 'confirm')
 			{
-				Event.send('confirmTransaction', data);
+				Event.send('confirmTransaction', data); // COMMENTED
 			}
 			else
 			{
@@ -518,15 +519,15 @@ var Backend = {
 			}
 		});
 		
-		this._socket.on('hashRequest', function(id) {					Event.send('hashRequest', id);						});
+		this._socket.on('hashRequest', function(id) {					Event.send('hashRequest', id);						}); // COMMENTED
 		
-		this._socket.on('userJoin', function(data) {					Event.send('userJoinBoard', data);					});
+		this._socket.on('userJoin', function(data) {					Event.send('userJoinBoard', data);					}); // COMMENTED
 		
-		this._socket.on('userLeave', function(data) {					Event.send('userLeaveBoard', data);					});	
+		this._socket.on('userLeave', function(data) {					Event.send('userLeaveBoard', data);					});	 // COMMENTED
 		
-		this._socket.on('foreignMsg', function(data) {					Event.send('foreignMsg', data);						});
+		this._socket.on('foreignMsg', function(data) {					Event.send('foreignMsg', data);						}); // COMMENTED
 
-		this._socket.on('userPresence', function(data) {				Event.send('userPresenceUpdate', data);				});
+		this._socket.on('userPresence', function(data) {				Event.send('userPresenceUpdate', data);				}); // COMMENTED
 
 		this._socket.on('snapshotResult', function(result) {			Backend._popCallback('snapshot')(result);			});
 
@@ -536,15 +537,16 @@ var Backend = {
 
 		this._socket.on('createForkResult', function(result) {			Backend._popCallback('fork')(result);				});
 
-		this._socket.on('updatePermissions', function(permissions) {	Event.send('updatePermissions', permissions);		});
+		this._socket.on('updatePermissions', function(permissions) {	Event.send('updatePermissions', permissions);		}); // COMMENTED
 
-		this._socket.on('updateTitle', function(result) {				Event.send('updateBoardTitle', result);				});
+		this._socket.on('updateTitle', function(result) {				Event.send('updateBoardTitle', result);				}); // COMMENTED
 
 		this._socket.on('saveProfileResult', function(result) {			Backend._popCallback('saveProfile')(result);		});
 
 		this._socket.on('verifyMailResult', function(result) {			Backend._popCallback('verifyMail')(result);			});
 
 		this._socket.on('isPassResetHashValidResult', function(result) {Backend._popCallback('isPassResetHashValid')(result);});
+*/
 	},
 
 	_pushCallback: function(name, cb) {

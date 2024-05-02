@@ -1,13 +1,20 @@
 var siteLanguage = 'en' // default language
 const allLanguages = ['en', 'ru']
+const jqLangSelectors = $('#navLangSelect,#boardLangSelect') // all Lang Selectors
+
 if(localStorage.getItem('language')===null) {
 	localStorage.setItem('language',siteLanguage)
 }
 else
 	siteLanguage = localStorage.getItem('language')
-$('#navLangSelect,#boardLangSelect').val(siteLanguage)
+jqLangSelectors.val(siteLanguage)
 
+/*
+языковой объект - это просто {en:'тект на английском' , ru:'текст на русском'}
+В DOM дереве каждый переводимый элемент имеет класс translatable а также атрибуты data-en и lata-ru
+*/
 function renderLang(){
+	"находит все переводимые элементы и устанавливает их inner_html в data-en или data-ru"
 	$('html').attr('lang',siteLanguage)
 	$('.translatable').each(function(){
 		if($(this).data(siteLanguage)!==null)
@@ -32,14 +39,14 @@ function renderLang(){
 	})
 }
 $(function() {
-	console.log('init language',siteLanguage)
+	//console.log('init language',siteLanguage)
 	renderLang()
-	$('#navLangSelect,#boardLangSelect').change(function(){
+	jqLangSelectors.change(function(){
 		siteLanguage = this.value;
 		localStorage.setItem('language',siteLanguage)
-		console.log('select language',siteLanguage)
+		//console.log('select language',siteLanguage)
 		renderLang()
-		$('#navLangSelect,#boardLangSelect').val(siteLanguage)
+		jqLangSelectors.val(siteLanguage) // если изменился один селектор, то надо поменять все остальные
 		MetaData.updateTitle()
 	})
 })
@@ -47,30 +54,34 @@ function isStringable(obj) {
 	return typeof obj == "string" || typeof obj == "number"
 }
 jQuery.fn.lang_text = function(obj){
+	"без аргументов - преобразует DOM элемент в языковой объект"
+	"если аргумент строка - это просто this.html()"
+	"если аргумент - языковой объект - устанавливает его в DOM элемент и this.html(текущий язык)"
 	if(obj===undefined){
 		obj = {}
 		var cnt = 0
-		for(key of allLanguages)  // All registered languages
+		for(key of allLanguages)
 			if(this.data(key)!==null) {
 				obj[key] = this.data(key)
 				cnt++
 			}
 		if(cnt==0)
-			return {'en':this.text()}
+			return {'en':this.html()}
 		return obj
 	}	
 	if(isStringable(obj))
-		return this.text(obj)
+		return this.html(obj)
 	this.addClass('translatable')
 	for(key in obj)
 		this.data(key,obj[key])
 	if(obj[siteLanguage]!==null)
-		return this.text(obj[siteLanguage])
+		return this.html(obj[siteLanguage])
 	else
-		return this.text(obj['en'])
+		return this.html(obj['en'])
 }
 
 function lang_text(obj) {
+	"преобразует язывковой объект в строку, выбирая текущий язык"
 	if(isStringable(obj))
 		return obj
 	else if(obj[siteLanguage]!==null)
@@ -86,6 +97,7 @@ function lang_text(obj) {
 }
 
 function lang_cat() {
+	"складывает языковые объекты как строки (для каждого языка)"
 	var result = {}
 	for(key of allLanguages) {
 		result[key]=''

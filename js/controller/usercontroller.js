@@ -320,11 +320,12 @@ UserController.prototype.updateBoards = function()
 		var jqRow = $('<li>').attr('title', '');
 		var jqImgWrap  = $('<div>').addClass('imgWrap');
 		var jqDivName  = $('<div>').addClass('name').text(boardObj.title+'/'+boardObj.snapshot);
-		var jqDivOwner = $('<div>').addClass('owner').lang_text( lang_cat({en:'origin: ',ru:'исходный: '} , boardObj.parent));
+		var jqDivOwner = $('<div>').addClass('owner')
 		if(boardObj.parent===undefined){
 			jqDivOwner.lang_text({en:'The origin',ru:'Исходный'})
 			jqDivOwner.attr('style','color:black;font-weight: bold')
 		}else{
+			jqDivOwner.lang_text( lang_cat({en:'origin: ',ru:'исходный: '} , boardObj.parent));
 			[oldName,oldSnap] = boardObj.parent.split('/')
 			if(oldName!=boardObj.title || 1+ +oldSnap != +boardObj.snapshot){
 				if(boardObj.snapshot!=1)
