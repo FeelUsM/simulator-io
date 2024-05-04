@@ -289,8 +289,15 @@ UserController.prototype.updateBoards = function()
 		if(a.time == null && b.time != null) return -1;
 		if(b.time == null && a.time != null) return 1;
 
-		if(a.time < b.time) return 1;
-		if(a.time > b.time) return -1;
+		console.log('compare')
+		if(new Date(a.time) < new Date(b.time)) {
+			console.log(a.title,a.snapshot,a.time,'<',b.title,b.snapshot,b.time)
+			return 1;
+		}
+		if(new Date(a.time) > new Date(b.time)) {
+			console.log(a.title,a.snapshot,a.time,'>',b.title,b.snapshot,b.time)
+			return -1;
+		}
 		return 0;
 	});
 

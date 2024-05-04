@@ -221,7 +221,7 @@ function TransactionManager(system, board)
 		id = id || '';
 		
 		// generate guid if necessary
-		if(!foreign && id == '')
+		if(!foreign && id == '') // 0==''
 		{
 			if(Config.boardServerState) // is live board or snapshot? don't send anything to a snapshot
 			{

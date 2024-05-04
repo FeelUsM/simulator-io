@@ -1,5 +1,7 @@
 function BoardStorage(system, board, opt)
 {
+	console.log('construct BoardStorage',opt)
+
 	this.nextWireId = 0;
 	this.nextElementId = 0;
 	this.nextDiodeId = 0;
@@ -112,7 +114,7 @@ function BoardStorage(system, board, opt)
 		return obj;
 	}
 	
-	this.importAll = function(obj)
+	this.importAll = function(obj,isSnapshot)
 	{
 		if(obj.s == false) // not initialized yet, this must be an empty board
 		{
@@ -141,25 +143,25 @@ function BoardStorage(system, board, opt)
 		// add wires
 		for(var i = 0; i < obj.w.length; i++)
 		{
-			this.pushWire( this.importWire(obj.w[i]) );
+			this.pushWire( this.importWire(obj.w[i], isSnapshot) );
 		}
 		
 		// all diodes
 		for(var i = 0; i < obj.d.length; i++)
 		{
-			this.pushDiode( this.importDiode(obj.d[i]) );
+			this.pushDiode( this.importDiode(obj.d[i], isSnapshot) );
 		}
 		
 		// all element
 		for(var i = 0; i < obj.e.length; i++)
 		{
-			this.pushElement( this.importElement(obj.e[i]) );
+			this.pushElement( this.importElement(obj.e[i], isSnapshot) );
 		}
 
 		// all text nodes
 		for(var i = 0; i < obj.t.length; i++)
 		{
-			this.pushText( this.importText(obj.t[i]) );
+			this.pushText( this.importText(obj.t[i], isSnapshot) );
 		}
 		
 		if(system) // client only
@@ -1170,6 +1172,7 @@ function BoardStorage(system, board, opt)
 
 	this.getWiresByEndpoint = function(p, d, excludeId)
 	{
+		"возвращает все горизонтальные(d==0) и все вертикальные (d==1) провода, за исключением excludeId, которые заканчиваются в точке"
 		var ret = [];
 		if(typeof excludeId == 'undefined') excludeId = null;
 		if(typeof d == 'undefined') d = null;

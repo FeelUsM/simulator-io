@@ -38,7 +38,7 @@ function drawWires(board, wires, zoom, ctx, renderType)
 				var wiresAtPoint = board.storage.getWiresByEndpoint(geo[n]);
 				var found = wiresAtPoint.length;
 
-				if(found > 2)
+				if(true)//(found > 2)
 				{
 					var diode = board.storage.getDiodeAtPoint(geo[n]);
 					

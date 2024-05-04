@@ -203,7 +203,7 @@ EditorController.prototype.boardLoadedComplete = function(result, type) // 0=joi
 	// import and activate ui
 	if(result.data.s) // initialized?
 	{
-		logicApp.system.board.storage.importAll(result.data);
+		logicApp.system.board.storage.importAll(result.data,isSnapshot);
 		logicApp.system.renderer.minimapShow();
 		logicApp.system.renderer.minimapHide();
 

@@ -113,7 +113,7 @@ Element.prototype.getConnectorStats = function()
 	for(var i = 0; i < this.connectors.length; i++)
 	{
 		var con = this.connectors[i];	
-		if(con != 4) ret[con.dir]++;
+		if(con.dir != 4) ret[con.dir]++; // ERROR FIX
 	}
 	
 	return ret;

@@ -27,9 +27,9 @@ function drawDiodes(board, diodes, zoom, ctx, renderType)
 
 		ctx.fillStyle = selected ? Config.colSelected : Config.colNormal;
 		ctx.beginPath();
-		ctx.moveTo(x - size + ox, y + oy);
-		ctx.lineTo(x + ox, y + size + 1 + oy);
-		ctx.lineTo(x + size + ox, y + oy);
+		ctx.moveTo(x + ox - size, y + oy);
+		ctx.lineTo(x + ox       , y + oy + size + 1);
+		ctx.lineTo(x + ox + size, y + oy);
 		ctx.closePath();
 		ctx.fill();
 	}
