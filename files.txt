@@ -98,12 +98,11 @@ js/controller/staticcontroller.js     <!--102 function StaticController()   {}  
 js/helper.js                          <!--132 functions... ; jQuery.fn.shake = function(intShakes, intDistance, intDuration) {...}-->
 js/clipboard.js                       <!--37  var Clipboard = new function(){...simple... $(window).bind('storage', function (e) {var original = e.originalEvent;/*???*/})}-->
 	<!-- на самом деле это localStorage.getItem('clipboard') -->
-js/simulationbase.js                  <!--10  function SimulationBase(){}SimulationBase.prototype. = ...-->
-js/simulation/simplesimulation.js     <!--21  function SimpleSimulation(){...}SimpleSimulation.prototype = -->
 js/renderer/renderhelper.js           <!--30  var RenderHelper = {...simple...}-->
 js/renderer/draw_wire.js              <!--78  function drawWires(board, wires, zoom, ctx, renderType){...}-->
 js/renderer/draw_element.js           <!--30  function drawElements(board, elements, zoom, ctx, renderType){...}-->
 js/renderer/draw_diodes.js            <!--36  function drawDiodes(board, diodes, zoom, ctx, renderType){...}-->
+
 
 
 
@@ -159,8 +158,4 @@ js/ui/mailobfuscator.js               <!--6   после загрузки: $('#m
 js/ui/toggle.js                       <!--48  var registerToggleList = []; function registerToggle(jq, name, interval); function unregisterToggle(jq, name)-->
 js/ui/fullsizeerror.js                <!--53  var fullSizeErrorActive = false; Event.on('fullSizeError', function(msg) {...})-->
 js/ui/accordion.js                    <!--37  var Accordion = {...simple...}-->
-
-js/ui/footer.js                       <!--0   пусто-->
-js/ui/homepage.js                     <!--1   //deprecated-->
-js/ui/userpage.js                     <!--1   //deprecated-->
                                                         <!--всего 14165 строк, 104 файла-->
